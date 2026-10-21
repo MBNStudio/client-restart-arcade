@@ -699,9 +699,6 @@
   visibility: hidden;
   pointer-events: none;
 }
-:root[data-version='halo'] .topbar[data-home] {
-  display: none;
-}
 :root[data-version='halo'] header:not([data-top]) .header-pill {
   background-color: rgb(255 255 255 / 0.94);
 }
@@ -1239,7 +1236,7 @@
 
 .pl-btn-primary {
   background: var(--pl-ink);
-  color: var(--pl-bg);
+  color: var(--pl-on-ink, var(--pl-bg));
   transition: opacity 0.2s ease;
 }
 .pl-btn-primary:hover {
@@ -1256,30 +1253,343 @@
   background: color-mix(in srgb, var(--pl-ink) 10%, transparent);
 }
 
-/* Plateau tournant du hero : la scène 3D (Turntable3D) est transparente ; une
- * lueur dorée derrière le plateau la détache du fond. */
-.pl-stage {
-  touch-action: pan-y;
-  -webkit-user-select: none;
-  user-select: none;
+/* Héros Plateau : mur de photos. Trois colonnes défilent sans fin, celle du
+ * milieu en sens inverse ; le mur est incliné en perspective et s'estompe en
+ * haut et en bas. Au survol, la colonne s'arrête et la photo avance. */
+.pl-wall {
+  position: relative;
+  height: clamp(460px, 52vw, 640px);
+  perspective: 1600px;
+  /* Le mur s'estompe sur ses quatre bords : jamais de photo coupée net. */
+  -webkit-mask-image:
+    linear-gradient(to bottom, transparent, #000 14%, #000 86%, transparent),
+    linear-gradient(to right, transparent, #000 10%, #000 88%, transparent);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to bottom, transparent, #000 14%, #000 86%, transparent),
+    linear-gradient(to right, transparent, #000 10%, #000 88%, transparent);
+  mask-composite: intersect;
 }
-.pl-stage-light {
-  position: absolute;
-  inset: 8% 4% 6%;
-  border-radius: 50%;
-  background: radial-gradient(ellipse 60% 52% at 50% 62%, var(--pl-glow), transparent 70%);
-  filter: blur(14px);
-  pointer-events: none;
-}
-.pl-caption {
-  animation: pl-caption 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
-}
-@keyframes pl-caption {
-  from {
-    opacity: 0;
-    transform: translateY(6px);
+/* En grand écran, le mur déborde du conteneur jusqu'au bord de la fenêtre (12rem au plus). */
+@media (min-width: 1024px) {
+  .pl-wall {
+    margin-right: calc(-1 * (min(12rem, max(0px, (100vw - 72rem) / 2)) + 1.5rem));
   }
 }
+.pl-wall__tilt {
+  position: absolute;
+  inset: -12% -4% -12% 2%;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  transform: rotateX(14deg) rotateY(-16deg) rotateZ(5deg);
+  transform-style: preserve-3d;
+}
+.pl-wall__col {
+  overflow: hidden;
+}
+.pl-wall__track {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  animation: pl-wall-up calc(34s + var(--c) * 6s) linear infinite;
+}
+.pl-wall__col:nth-child(even) .pl-wall__track {
+  animation-direction: reverse;
+}
+.pl-wall__col:hover .pl-wall__track {
+  animation-play-state: paused;
+}
+/* La piste contient deux fois la colonne : remonter de la moitié (plus un demi-écart) boucle sans saut. */
+@keyframes pl-wall-up {
+  to {
+    transform: translateY(calc(-50% - 7px));
+  }
+}
+.pl-wall__card {
+  position: relative;
+  flex-shrink: 0;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 18px;
+  background: color-mix(in srgb, var(--pl-ink) 6%, transparent);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--pl-ink) 8%, transparent),
+    0 24px 50px -24px rgba(0, 0, 0, 0.55);
+  transition:
+    transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 0.5s ease;
+}
+.pl-wall__card:hover {
+  transform: translateZ(40px) scale(1.04);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--pl-gold) 55%, transparent),
+    0 34px 70px -24px rgba(0, 0, 0, 0.7);
+}
+.pl-wall__link {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+.pl-wall__link img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.pl-wall__card:hover img {
+  transform: scale(1.06);
+}
+.pl-wall__link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent 45%);
+}
+.pl-wall__name {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 10px;
+  z-index: 1;
+  font-size: 13px;
+  font-weight: 650;
+  color: #ffffff;
+}
+.pl-wall__link:focus-visible {
+  outline: 2px solid var(--pl-gold);
+  outline-offset: -2px;
+  border-radius: 18px;
+}
+@media (max-width: 1023px) {
+  .pl-wall {
+    height: 460px;
+  }
+  .pl-wall__tilt {
+    inset: -10% -6%;
+    transform: rotateX(10deg) rotateZ(4deg);
+  }
+}
+@media (max-width: 639px) {
+  .pl-wall__tilt {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .pl-wall__col:nth-child(4) {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pl-wall__track {
+    animation: none;
+  }
+}
+
+/* Le héros Plateau garde son mur de photos, Plateau clair montre les gammes une à une. */
+:root:not([data-version='plateau-clair']) .pl-only-clair,
+:root[data-version='plateau-clair'] .pl-only-dark {
+  display: none;
+}
+
+/* Gammes une à une (PlateauGammes) : la photo en grand, une colonne étroite à droite. */
+.pl-gammes {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 170px;
+  align-items: end;
+  gap: 24px;
+  width: 100%;
+  max-width: 640px;
+  margin-inline: auto;
+}
+.pl-gammes__stage {
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 28px;
+  background: var(--pl-thumb);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--pl-ink) 6%, transparent),
+    0 40px 80px -40px var(--pl-shadow, rgba(0, 0, 0, 0.3));
+}
+.pl-gammes__stage:focus-visible {
+  outline: 2px solid var(--pl-gold);
+  outline-offset: 3px;
+}
+.pl-gammes__stage img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+}
+.pl-gammes__stage img[data-state='on'],
+.pl-gammes__stage img[data-state='out'] {
+  opacity: 1;
+}
+.pl-gammes__stage img[data-state='in'] {
+  z-index: 1;
+  opacity: 1;
+  animation: pl-gammes-wipe 1.1s cubic-bezier(0.65, 0, 0.35, 1) both;
+}
+.pl-gammes__sweep {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 2;
+  width: 3px;
+  margin-left: -1.5px;
+  background: var(--pl-gold);
+  box-shadow: 0 0 24px 6px color-mix(in srgb, var(--pl-gold) 45%, transparent);
+  pointer-events: none;
+  animation: pl-gammes-sweep 1.1s cubic-bezier(0.65, 0, 0.35, 1) both;
+}
+@keyframes pl-gammes-wipe {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+@keyframes pl-gammes-sweep {
+  from {
+    left: 0;
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  to {
+    left: 100%;
+    opacity: 0;
+  }
+}
+
+/* Colonne de droite : le texte de la gamme arrive avec le volet. */
+.pl-gammes__panel {
+  padding-bottom: 6px;
+}
+.pl-gammes__text {
+  animation: pl-gammes-text 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) 0.15s both;
+}
+@keyframes pl-gammes-text {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+.pl-gammes__count {
+  font-size: 12px;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.06em;
+  color: var(--pl-gold);
+}
+.pl-gammes__count span {
+  color: color-mix(in srgb, var(--pl-ink) 35%, transparent);
+}
+.pl-gammes__name {
+  margin-top: 14px;
+  font-size: 22px;
+  font-weight: 650;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+.pl-gammes__line {
+  margin-top: 8px;
+  font-size: 14px;
+  line-height: 1.45;
+  color: color-mix(in srgb, var(--pl-ink) 60%, transparent);
+}
+.pl-gammes__price {
+  margin-top: 14px;
+  font-size: 14px;
+  font-weight: 650;
+  color: var(--pl-gold);
+}
+.pl-gammes__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--pl-ink);
+}
+.pl-gammes__link:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+/* Segments : celui de la gamme affichée se remplit, les précédents restent pleins. */
+.pl-gammes__dots {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 5px;
+  margin-top: 28px;
+}
+.pl-gammes__dots button {
+  position: relative;
+  height: 14px;
+  cursor: pointer;
+}
+.pl-gammes__dots button::before {
+  content: '';
+  position: absolute;
+  inset: 6px 0;
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--pl-ink) 14%, transparent);
+}
+.pl-gammes__dots button[data-done]::before {
+  background: color-mix(in srgb, var(--pl-ink) 45%, transparent);
+}
+.pl-gammes__dots button:focus-visible {
+  outline: 2px solid var(--pl-gold);
+  outline-offset: 2px;
+}
+.pl-gammes__bar {
+  position: absolute;
+  inset: 6px 0;
+  border-radius: 2px;
+  background: var(--pl-gold);
+  transform-origin: left;
+  animation: pl-gammes-bar var(--hold) linear both;
+}
+.pl-gammes[data-paused] .pl-gammes__bar {
+  animation-play-state: paused;
+}
+@keyframes pl-gammes-bar {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+@media (max-width: 639px) {
+  .pl-gammes {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+  }
+  .pl-gammes__name {
+    margin-top: 8px;
+  }
+  .pl-gammes__dots {
+    margin-top: 18px;
+  }
+}
+/* Sans animation : pas de défilement automatique, le visiteur choisit la gamme. */
+@media (prefers-reduced-motion: reduce) {
+  .pl-gammes__stage img[data-state='in'],
+  .pl-gammes__sweep,
+  .pl-gammes__text {
+    animation: none;
+  }
+  .pl-gammes__bar {
+    display: none;
+  }
+}
+
 /* Zone claire de la version sombre : mêmes couleurs que Plateau clair, posées
  * sur un conteneur ; on y entre et on en sort par un dégradé. */
 .pl-light {
@@ -1295,33 +1605,13 @@
   background: var(--pl-bg);
   color: var(--pl-ink);
 }
-/* Passage du noir au blanc, version Plateau sombre : PlateauTint pose --pl-t
- * (0 → 1) sur .pl-root selon le défilement. Tout le fond change de teinte d'un
- * bloc, sans bande de dégradé ; les textes de la zone sombre foncent en même
- * temps et le contenu clair apparaît à mesure. Le retour au noir est franc. */
-:root[data-version='plateau'] .pl-root {
-  background: color-mix(in oklab, #000000, #fafaf8 calc(var(--pl-t, 0) * 100%));
-}
-:root[data-version='plateau'] .pl-dark-zone {
-  --pl-ink: color-mix(in oklab, #ffffff, #0c0c0d calc(var(--pl-t, 0) * 100%));
-}
+/* Plateau (sombre) : toute la page reste noire. La zone des cartes et du
+ * catalogue (.pl-light) reprend donc la palette sombre.
+ * Plateau clair : le haut est clair, puis PlateauTint pose --pl-t (0 → 1) sur
+ * .pl-root selon le défilement : tout le fond passe au noir d'un bloc pour la
+ * zone des cartes et du catalogue, les textes du haut s'éclaircissent en même
+ * temps, puis une rupture franche ramène le clair avant les avis. */
 :root:is([data-version='plateau'], [data-version='plateau-clair']) .pl-light {
-  background: transparent;
-}
-:root:is([data-version='plateau'], [data-version='plateau-clair']) .pl-light > section:first-of-type {
-  opacity: clamp(0, calc(var(--pl-t, 0) * 1.5 - 0.25), 1);
-  translate: 0 calc((1 - var(--pl-t, 0)) * 48px);
-}
-/* Plateau clair : la même bascule, inversée. Le haut reste clair, la zone des
- * cartes et du catalogue passe au noir au défilement, puis une rupture franche
- * ramène le clair avant les avis. */
-:root[data-version='plateau-clair'] .pl-root {
-  background: color-mix(in oklab, #fbfaf7, #0b0b0c calc(var(--pl-t, 0) * 100%));
-}
-:root[data-version='plateau-clair'] .pl-dark-zone {
-  --pl-ink: color-mix(in oklab, #0c0c0d, #ffffff calc(var(--pl-t, 0) * 100%));
-}
-:root[data-version='plateau-clair'] .pl-light {
   --pl-ink: #ffffff;
   --pl-bg: #0b0b0c;
   --pl-gold: #f6e3be;
@@ -1331,9 +1621,24 @@
   --pl-tile: radial-gradient(ellipse 70% 60% at 50% 40%, rgba(246, 227, 190, 0.1), transparent 70%), #0a0a0b;
   --pl-thumb: rgba(255, 255, 255, 0.06);
   --pl-shadow: rgba(0, 0, 0, 0.35);
+  background: transparent;
 }
-:root[data-version='plateau-clair'] .pl-light .pl-card {
+:root:is([data-version='plateau'], [data-version='plateau-clair']) .pl-light .pl-card {
   box-shadow: none;
+}
+:root[data-version='plateau-clair'] .pl-root {
+  background: color-mix(in oklab, #fbfaf7, #0b0b0c calc(var(--pl-t, 0) * 100%));
+}
+/* Le texte du haut et le libellé des boutons pleins s'inversent ensemble : le
+ * bouton (fond = encre) reste lisible à toute étape du passage. */
+:root[data-version='plateau-clair'] .pl-dark-zone {
+  --pl-ink: color-mix(in oklab, #0c0c0d, #ffffff calc(var(--pl-t, 0) * 100%));
+  /* Le libellé bascule d'un coup à mi-parcours, quand le fond du bouton passe le gris moyen. */
+  --pl-on-ink: color-mix(in oklab, #fbfaf7, #0c0c0d clamp(0%, calc((var(--pl-t, 0) - 0.45) * 10000%), 100%));
+}
+:root[data-version='plateau-clair'] .pl-light > section:first-of-type {
+  opacity: clamp(0, calc(var(--pl-t, 0) * 1.5 - 0.25), 1);
+  translate: 0 calc((1 - var(--pl-t, 0)) * 48px);
 }
 .pl-dark-after {
   background: var(--pl-bg);

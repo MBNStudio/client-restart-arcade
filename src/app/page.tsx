@@ -48,12 +48,12 @@ const heroTitles: Record<string, string> = {
 }
 
 const heroAlt: Record<string, string> = {
-  'borne-arcade': "Deux collègues jouent sur une borne d'arcade dans un espace de pause",
-  flechettes: 'Partie de fléchettes électroniques sur une borne RESTART dans un bar',
-  'baby-foot': 'Baby-foot en bois installé dans une salle aux murs de briques',
+  'borne-arcade': "Rangée de bornes d'arcade éclairées en bleu, joysticks colorés",
+  flechettes: 'Fléchettes vertes plantées au centre de la cible',
+  'baby-foot': 'Baby-foot colorés dans une salle lumineuse, des joueurs autour',
   'fauteuil-massant': "Fauteuil massant dans un salon de détente d'entreprise",
-  billard: "Partie de billard dans l'espace détente d'un établissement client",
-  'flipper-numerique': 'Flipper numérique dans un open space, des collègues autour',
+  billard: 'Billard dans une grande pièce lumineuse aux baies vitrées',
+  'flipper-numerique': 'Plateau de flipper illuminé, bumpers et cartes à jouer',
   'cocon-de-repos': 'Cocons de repos Nap&Up installés dans une salle de récupération',
 }
 

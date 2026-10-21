@@ -6,7 +6,8 @@ import { audiencePath } from '@/data/audiencePages'
 import { ambiance } from '@/data/images'
 import { googleRating, reviews } from '@/data/reviews'
 import { asset } from '@/lib/site'
-import { PlateauHero, type PlateauProduct } from './PlateauHero'
+import { PhotoWall, PlateauHero, type PlateauShot } from './PlateauHero'
+import { PlateauGammes, type GammeSlide } from './PlateauGammes'
 import { PlateauTint } from './PlateauTint'
 
 const priceFrom = (slug: string) => {
@@ -53,22 +54,48 @@ function SectionTitle({ title, text, center = true }: { title: string; text?: Re
 
 /** `hero` remplace le plateau tournant (la version Halo y met son film). */
 export function PlateauHome({ faq, hero }: { faq: { q: string; a: string }[]; hero?: ReactNode }) {
-  // Visuels des produits du catalogue, retravaillés en photo studio puis détourés (public/img/plateau/3d/),
-  // avec leur hauteur dans la scène. Ils passent un par un sur le plateau, dans cet ordre.
-  const onPlateau = (file: string, slug: string, name: string, height: number): PlateauProduct => ({
+  // Mur de photos du héros : gammes (public/img/hero/) et lieux (public/img/situations/), réparties
+  // une sur quatre dans chaque colonne.
+  const shot = (dir: string, file: string, name: string, href: string, alt: string): PlateauShot => ({
     name,
-    image: asset(`/img/plateau/3d/${file}.webp`),
-    height,
-    href: `/produits/${slug}/`,
-    price: priceFrom(slug),
+    image: asset(`/img/${dir}/${file}.webp`),
+    alt,
+    href,
   })
-  const heroProducts: PlateauProduct[] = [
-    onPlateau('billard', 'billard', 'Billard', 1.0),
-    onPlateau('baby-foot', 'baby-foot', 'Baby-foot', 1.24),
-    onPlateau('flipper', 'flipper-numerique', 'Flipper numérique', 1.68),
-    onPlateau('borne-arcade', 'borne-arcade', "Borne d'arcade", 1.76),
-    onPlateau('flechettes', 'flechettes', 'Fléchettes électroniques', 1.72),
+  const heroShots: PlateauShot[] = [
+    shot('hero', 'borne-arcade', "Bornes d'arcade", '/produits/borne-arcade/', "Rangée de bornes d'arcade éclairées en bleu"),
+    shot('hero', 'billard', 'Billard', '/produits/billard/', 'Billard dans une grande pièce lumineuse'),
+    shot('hero', 'flipper-numerique', 'Flipper numérique', '/produits/flipper-numerique/', 'Plateau de flipper illuminé'),
+    shot('situations', 'bar', 'Bar & commerce', audiencePath('bar-commerce'), 'Bar équipé de jeux, un soir de semaine'),
+    shot('hero', 'baby-foot', 'Baby-foot', '/produits/baby-foot/', 'Baby-foot colorés dans une salle lumineuse'),
+    shot('situations', 'maison', 'Chez soi', audiencePath('particulier'), "Salon avec une borne d'arcade"),
+    shot('hero', 'flechettes', 'Fléchettes', '/produits/flechettes/', 'Fléchettes plantées au centre de la cible'),
+    shot('hero', 'fauteuil-massant', 'Fauteuil massant', '/produits/fauteuil-massant/', 'Fauteuil massant dans un salon de détente'),
+    shot('situations', 'entreprise', 'Entreprise', audiencePath('entreprise'), "Collègues autour d'un billard au bureau"),
+    shot('situations', 'borne-arcade', "Bornes d'arcade", '/produits/borne-arcade/', "Amis autour d'une borne d'arcade"),
+    shot('situations', 'cocon-de-repos', 'Cocon de repos', '/produits/cocon-de-repos/', 'Cocon de repos dans une salle de détente'),
+    shot('situations', 'billard', 'Billard', '/produits/billard/', "Partie de billard entre collègues"),
   ]
+
+  // Héros de Plateau clair : une photo par gamme (public/img/plateau/gammes/), installations clients
+  // pour les quatre premières, photos en situation pour le flipper et le cocon.
+  const gammeLines: [slug: string, line: string, alt: string][] = [
+    ['borne-arcade', 'Cinq modèles, personnalisés à votre image', "Borne d'arcade orange aux couleurs d'un camping"],
+    ['flechettes', 'Comptage automatique, plus de trente modes de jeu', 'Partie de fléchettes électroniques dans un bar'],
+    ['baby-foot', "En hêtre massif ou conçu pour rester dehors toute l'année", "Partie de baby-foot en famille sous un préau"],
+    ['billard', "À l'achat ou en location, avec ou sans monnayeur", "Billard dans le salon d'un hôtel"],
+    ['flipper-numerique', 'Plus de 500 tables dans une seule machine', "Flipper numérique dans un espace de pause"],
+    ['cocon-de-repos', 'Vingt minutes de micro-sieste, au calme', 'Cocon de repos dans une salle de détente'],
+  ]
+  const gammeSlides: GammeSlide[] = gammeLines.map(([slug, line, alt]) => ({
+    slug,
+    name: findUnivers(slug)?.name ?? slug,
+    line,
+    price: priceFrom(slug),
+    href: `/produits/${slug}/`,
+    image: asset(`/img/plateau/gammes/${slug}.webp`),
+    alt,
+  }))
 
   const sheets = audiences.map((a) => ({
     id: a.id,
@@ -94,7 +121,16 @@ export function PlateauHome({ faq, hero }: { faq: { q: string; a: string }[]; he
     <div className="pl-root bg-pl-bg text-pl-ink">
       {/* Zone sombre : en version Plateau, ses textes foncent quand le fond passe au blanc. */}
       <div className="pl-dark-zone">
-        {hero ?? <PlateauHero products={heroProducts} />}
+        {hero ?? (
+          <PlateauHero>
+            <div className="pl-only-dark">
+              <PhotoWall shots={heroShots} />
+            </div>
+            <div className="pl-only-clair">
+              <PlateauGammes slides={gammeSlides} />
+            </div>
+          </PlateauHero>
+        )}
 
         {/* Chiffres : la bande « ils nous font confiance » de Resend. */}
         <section className="border-t border-pl-ink/[0.07]">
@@ -131,7 +167,7 @@ export function PlateauHome({ faq, hero }: { faq: { q: string; a: string }[]; he
         </section>
       </div>
 
-      {/* Zone claire : le fond de la page passe du noir au blanc au fil du défilement (PlateauTint). */}
+      {/* Zone des cartes et du catalogue : noire en Plateau ; en Plateau clair, le fond passe au noir au défilement (PlateauTint). */}
       <div className="pl-light">
         <PlateauTint />
         {/* Une carte par situation : entreprise, bar et commerce, particulier. */}

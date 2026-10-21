@@ -13,8 +13,8 @@ import { themes } from '@/lib/themes'
 export type VersionId = 'studio' | 'halo' | 'plateau' | 'plateau-clair'
 
 export const versions: { id: VersionId; name: string; desc: string }[] = [
-  { id: 'plateau', name: 'Plateau', desc: 'Sombre, un produit à la fois sur un plateau tournant en 3D' },
-  { id: 'plateau-clair', name: 'Plateau clair', desc: 'La version Plateau en clair, passage au noir au défilement' },
+  { id: 'plateau', name: 'Plateau', desc: 'Sombre, un mur de photos en situation qui défile' },
+  { id: 'plateau-clair', name: 'Plateau clair', desc: 'En clair : les gammes en grand, une à la fois' },
   { id: 'halo', name: 'Halo', desc: 'Film plein écran : flipper, fléchettes, baby-foot et sourires' },
   { id: 'studio', name: 'Carrousel', desc: 'Carrousel photo, puis la pièce racontée par public' },
 ]

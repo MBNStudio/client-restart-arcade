@@ -72,7 +72,9 @@ l'URL ouvre directement une version. Les deux autres sont des sites à part, sur
 (`src/lib/version.ts` ici, `src/lib/versions.ts` sur les branches) ; en local, il pointe vers les
 serveurs de dev (`localhost:4321` pour `main`, `localhost:3107` pour Panorama).
 
-- **Carrousel** : carrousel photo, une gamme par slide. Dessous, la page suit la construction de la
+- **Carrousel** : carrousel photo, une gamme par slide. Photos du baby-foot,
+  du billard, de la borne, des fléchettes et du flipper : Unsplash et Pexels (licences libres d'usage
+  commercial), recadrées en 16:9 dans `public/img/hero/`. Dessous, la page suit la construction de la
   version Panorama dans sa propre palette (bleu nuit, ivoire, corail) : un chapitre par public (bar,
   entreprise, maison) où photo et texte alternent, les sept gammes, la méthode en quatre étapes, des
   avis clients, la FAQ, puis un appel final avec quatre installations clients
@@ -90,16 +92,16 @@ serveurs de dev (`localhost:4321` pour `main`, `localhost:3107` pour Panorama).
   Chaque image du film fait la moyenne d'une quarantaine de rendus (profondeur de champ, flou de
   bougé, ombres de boîte à lumière) pour un rendu photographique.
 - **Plateau** : mise en page sombre inspirée de resend.com, qui s'applique à tout le site ; le hero
-  fait défiler sur un plateau tournant en 3D (three.js) cinq produits, un à la fois : billard,
-  baby-foot, flipper, borne d'arcade et fléchettes. Les visuels du catalogue ont été retravaillés en
-  photos studio (OpenAI gpt-image-2, à partir des vraies photos des produits) puis détourés
-  (`public/img/plateau/3d/`) ; chaque détourage est gonflé en relief et pivote doucement pour montrer
-  son volume, puis s'efface et le suivant arrive d'un bond. On le fait tourner à la souris ou au doigt
-  (`src/components/plateau/three/`). Pour entrer dans la zone claire, tout le fond de la page passe
-  du noir au blanc au fil du défilement, sans bande de dégradé (`PlateauTint.tsx`) ; on en ressort
-  par une rupture franche avant les avis.
+  montre un mur de photos animé : trois colonnes de gammes et de lieux qui défilent sans fin (celle
+  du milieu en sens inverse), inclinées en perspective ; au survol la colonne s'arrête et la photo
+  avance (`PlateauHero.tsx`, bloc `.pl-wall` de `globals.css`, CSS seulement). Toute la page reste noire, de l'accueil au pied de page.
 - **Plateau clair** : la version Plateau, inversée : le haut est clair, la zone des cartes et du
-  catalogue passe au noir au défilement, puis une rupture franche ramène le clair avant les avis. Les
+  catalogue passe au noir au défilement, puis une rupture franche ramène le clair avant les avis. Son
+  hero remplace le mur de photos par les gammes en grand, une à la fois (`PlateauGammes.tsx`) : borne
+  d'arcade, fléchettes, baby-foot et billard en photos d'installations clients, flipper et cocon en
+  photos en situation (`public/img/plateau/gammes/`, recadrées en 4:5 sans logo ni filigrane). Un volet
+  doré balaie la photo et pose la gamme suivante ; à droite, une colonne étroite donne le nom, une
+  phrase, le prix d'entrée et le lien, et six segments suivent le défilement et se cliquent. Les
   composants Plateau n'emploient que les couleurs `pl-ink`, `pl-bg` et `pl-gold`, redéfinies par
   version dans `src/app/globals.css`.
 
