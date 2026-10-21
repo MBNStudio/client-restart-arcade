@@ -1088,14 +1088,6 @@
   }
 }
 
-/* Carrousel des gammes : défilement natif, barre masquée. */
-.sr-track {
-  scrollbar-width: none;
-}
-.sr-track::-webkit-scrollbar {
-  display: none;
-}
-
 /* --- En-tête et menu (repris de la version Panorama) --------------------- */
 /* Même gabarit que l'en-tête de theme-panorama, aux couleurs du Showroom. Il est collé
  * en haut de page ; sur l'accueil le film remonte dessous (marge négative de .sr-film),
