@@ -1,5 +1,6 @@
 @import 'tailwindcss';
 @import './themes.css';
+@import './atelier.css';
 
 /*
  * Système de thèmes. Chaque thème (src/app/themes.css, généré par

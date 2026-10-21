@@ -2,290 +2,210 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useEffect, useId, useRef, useState } from 'react'
-import { ArrowRight, ChevronDown, Menu, Phone, Power, X } from 'lucide-react'
-import { univers } from '@/data/catalogue'
-import { universImage } from '@/data/images'
+import { useEffect, useRef, useState } from 'react'
+import { logo } from '@/data/images'
 import { site } from '@/lib/site'
-import { contactClick, ctaClick } from '@/lib/analytics'
+import { contactClick } from '@/lib/analytics'
+import { horairesCourts, navigation } from '@/components/atelier/nav'
 
-const nav = [
-  { href: '/realisations/', label: 'Réalisations' },
-  { href: '/qui-sommes-nous/', label: 'Qui sommes-nous' },
-  { href: '/blog/', label: 'Blog' },
-  { href: '/contact/', label: 'Contact' },
-]
+const Telephone = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+    <path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2" />
+  </svg>
+)
 
 /**
- * Header du gabarit Studio : barre transparente en haut de page, qui se
- * resserre en pilule translucide flottante dès qu'on fait défiler. Mega-menu
- * Produits avec le visuel de chaque univers, panneau mobile en carte flottante.
+ * En-tête de la version Atelier, repris d'ab-agencement.com : logo à gauche, liens en
+ * pastilles et sous-menus au survol, bouton téléphone à droite. Transparent sur la photo
+ * d'ouverture de l'accueil, fond lin flouté dès qu'on défile ; masqué quand on descend,
+ * de retour quand on remonte. Sous 1024 px, menu plein écran sur fond encre.
  */
 export function Header() {
   const pathname = usePathname()
-  const [open, setOpen] = useState(false)
-  const [productsOpen, setProductsOpen] = useState(false)
-  const [mobileProductsOpen, setMobileProductsOpen] = useState(false)
+  const transparent = pathname === '/'
   const [scrolled, setScrolled] = useState(false)
-  const rootRef = useRef<HTMLDivElement>(null)
-  const panelId = useId()
-
-  // Fermer les menus à chaque navigation, sinon ils restent ouverts sur mobile.
-  useEffect(() => {
-    setOpen(false)
-    setProductsOpen(false)
-    setMobileProductsOpen(false)
-  }, [pathname])
+  const [cache, setCache] = useState(false)
+  const [ouvert, setOuvert] = useState(false)
+  const [monte, setMonte] = useState(false) // menu présent dans le DOM (animation de fermeture)
+  const dernierY = useRef(0)
+  const actif = (href: string) => pathname.startsWith(href)
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24)
-    onScroll()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
+    const maj = () => {
+      const y = window.scrollY
+      setScrolled(y > 24)
+      setCache(y > 400 && y > dernierY.current)
+      dernierY.current = y
+    }
+    maj()
+    window.addEventListener('scroll', maj, { passive: true })
+    return () => window.removeEventListener('scroll', maj)
   }, [])
 
-  useEffect(() => {
-    if (!productsOpen) return
-    const onPointerDown = (e: PointerEvent) => {
-      if (!rootRef.current?.contains(e.target as Node)) setProductsOpen(false)
-    }
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setProductsOpen(false)
-    }
-    document.addEventListener('pointerdown', onPointerDown)
-    document.addEventListener('keydown', onKeyDown)
-    return () => {
-      document.removeEventListener('pointerdown', onPointerDown)
-      document.removeEventListener('keydown', onKeyDown)
-    }
-  }, [productsOpen])
+  useEffect(() => setOuvert(false), [pathname])
 
   useEffect(() => {
-    if (!open) return
-    const previous = document.body.style.overflow
-    document.body.style.overflow = 'hidden'
-    return () => {
-      document.body.style.overflow = previous
+    const html = document.documentElement
+    if (ouvert) {
+      setMonte(true)
+      const raf = requestAnimationFrame(() => requestAnimationFrame(() => html.classList.add('menu-ouvert')))
+      document.body.style.overflow = 'hidden'
+      const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setOuvert(false)
+      const mq = window.matchMedia('(min-width: 1024px)')
+      const onMq = (e: MediaQueryListEvent) => e.matches && setOuvert(false)
+      document.addEventListener('keydown', onKey)
+      mq.addEventListener('change', onMq)
+      return () => {
+        cancelAnimationFrame(raf)
+        document.removeEventListener('keydown', onKey)
+        mq.removeEventListener('change', onMq)
+      }
     }
-  }, [open])
-
-  const isActive = (href: string) => pathname === href || pathname.startsWith(href)
-  const linkClass = (href: string) =>
-    `transition hover:text-foreground ${isActive(href) ? 'text-foreground' : ''}`
+    html.classList.remove('menu-ouvert')
+    document.body.style.overflow = ''
+    const t = setTimeout(() => setMonte(false), 700)
+    return () => clearTimeout(t)
+  }, [ouvert])
 
   return (
-    <header
-      className="sticky top-0 z-40 w-full px-3 pt-3 sm:px-6 sm:pt-4"
-      data-home={pathname === '/' || undefined}
-      data-top={(!scrolled && !open) || undefined}
-    >
+    <>
       <a
         href="#contenu"
-        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-primary focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-primary-foreground"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:rounded-full focus:bg-noyer focus:px-5 focus:py-3 focus:text-lin"
       >
         Aller au contenu
       </a>
-
-      <div
-        ref={rootRef}
-        className={`header-pill mx-auto flex h-16 items-center justify-between gap-3 rounded-full border pl-4 pr-2 transition-all duration-500 md:gap-8 md:pl-6 md:pr-3 ${
-          scrolled || open
-            ? 'max-w-6xl border-border bg-card/80 shadow-[0_14px_40px_-18px_rgba(17,17,17,0.28)] backdrop-blur-xl'
-            : 'max-w-7xl border-transparent bg-transparent'
-        }`}
+      <header
+        className="entete fixed inset-x-0 top-0 z-50"
+        data-transparent={transparent || undefined}
+        data-scrolled={scrolled || undefined}
+        data-cache={(cache && !ouvert) || undefined}
       >
-        {/* Même marque que le pied de page : pastille « marche » et nom en toutes lettres. */}
-        <Link
-          href="/"
-          className="flex shrink-0 items-center gap-2.5 text-xl font-semibold tracking-tight text-heading md:text-2xl"
-          aria-label="RESTART, retour à l'accueil"
-        >
-          <span
-            aria-hidden="true"
-            className="inline-flex size-8 items-center justify-center rounded-full bg-primary text-primary-foreground md:size-9"
-          >
-            <Power className="size-4 md:size-4.5" strokeWidth={2.5} />
-          </span>
-          RESTART
-        </Link>
-
-        <nav
-          className="header-extra hidden items-center gap-7 text-[15px] font-medium text-foreground/80 lg:flex"
-          aria-label="Navigation principale"
-        >
-          <div>
-            <button
-              type="button"
-              aria-haspopup="true"
-              aria-expanded={productsOpen}
-              aria-controls={panelId}
-              onClick={() => setProductsOpen((v) => !v)}
-              className={`inline-flex cursor-pointer items-center gap-1 ${linkClass('/produits/')}`}
-            >
-              Produits
-              <ChevronDown
-                className={`size-3.5 transition-transform ${productsOpen ? 'rotate-180' : ''}`}
-                aria-hidden="true"
-              />
-            </button>
-
-            {productsOpen && (
-              <div
-                id={panelId}
-                className="fixed left-1/2 top-[4.75rem] z-40 w-[calc(100vw-1.5rem)] max-w-6xl -translate-x-1/2 overflow-hidden rounded-[28px] border border-border bg-card shadow-[0_30px_70px_-24px_rgba(17,17,17,0.3)] sm:top-[5rem] sm:w-[calc(100vw-3rem)]"
-              >
-                <ul className="grid grid-cols-4 gap-3 p-5 xl:grid-cols-7">
-                  {univers.map((u) => (
-                    <li key={u.slug}>
-                      <Link
-                        href={`/produits/${u.slug}/`}
-                        className="group flex h-full flex-col overflow-hidden rounded-[20px] border border-border bg-card p-1.5 transition hover:shadow-[var(--shadow-paper-md)]"
-                      >
-                        <span className="product-shot block aspect-[4/3] overflow-hidden rounded-[14px]">
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img
-                            src={universImage(u.slug)}
-                            alt=""
-                            loading="lazy"
-                            className="size-full object-contain p-2 transition duration-300 group-hover:scale-105"
-                          />
-                        </span>
-                        <span className="flex flex-1 flex-col gap-0.5 px-3 py-2.5">
-                          <span className="text-sm font-medium text-foreground">{u.navLabel}</span>
-                          <span className="text-xs text-muted-foreground">
-                            {u.models.length > 0
-                              ? `${u.models.length} modèle${u.models.length > 1 ? 's' : ''}`
-                              : 'Sur devis'}
-                          </span>
-                        </span>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-                <div className="flex items-center justify-between gap-6 border-t border-border bg-muted/60 px-6 py-4">
-                  <div className="min-w-0">
-                    <p className="text-sm font-semibold text-foreground">
-                      Pas sûr du modèle ? On vous conseille.
-                    </p>
-                    <p className="mt-0.5 text-xs text-muted-foreground">
-                      Audit de votre espace et devis gratuits, réponse sous 48 heures.
-                    </p>
-                  </div>
-                  <Link
-                    href="/produits/"
-                    className="inline-flex h-10 shrink-0 items-center gap-1.5 rounded-full bg-primary px-4 text-sm font-semibold text-primary-foreground transition hover:brightness-125"
-                  >
-                    Tout le catalogue
-                    <ArrowRight className="size-3.5" aria-hidden="true" />
-                  </Link>
-                </div>
-              </div>
-            )}
-          </div>
-
-          {nav.map((n) => (
-            <Link key={n.href} href={n.href} className={linkClass(n.href)}>
-              {n.label}
-            </Link>
-          ))}
-        </nav>
-
-        <div className="header-extra flex shrink-0 items-center gap-1.5 md:gap-2">
-          <a
-            href={`tel:${site.phoneE164}`}
-            onClick={() => contactClick('phone', 'header')}
-            className="hidden h-10 items-center gap-2 rounded-full px-3 text-sm font-medium text-foreground/80 transition hover:text-foreground xl:inline-flex"
-          >
-            <Phone className="size-3.5" aria-hidden="true" />
-            {site.phone}
-          </a>
-          <Link
-            href="/contact/"
-            onClick={() => ctaClick('Demander un devis', 'header')}
-            className="hidden h-10 items-center rounded-full bg-primary px-5 text-sm font-semibold text-primary-foreground shadow-[0_8px_20px_-10px_rgba(0,0,0,0.55)] transition hover:-translate-y-px hover:brightness-125 sm:inline-flex"
-          >
-            Devis gratuit
+        <div className="conteneur flex h-[4.5rem] items-center justify-between gap-6 lg:h-20">
+          <Link href="/" className="relative z-10 flex shrink-0 items-center" aria-label={`${site.name}, accueil`}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={logo} alt="" width={1350} height={495} className="h-9 w-auto lg:h-10 xl:h-11" />
           </Link>
+
+          <nav className="hidden items-center gap-1 lg:flex" aria-label="Navigation principale">
+            {navigation.map((l) =>
+              l.sousMenu ? (
+                <div key={l.libelle} className="sous-menu-parent relative">
+                  <Link
+                    href={l.href}
+                    className={`lien-nav flex items-center gap-1.5 rounded-full px-4 py-2 text-[0.92rem] font-medium ${l.sousMenu.some((s) => actif(s.href)) ? 'est-actif' : ''}`}
+                  >
+                    {l.libelle}
+                    <svg className="chevron size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                      <path d="M6 9l6 6 6-6" />
+                    </svg>
+                  </Link>
+                  <div className="sous-menu absolute top-full left-0 pt-2">
+                    <ul className="min-w-56 rounded-2xl border border-trait bg-lin p-2 text-noyer shadow-[0_18px_50px_rgb(22_16_11/0.14)]">
+                      {l.sousMenu.map((s) => (
+                        <li key={s.href}>
+                          <Link
+                            href={s.href}
+                            className={`block rounded-xl px-4 py-2.5 text-[0.92rem] font-medium whitespace-nowrap transition-colors duration-300 hover:bg-sable ${actif(s.href) ? 'bg-sable' : ''}`}
+                            aria-current={actif(s.href) ? 'page' : undefined}
+                          >
+                            {s.libelle}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              ) : (
+                <Link
+                  key={l.href}
+                  href={l.href}
+                  className={`lien-nav rounded-full px-4 py-2 text-[0.92rem] font-medium ${actif(l.href) ? 'est-actif' : ''}`}
+                  aria-current={actif(l.href) ? 'page' : undefined}
+                >
+                  {l.libelle}
+                </Link>
+              ),
+            )}
+            <a
+              href={`tel:${site.phoneE164}`}
+              className="bouton-entete btn ml-3 !px-5 !py-2.5"
+              onClick={() => contactClick('phone', 'header')}
+            >
+              <Telephone />
+              {site.phone}
+            </a>
+          </nav>
+
           <button
             type="button"
-            onClick={() => setOpen((v) => !v)}
-            aria-label={open ? 'Fermer le menu' : 'Ouvrir le menu'}
-            aria-expanded={open}
+            className="bouton-menu relative z-10 -mr-2 flex size-11 items-center justify-center rounded-full lg:hidden"
+            aria-label={ouvert ? 'Fermer le menu' : 'Ouvrir le menu'}
+            aria-expanded={ouvert}
             aria-controls="menu-mobile"
-            className="inline-flex size-10 items-center justify-center rounded-full border border-border bg-card text-foreground transition hover:bg-muted lg:hidden"
+            onClick={() => setOuvert((o) => !o)}
           >
-            {open ? <X className="size-4" /> : <Menu className="size-4" />}
+            <span className="barres" aria-hidden="true">
+              <span />
+              <span />
+            </span>
           </button>
         </div>
-      </div>
+      </header>
 
-      {open && (
-        <div
-          id="menu-mobile"
-          className="fixed left-3 right-3 top-[5.25rem] z-30 max-h-[calc(100vh-6rem)] overflow-y-auto rounded-[28px] border border-border bg-card/95 shadow-[0_30px_70px_-24px_rgba(17,17,17,0.3)] backdrop-blur sm:left-6 sm:right-6 sm:top-[6rem] lg:hidden"
-        >
-          <nav className="flex flex-col gap-1 px-6 py-4 text-base" aria-label="Navigation mobile">
-            <button
-              type="button"
-              aria-expanded={mobileProductsOpen}
-              onClick={() => setMobileProductsOpen((v) => !v)}
-              className="flex items-center justify-between rounded-md px-2 py-3 text-left text-foreground transition hover:bg-muted"
-            >
-              Produits
-              <ChevronDown
-                className={`size-4 transition-transform ${mobileProductsOpen ? 'rotate-180' : ''}`}
-                aria-hidden="true"
-              />
-            </button>
-            {mobileProductsOpen && (
-              <ul className="mb-1 grid grid-cols-2 gap-2 border-l border-border pl-3">
-                {univers.map((u) => (
-                  <li key={u.slug}>
-                    <Link
-                      href={`/produits/${u.slug}/`}
-                      className="flex items-center gap-2.5 rounded-md px-2 py-2 text-sm text-muted-foreground transition hover:bg-muted hover:text-foreground"
-                    >
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={universImage(u.slug)}
-                        alt=""
-                        className="product-shot size-9 shrink-0 rounded-md border border-border object-contain p-0.5"
-                      />
-                      {u.navLabel}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+      {/* Menu plein écran (mobile et tablette) */}
+      <div
+        id="menu-mobile"
+        className="menu-mobile sur-sombre fixed inset-0 z-40 bg-encre text-lin lg:hidden"
+        hidden={!monte}
+        onClick={(e) => (e.target as HTMLElement).closest('a') && setOuvert(false)}
+      >
+        <div className="conteneur flex h-full flex-col overflow-y-auto pt-28 pb-10">
+          <nav aria-label="Navigation mobile" className="flex flex-col">
+            <Link href="/" className="lien-menu font-display border-b border-lin/10 py-4 text-4xl font-light" style={{ '--i': 0 } as React.CSSProperties}>
+              Accueil
+            </Link>
+            {navigation.map((l, i) =>
+              l.sousMenu ? (
+                <div key={l.libelle} className="lien-menu border-b border-lin/10 py-4" style={{ '--i': i + 1 } as React.CSSProperties}>
+                  <Link href={l.href} className="font-display block text-4xl font-light">
+                    {l.libelle}
+                  </Link>
+                  <ul className="mt-2 space-y-1 pl-1">
+                    {l.sousMenu.map((s) => (
+                      <li key={s.href}>
+                        <Link href={s.href} className="flex items-center gap-3 py-1.5 text-lg text-lin/75" aria-current={actif(s.href) ? 'page' : undefined}>
+                          <span className="block h-px w-4 bg-chene" aria-hidden="true" />
+                          {s.libelle}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ) : (
+                <Link
+                  key={l.href}
+                  href={l.href}
+                  className="lien-menu font-display border-b border-lin/10 py-4 text-4xl font-light"
+                  style={{ '--i': i + 1 } as React.CSSProperties}
+                  aria-current={actif(l.href) ? 'page' : undefined}
+                >
+                  {l.libelle}
+                </Link>
+              ),
             )}
-            {nav.map((n) => (
-              <Link
-                key={n.href}
-                href={n.href}
-                className="rounded-md px-2 py-3 text-foreground transition hover:bg-muted"
-              >
-                {n.label}
-              </Link>
-            ))}
-            <div className="mt-3 grid grid-cols-2 gap-2 border-t border-border pt-4">
-              <a
-                href={`tel:${site.phoneE164}`}
-                onClick={() => contactClick('phone', 'menu_mobile')}
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-input px-4 py-2.5 text-sm font-semibold text-ink"
-              >
-                <Phone className="size-3.5" aria-hidden="true" />
-                Appeler
-              </a>
-              <Link
-                href="/contact/"
-                onClick={() => ctaClick('Demander un devis', 'menu_mobile')}
-                className="inline-flex items-center justify-center rounded-full bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground"
-              >
-                Devis gratuit
-              </Link>
-            </div>
           </nav>
+          <div className="lien-menu mt-auto space-y-2 pt-10 text-lin/70" style={{ '--i': 7 } as React.CSSProperties}>
+            <a href={`tel:${site.phoneE164}`} className="block text-2xl text-lin" onClick={() => contactClick('phone', 'menu')}>
+              {site.phone}
+            </a>
+            <a href={`mailto:${site.email}`} className="block" onClick={() => contactClick('email', 'menu')}>
+              {site.email}
+            </a>
+            <p className="text-sm">{horairesCourts}</p>
+          </div>
         </div>
-      )}
-    </header>
+      </div>
+    </>
   )
 }

@@ -1,0 +1,459 @@
+/* ==========================================================================
+ * Version Atelier : mise en page d'ab-agencement.com (thème « atelier contemporain »).
+ * La palette remplace les primitives --t-* pour que les pages intérieures suivent.
+ * ========================================================================== */
+
+@theme {
+  --color-lin: #f6f1ea; /* fond principal */
+  --color-sable: #ece3d7; /* fonds secondaires */
+  --color-trait: #e0d4c4; /* filets, bordures */
+  --color-noyer: #24170e; /* texte principal */
+  --color-ecorce: #6b5848; /* texte secondaire */
+  --color-brun: #613a15; /* brun foncé */
+  --color-chene: #c49d6e; /* chêne */
+  --color-chene-fonce: #9c7445; /* chêne lisible sur fond clair */
+  --color-encre: #16100b; /* sections sombres */
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-soft: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+html:root[data-site='atelier'] {
+  --t-bg: #f6f1ea;
+  --t-bg-2: #ece3d7;
+  --t-surface: #fbf8f3;
+  --t-surface-2: #ece3d7;
+  --t-text: #24170e;
+  --t-text-soft: #4a3828;
+  --t-text-muted: #6b5848;
+  --t-heading: #24170e;
+  --t-primary: #24170e;
+  --t-primary-fg: #f6f1ea;
+  --t-accent: #9c7445;
+  --t-price: #613a15;
+  --t-brand-from: #24170e;
+  --t-brand-to: #16100b;
+  --t-footer: #16100b;
+  --t-border: rgba(36, 23, 14, 0.08);
+  --t-input: rgba(36, 23, 14, 0.16);
+  --t-page-bg: none;
+  --t-page-bg-size: auto;
+  --t-font-head: var(--font-fraunces), Georgia, serif;
+  --t-font-body: var(--font-manrope), system-ui, sans-serif;
+  --t-head-adjust: none;
+  --t-head-tracking: -0.02em;
+  --t-em-glow: none;
+  scroll-padding-top: 6rem;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@layer base {
+  [data-site='atelier'] body {
+    font-feature-settings: 'ss01';
+  }
+  [data-site='atelier'] ::selection {
+    background: var(--color-chene);
+    color: var(--color-encre);
+  }
+  [data-site='atelier'] :focus-visible {
+    outline: 2px solid var(--color-chene);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  [data-site='atelier'] :is(h1, h2, h3, .font-display) {
+    font-optical-sizing: auto;
+  }
+  /* Mots mis en valeur : couleur uniquement, jamais d'italique */
+  [data-site='atelier'] :is(em, i),
+  [data-site='atelier'] :is(h1, h2, h3, h4) em {
+    font-style: normal;
+  }
+  [data-site='atelier'] .sur-sombre :is(h1, h2, h3, h4) {
+    color: inherit;
+  }
+  /* L'en-tête est fixe : les pages intérieures commencent sous lui, l'accueil passe dessous. */
+  [data-site='atelier'] main#contenu {
+    padding-top: 4.5rem;
+  }
+  @media (min-width: 1024px) {
+    [data-site='atelier'] main#contenu {
+      padding-top: 5rem;
+    }
+  }
+}
+
+@layer components {
+  .conteneur {
+    @apply mx-auto w-full max-w-[1280px] px-5 sm:px-8 lg:px-12;
+  }
+
+  .surtitre {
+    @apply inline-flex items-center gap-3 text-[0.72rem] font-semibold tracking-[0.2em] text-chene-fonce uppercase;
+  }
+  .surtitre::before {
+    content: '';
+    @apply block h-px w-8 bg-current;
+  }
+
+  .titre-xl {
+    @apply font-display text-[2.6rem] leading-[1.02] font-light sm:text-6xl lg:text-[5.5rem];
+  }
+  .titre-l {
+    @apply font-display text-[2.1rem] leading-[1.08] font-light sm:text-5xl lg:text-6xl;
+  }
+  .titre-m {
+    @apply font-display text-2xl leading-tight font-normal sm:text-3xl;
+  }
+  .titre-xl em,
+  .titre-l em,
+  .titre-m em {
+    @apply text-chene-fonce;
+  }
+  .sur-sombre .titre-xl em,
+  .sur-sombre .titre-l em,
+  .sur-sombre .titre-m em {
+    @apply text-chene;
+  }
+
+  .texte-courant {
+    @apply text-[1.05rem] leading-relaxed text-ecorce;
+  }
+
+  .btn {
+    @apply relative inline-flex items-center justify-center gap-2.5 overflow-hidden rounded-full px-6 py-3.5 text-[0.95rem] font-semibold transition-[background-color,color,border-color,transform] duration-300 ease-(--ease-out-expo) active:scale-[0.97];
+  }
+  .btn svg {
+    @apply size-4 transition-transform duration-300 ease-(--ease-out-expo);
+  }
+  .btn:hover svg.fleche {
+    transform: translateX(3px);
+  }
+  .btn-plein {
+    @apply bg-noyer text-lin hover:bg-brun;
+  }
+  .btn-clair {
+    @apply bg-lin text-noyer hover:bg-chene;
+  }
+  .btn-contour {
+    @apply border border-noyer/25 text-noyer hover:border-noyer hover:bg-noyer hover:text-lin;
+  }
+  .btn-contour-clair {
+    @apply border border-lin/35 text-lin hover:border-lin hover:bg-lin hover:text-noyer;
+  }
+
+  .lien-souligne {
+    background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+    transition: background-size 400ms var(--ease-out-expo);
+  }
+  .lien-souligne:hover {
+    background-size: 100% 1px;
+  }
+
+  /* Image avec zoom lent au survol */
+  .cadre-image {
+    @apply relative overflow-hidden rounded-2xl bg-sable;
+  }
+  .cadre-image img {
+    @apply h-full w-full object-cover transition-transform duration-[1200ms] ease-(--ease-out-expo);
+  }
+  .group:hover .cadre-image img,
+  .cadre-image:hover img {
+    transform: scale(1.045);
+  }
+}
+
+/* ---------- En-tête ---------- */
+.entete {
+  color: var(--color-noyer);
+  transition:
+    background-color 500ms var(--ease-out-expo),
+    color 500ms var(--ease-out-expo),
+    box-shadow 500ms var(--ease-out-expo),
+    transform 600ms var(--ease-out-expo);
+}
+.entete[data-scrolled] {
+  background-color: color-mix(in oklab, var(--color-lin) 82%, transparent);
+  backdrop-filter: blur(14px) saturate(1.4);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+  box-shadow: 0 1px 0 color-mix(in oklab, var(--color-noyer) 8%, transparent);
+}
+.entete[data-cache] {
+  transform: translateY(-100%);
+}
+.bouton-entete {
+  background: var(--color-noyer);
+  color: var(--color-lin);
+}
+.bouton-entete:hover {
+  background: var(--color-brun);
+}
+.lien-nav {
+  transition:
+    background-color 300ms,
+    color 300ms;
+}
+.lien-nav:hover,
+.lien-nav.est-actif {
+  background: color-mix(in oklab, currentColor 8%, transparent);
+}
+
+/* Sous-menus (Produits, Pour qui) : s'ouvrent au survol ou au clavier */
+.sous-menu {
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition:
+    opacity 300ms var(--ease-out-expo),
+    transform 400ms var(--ease-out-expo),
+    visibility 0s 300ms;
+}
+.sous-menu-parent:hover .sous-menu,
+.sous-menu-parent:focus-within .sous-menu {
+  visibility: visible;
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 300ms var(--ease-out-expo),
+    transform 400ms var(--ease-out-expo),
+    visibility 0s;
+}
+.chevron {
+  transition: transform 400ms var(--ease-out-expo);
+}
+.sous-menu-parent:hover .chevron,
+.sous-menu-parent:focus-within .chevron {
+  transform: rotate(180deg);
+}
+
+/* En-tête transparent au-dessus de la photo d'ouverture */
+.entete[data-transparent]:not([data-scrolled]),
+html.menu-ouvert .entete {
+  color: var(--color-lin);
+}
+.entete[data-transparent]:not([data-scrolled]) .bouton-entete {
+  background: var(--color-lin);
+  color: var(--color-noyer);
+}
+.entete[data-transparent]:not([data-scrolled]) .bouton-entete:hover {
+  background: var(--color-chene);
+}
+html.menu-ouvert .entete {
+  background: transparent !important;
+  backdrop-filter: none !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+/* Icône du menu : deux traits qui se croisent */
+.barres {
+  position: relative;
+  display: block;
+  width: 22px;
+  height: 10px;
+}
+.barres span {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 1.5px;
+  background: currentColor;
+  border-radius: 2px;
+  transition:
+    transform 500ms var(--ease-out-expo),
+    top 500ms var(--ease-out-expo);
+}
+.barres span:first-child {
+  top: 0;
+}
+.barres span:last-child {
+  top: 100%;
+}
+html.menu-ouvert .barres span:first-child {
+  top: 50%;
+  transform: rotate(45deg);
+}
+html.menu-ouvert .barres span:last-child {
+  top: 50%;
+  transform: rotate(-45deg);
+}
+
+.menu-mobile {
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 700ms var(--ease-out-expo);
+}
+html.menu-ouvert .menu-mobile {
+  clip-path: inset(0 0 0 0);
+}
+.lien-menu {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 600ms var(--ease-out-expo),
+    transform 800ms var(--ease-out-expo);
+  transition-delay: calc(120ms + var(--i) * 50ms);
+}
+html.menu-ouvert .lien-menu {
+  opacity: 1;
+  transform: none;
+}
+
+/* Barre d'action mobile, masquée sous le menu plein écran */
+.barre-mobile {
+  transition:
+    transform 600ms var(--ease-out-expo),
+    opacity 400ms;
+}
+html.menu-ouvert .barre-mobile {
+  transform: translateY(150%);
+  opacity: 0;
+}
+
+/* ---------- Panneau « Demander un devis » ---------- */
+.panneau-devis {
+  position: fixed;
+  inset: 0 0 0 auto;
+  width: min(100vw, 36rem);
+  height: 100dvh;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: var(--color-lin);
+  color: var(--color-noyer);
+  box-shadow: -30px 0 80px rgb(22 16 11 / 0.25);
+  transform: translateX(100%);
+  transition:
+    transform 650ms var(--ease-out-expo),
+    display 650ms allow-discrete,
+    overlay 650ms allow-discrete;
+}
+.panneau-devis[open] {
+  transform: none;
+}
+@starting-style {
+  .panneau-devis[open] {
+    transform: translateX(100%);
+  }
+}
+.panneau-devis::backdrop {
+  background: rgb(22 16 11 / 0);
+  backdrop-filter: blur(0);
+  transition:
+    background-color 500ms,
+    backdrop-filter 500ms,
+    display 500ms allow-discrete,
+    overlay 500ms allow-discrete;
+}
+.panneau-devis[open]::backdrop {
+  background: rgb(22 16 11 / 0.45);
+  backdrop-filter: blur(3px);
+}
+@starting-style {
+  .panneau-devis[open]::backdrop {
+    background: rgb(22 16 11 / 0);
+    backdrop-filter: blur(0);
+  }
+}
+/* Sur mobile : feuille qui monte depuis le bas */
+@media (max-width: 639px) {
+  .panneau-devis {
+    inset: auto 0 0 0;
+    width: 100vw;
+    height: 94dvh;
+    border-radius: 1.5rem 1.5rem 0 0;
+    transform: translateY(100%);
+  }
+  @starting-style {
+    .panneau-devis[open] {
+      transform: translateY(100%);
+    }
+  }
+}
+
+/* ---------- Animations d'apparition au défilement ---------- */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 900ms var(--ease-out-expo),
+    transform 1100ms var(--ease-out-expo);
+  transition-delay: var(--delai, 0ms);
+}
+.js [data-reveal='image'] {
+  transform: none;
+  clip-path: inset(8% 8% 8% 8% round 1rem);
+  transition:
+    opacity 900ms var(--ease-out-expo),
+    clip-path 1300ms var(--ease-out-expo);
+  transition-delay: var(--delai, 0ms);
+}
+.js [data-reveal].est-visible {
+  opacity: 1;
+  transform: none;
+}
+.js [data-reveal='image'].est-visible {
+  clip-path: inset(0 0 0 0 round 1rem);
+}
+
+/* Titres qui se dévoilent ligne par ligne */
+.ligne {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+.ligne > span {
+  display: block;
+  animation: monte 1200ms var(--ease-out-expo) both;
+  animation-delay: var(--delai, 0ms);
+}
+@keyframes monte {
+  from {
+    transform: translateY(105%);
+  }
+}
+.apparait {
+  animation: apparait 1000ms var(--ease-out-expo) both;
+  animation-delay: var(--delai, 0ms);
+}
+@keyframes apparait {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+
+/* Photo d'ouverture : léger dézoom au chargement */
+.zoom-lent {
+  animation: zoom-lent 2600ms var(--ease-out-expo) both;
+}
+@keyframes zoom-lent {
+  from {
+    transform: scale(1.12);
+  }
+}
+
+/* Bandeau défilant */
+.defilant {
+  animation: defile 40s linear infinite;
+}
+.defilant-parent:hover .defilant {
+  animation-play-state: paused;
+}
+@keyframes defile {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js [data-reveal] {
+    opacity: 1;
+    transform: none;
+    clip-path: none;
+  }
+  .defilant {
+    animation: none;
+  }
+}

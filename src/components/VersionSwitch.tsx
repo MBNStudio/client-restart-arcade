@@ -1,44 +1,18 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { usePathname, useRouter } from 'next/navigation'
-import { ArrowUpRight, Check, Disc3, Images, Lightbulb, Sofa, Store, Sun } from 'lucide-react'
-import {
-  applyVersion,
-  currentVersion,
-  externalVersions,
-  externalVersionUrl,
-  versions,
-  type ExternalVersionId,
-  type VersionId,
-} from '@/lib/version'
+import { ArrowUpRight, Check, Gamepad2 } from 'lucide-react'
+import { CURRENT_VERSION, versionUrl, versions } from '@/lib/versions'
 import { track } from '@/lib/analytics'
 
-const icons: Record<VersionId | ExternalVersionId, typeof Images> = {
-  panorama: Sofa,
-  showroom: Store,
-  plateau: Disc3,
-  'plateau-clair': Sun,
-  halo: Lightbulb,
-  studio: Images,
-}
-
 /**
- * Bascule de version : un onglet sur le bord gauche, pendant de l'onglet
- * Thèmes, qui ouvre la liste des versions. Choisir une version depuis une
- * autre page ramène à l'accueil, où les versions diffèrent le plus. Panorama
- * et Showroom sont des sites à part (sous-dossiers du même site Pages) : on y
- * va par lien.
+ * Onglet « Version » sur le bord gauche : liste les autres propositions de refonte,
+ * publiées chacune à son adresse sur le même site Pages.
  */
 export function VersionSwitch() {
-  const [current, setCurrent] = useState<VersionId>('studio')
   const [open, setOpen] = useState(false)
-  const pathname = usePathname()
-  const router = useRouter()
   const panelRef = useRef<HTMLDivElement>(null)
   const buttonRef = useRef<HTMLButtonElement>(null)
-
-  useEffect(() => setCurrent(currentVersion()), [])
 
   useEffect(() => {
     if (!open) return
@@ -61,18 +35,7 @@ export function VersionSwitch() {
     }
   }, [open])
 
-  const active = versions.find((v) => v.id === current) ?? versions[0]
-  const Icon = icons[active.id]
-
-  const choose = (id: VersionId) => {
-    setOpen(false)
-    if (id === current) return
-    applyVersion(id)
-    setCurrent(id)
-    track('version_change', { version: id })
-    if (pathname !== '/') router.push('/')
-    else window.scrollTo({ top: 0, behavior: 'smooth' })
-  }
+  const active = versions.find((v) => v.id === CURRENT_VERSION)!
 
   return (
     <>
@@ -83,11 +46,11 @@ export function VersionSwitch() {
         aria-expanded={open}
         aria-controls="version-panel"
         aria-label={`Version ${active.name} affichée. Changer de version`}
-        className="fixed left-0 top-1/2 z-[60] flex -translate-y-1/2 flex-col items-center gap-2 rounded-r-xl border border-l-0 border-border bg-card px-2 py-3 text-foreground shadow-[var(--shadow-paper-lg)] transition hover:pl-3"
+        className="fixed left-0 top-1/2 z-[60] flex -translate-y-1/2 flex-col items-center gap-2 border border-l-0 border-[#24170e]/15 bg-[#f6f1ea] px-2 py-3 text-[#24170e] shadow-[0_10px_30px_-12px_rgba(36,23,14,0.45)] transition hover:pl-3"
       >
-        <Icon className="size-5 text-accent" aria-hidden="true" />
-        <span className="rotate-180 font-sans text-[11px] font-semibold uppercase tracking-wider [writing-mode:vertical-rl]">
-          Version <span className="text-muted-foreground">{active.name}</span>
+        <Gamepad2 className="size-5 text-[#9c7445]" aria-hidden="true" />
+        <span className="rotate-180 text-[11px] font-semibold uppercase tracking-wider [writing-mode:vertical-rl]">
+          Version <span className="opacity-60">{active.name}</span>
         </span>
       </button>
 
@@ -97,50 +60,32 @@ export function VersionSwitch() {
           id="version-panel"
           role="dialog"
           aria-label="Choisir une version du site"
-          className="fixed left-14 top-1/2 z-[60] w-[min(18rem,calc(100vw-4.5rem))] -translate-y-1/2 overflow-hidden rounded-2xl border border-border bg-card font-sans text-foreground shadow-[var(--shadow-paper-lg)]"
+          className="fixed left-14 top-1/2 z-[60] w-[min(19rem,calc(100vw-4.5rem))] -translate-y-1/2 overflow-hidden border border-[#24170e]/15 bg-[#f6f1ea] text-[#24170e] shadow-[0_24px_60px_-20px_rgba(36,23,14,0.5)]"
         >
-          <p className="border-b border-border px-4 py-3 text-sm font-semibold">Versions du site</p>
-          <ul aria-label="Autres sites de la refonte" className="px-1.5 pt-1.5">
-            {externalVersions.map((v) => {
-              const VIcon = icons[v.id]
+          <p className="border-b border-[#24170e]/10 px-4 py-3 text-xs font-bold uppercase tracking-wider">
+            Versions du site
+          </p>
+          <ul className="p-1.5">
+            {versions.map((v) => {
+              const selected = v.id === CURRENT_VERSION
               return (
                 <li key={v.id}>
                   <a
-                    href={externalVersionUrl(v)}
+                    href={versionUrl(v)}
+                    aria-current={selected ? 'page' : undefined}
                     onClick={() => track('version_change', { version: v.id })}
-                    className="flex w-full items-start gap-3 rounded-xl px-3 py-2.5 text-left transition hover:bg-muted"
+                    className={`flex items-start gap-3 px-3 py-2.5 transition ${selected ? 'bg-[#24170e]/[0.06]' : 'hover:bg-[#24170e]/[0.06]'}`}
                   >
-                    <VIcon className="mt-0.5 size-4 shrink-0 text-accent" aria-hidden="true" />
                     <span className="min-w-0 flex-1">
                       <span className="block text-sm font-semibold">{v.name}</span>
-                      <span className="block text-xs text-muted-foreground">{v.desc}</span>
+                      <span className="block text-xs opacity-70">{v.desc}</span>
                     </span>
-                    <ArrowUpRight className="mt-0.5 size-4 shrink-0 text-muted-foreground" aria-hidden="true" />
+                    {selected ? (
+                      <Check className="mt-0.5 size-4 shrink-0" aria-hidden="true" />
+                    ) : (
+                      <ArrowUpRight className="mt-0.5 size-4 shrink-0 opacity-50" aria-hidden="true" />
+                    )}
                   </a>
-                </li>
-              )
-            })}
-          </ul>
-          <ul role="radiogroup" aria-label="Version" className="px-1.5 pb-1.5">
-            {versions.map((v) => {
-              const VIcon = icons[v.id]
-              const selected = v.id === current
-              return (
-                <li key={v.id}>
-                  <button
-                    type="button"
-                    role="radio"
-                    aria-checked={selected}
-                    onClick={() => choose(v.id)}
-                    className={`flex w-full items-start gap-3 rounded-xl px-3 py-2.5 text-left transition ${selected ? 'bg-muted' : 'hover:bg-muted'}`}
-                  >
-                    <VIcon className="mt-0.5 size-4 shrink-0 text-accent" aria-hidden="true" />
-                    <span className="min-w-0 flex-1">
-                      <span className="block text-sm font-semibold">{v.name}</span>
-                      <span className="block text-xs text-muted-foreground">{v.desc}</span>
-                    </span>
-                    {selected && <Check className="mt-0.5 size-4 shrink-0" aria-hidden="true" />}
-                  </button>
                 </li>
               )
             })}

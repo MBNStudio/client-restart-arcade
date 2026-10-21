@@ -1,107 +1,20 @@
 name: Déploiement GitHub Pages
 
-# Toutes les propositions de refonte vivent dans ce dépôt et sur le même site Pages :
-# main à la racine, chaque branche theme-* dans son sous-dossier. Un push sur une
-# branche theme-* relance ce workflow (voir le deploy.yml de ces branches).
+# Les propositions de refonte vivent chacune sur une branche theme-* du même dépôt.
+# Le workflow de main construit toutes les versions et publie le site complet :
+# un push ici relance simplement ce déploiement.
 on:
   push:
-    branches: [main]
-  workflow_dispatch:
+    branches: ['theme-*']
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-# Une seule publication à la fois ; on laisse finir celle en cours.
-concurrency:
-  group: pages
-  cancel-in-progress: false
+  actions: write
 
 jobs:
-  build:
+  relancer:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        include:
-          - { branch: main, dir: '' }
-          - { branch: theme-papier, dir: papier }
-          - { branch: theme-onde-pixel, dir: onde-pixel }
-          - { branch: theme-showroom, dir: showroom }
-          - { branch: theme-panorama, dir: panorama }
     steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: ${{ matrix.branch }}
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: npm
-
-      - name: Installer les dépendances
-        run: npm ci
-
-      - uses: actions/configure-pages@v5
-        id: pages
-
-      - name: Build statique
+      - name: Relancer le déploiement de main
         env:
-          # GitHub Pages sert le site sous /<repo>/ : le basePath doit suivre,
-          # plus le sous-dossier de la version.
-          NEXT_PUBLIC_BASE_PATH: ${{ steps.pages.outputs.base_path }}${{ matrix.dir && format('/{0}', matrix.dir) || '' }}
-          NEXT_PUBLIC_SITE_URL: ${{ steps.pages.outputs.origin }}${{ steps.pages.outputs.base_path }}${{ matrix.dir && format('/{0}', matrix.dir) || '' }}
-          NEXT_PUBLIC_GA4_ID: ${{ vars.GA4_ID }}
-        run: npm run build
-
-      - uses: actions/upload-artifact@v4
-        with:
-          name: site-${{ matrix.dir || 'racine' }}
-          path: out
-          retention-days: 1
-
-  assemble:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/download-artifact@v4
-        with:
-          name: site-racine
-          path: out
-
-      - uses: actions/download-artifact@v4
-        with:
-          name: site-papier
-          path: out/papier
-
-      - uses: actions/download-artifact@v4
-        with:
-          name: site-onde-pixel
-          path: out/onde-pixel
-
-      - uses: actions/download-artifact@v4
-        with:
-          name: site-showroom
-          path: out/showroom
-
-      - uses: actions/download-artifact@v4
-        with:
-          name: site-panorama
-          path: out/panorama
-
-      - name: Désactiver le traitement Jekyll
-        run: touch out/.nojekyll
-
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: out
-
-  deploy:
-    needs: assemble
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - id: deployment
-        uses: actions/deploy-pages@v4
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run deploy.yml --ref main -R "${{ github.repository }}"
