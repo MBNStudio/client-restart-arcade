@@ -931,6 +931,28 @@
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
+/* Dernière gamme seule au bout de sa ligne : elle s'étire sur deux colonnes pour
+   finir la grille (7 gammes : deux par ligne sur mobile, quatre au-delà). */
+.crs-ranges > li:last-child:nth-child(odd) {
+  grid-column: span 2;
+}
+.crs-ranges > li:last-child:nth-child(odd) .crs-range__shot {
+  aspect-ratio: 2 / 1;
+}
+@media (min-width: 768px) {
+  .crs-ranges > li:last-child:nth-child(odd) {
+    grid-column: auto;
+  }
+  .crs-ranges > li:last-child:nth-child(4n + 3) {
+    grid-column: span 2;
+  }
+  /* Même hauteur de photo que les cartes voisines : la photo prend la place restante. */
+  .crs-ranges > li:last-child:nth-child(4n + 3) .crs-range__shot {
+    aspect-ratio: auto;
+    flex: 1 1 0;
+    min-height: 0;
+  }
+}
 .crs-range {
   display: flex;
   height: 100%;
