@@ -162,6 +162,51 @@ html:root[data-site='atelier'] {
   }
 }
 
+/* ---------- Marque : pastille « marche » et nom, en couleur du texte ---------- */
+.marque {
+  --marque-icone: var(--color-lin);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1;
+  white-space: nowrap;
+}
+.marque__pastille {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  background: currentColor;
+  transition: background-color 500ms var(--ease-out-expo);
+}
+.marque__pastille svg {
+  width: 17px;
+  height: 17px;
+  color: var(--marque-icone);
+  transition: color 500ms var(--ease-out-expo);
+}
+@media (min-width: 640px) {
+  .marque {
+    font-size: 24px;
+  }
+  .marque__pastille {
+    width: 36px;
+    height: 36px;
+  }
+}
+/* Variante blanche sur fond sombre : pastille blanche, icône sombre */
+.sur-sombre .marque,
+.entete[data-transparent]:not([data-scrolled]) .marque,
+html.menu-ouvert .entete .marque {
+  --marque-icone: var(--color-encre);
+}
+
 /* ---------- En-tête ---------- */
 .entete {
   color: var(--color-noyer);

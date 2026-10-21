@@ -3,10 +3,10 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
-import { logo } from '@/data/images'
 import { site } from '@/lib/site'
 import { contactClick } from '@/lib/analytics'
 import { horairesCourts, navigation } from '@/components/atelier/nav'
+import { Marque } from '@/components/atelier/Marque'
 
 const Telephone = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
@@ -83,8 +83,7 @@ export function Header() {
       >
         <div className="conteneur flex h-[4.5rem] items-center justify-between gap-6 lg:h-20">
           <Link href="/" className="relative z-10 flex shrink-0 items-center" aria-label={`${site.name}, accueil`}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={logo} alt="" width={1350} height={495} className="h-9 w-auto lg:h-10 xl:h-11" />
+            <Marque />
           </Link>
 
           <nav className="hidden items-center gap-1 lg:flex" aria-label="Navigation principale">

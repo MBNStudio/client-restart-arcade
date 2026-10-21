@@ -1,10 +1,10 @@
 'use client'
 
 import Link from 'next/link'
-import { logo } from '@/data/images'
 import { site } from '@/lib/site'
 import { contactClick, ctaClick } from '@/lib/analytics'
 import { horairesCourts, lienDevis, navigation } from '@/components/atelier/nav'
+import { Marque } from '@/components/atelier/Marque'
 
 const reseaux = [
   { nom: 'Instagram', url: site.socials.instagram },
@@ -107,16 +107,10 @@ export function Footer() {
             </div>
           </div>
 
-          <div className="mt-24 border-b border-lin/10 pb-10 lg:mt-32">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={logo}
-              alt={`${site.name}, ${site.tagline.toLowerCase()}`}
-              width={1350}
-              height={495}
-              loading="lazy"
-              className="h-auto w-full max-w-[22rem] lg:max-w-[28rem]"
-            />
+          <div className="mt-20 border-b border-lin/10 pb-8 lg:mt-24">
+            <Link href="/" aria-label={`${site.name}, ${site.tagline.toLowerCase()}`}>
+              <Marque />
+            </Link>
           </div>
 
           <div className="mt-8 flex flex-col gap-3 text-sm text-lin/50 sm:flex-row sm:items-center sm:justify-between">

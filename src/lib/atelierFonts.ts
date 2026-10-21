@@ -19,4 +19,13 @@ const manrope = localFont({
   fallback: ['system-ui', 'sans-serif'],
 })
 
-export const atelierFontVariables = `${fraunces.variable} ${manrope.variable}`
+// Inter : la police de la marque RESTART (pastille et nom), comme sur Halo et Showroom.
+const inter = localFont({
+  src: '../fonts/inter-variable.woff2',
+  variable: '--font-inter',
+  display: 'swap',
+  weight: '100 900',
+  fallback: ['system-ui', 'sans-serif'],
+})
+
+export const atelierFontVariables = `${fraunces.variable} ${manrope.variable} ${inter.variable}`
