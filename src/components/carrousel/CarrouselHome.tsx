@@ -3,9 +3,9 @@ import { ArrowRight, Check, MapPin, Star } from 'lucide-react'
 import { audiences, findUnivers, formatPrice, univers, type Audience } from '@/data/catalogue'
 import { audiencePath } from '@/data/audiencePages'
 import { ambiance, universImage } from '@/data/images'
-import { googleRating, reviews } from '@/data/reviews'
+import { googleRating } from '@/data/reviews'
 import { Reveal } from '@/components/Reveal'
-import { Faq } from '@/components/ui'
+import { ReviewsCarousel } from './ReviewsCarousel'
 import { asset, site } from '@/lib/site'
 
 const priceFrom = (slug: string) => {
@@ -72,9 +72,9 @@ const installs = [
  * Accueil de la version Carrousel, sous le carrousel photo : construit comme la
  * version Panorama (un chapitre par public, les gammes, la méthode, un appel
  * final avec des installations clients), dans sa propre palette bleu nuit,
- * ivoire et corail, avec des avis clients et la FAQ en plus.
+ * ivoire et corail, avec des avis clients en plus.
  */
-export function CarrouselHome({ faq }: { faq: { q: string; a: string }[] }) {
+export function CarrouselHome() {
   return (
     <div className="crs">
       {/* --- Un chapitre par public ----------------------------------------- */}
@@ -174,7 +174,7 @@ export function CarrouselHome({ faq }: { faq: { q: string; a: string }[] }) {
       </section>
 
       {/* --- Avis ---------------------------------------------------------- */}
-      <section className="crs-section">
+      <section className="crs-section crs-section--last">
         <div className="crs-head">
           <div>
             <p className="crs-kicker">
@@ -183,23 +183,9 @@ export function CarrouselHome({ faq }: { faq: { q: string; a: string }[] }) {
             <h2 className="crs-h2">Ils ont joué, ils en parlent</h2>
           </div>
         </div>
-        <ul className="crs-reviews">
-          {reviews.slice(0, 3).map((r, i) => (
-            <li key={r.author}>
-              <Reveal delayMs={i * 100} className="h-full">
-                <figure className="crs-review">
-                  <blockquote>« {r.text} »</blockquote>
-                  <figcaption>{r.author}</figcaption>
-                </figure>
-              </Reveal>
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      {/* --- FAQ ----------------------------------------------------------- */}
-      <section className="crs-faq">
-        <Faq items={faq} title="Vos questions, nos réponses" />
+        <Reveal>
+          <ReviewsCarousel />
+        </Reveal>
       </section>
 
       {/* --- Appel final --------------------------------------------------- */}

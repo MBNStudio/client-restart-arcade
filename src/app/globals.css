@@ -1055,14 +1055,71 @@
 }
 
 /* Avis. */
-.crs-reviews {
+/* Avis : rangée qui défile, une flèche de chaque côté (ReviewsCarousel). */
+.crs-reviews-wrap {
+  position: relative;
   margin-top: 2.5rem;
-  display: grid;
+}
+.crs-reviews {
+  display: flex;
   gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+}
+.crs-reviews::-webkit-scrollbar {
+  display: none;
+}
+.crs-reviews > li {
+  flex: 0 0 82%;
+  scroll-snap-align: start;
 }
 @media (min-width: 768px) {
-  .crs-reviews {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+  .crs-reviews > li {
+    flex-basis: calc((100% - 2rem) / 3);
+  }
+}
+.crs-reviews__arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 1;
+  display: flex;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1px solid var(--crs-line);
+  background: #ffffff;
+  color: var(--crs-ink);
+  box-shadow: 0 8px 24px -10px rgba(20, 33, 61, 0.35);
+  transform: translateY(-50%);
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
+}
+.crs-reviews__arrow:hover:not(:disabled) {
+  background: var(--crs-ink);
+  color: #ffffff;
+}
+.crs-reviews__arrow:disabled {
+  opacity: 0;
+  pointer-events: none;
+}
+.crs-reviews__arrow--prev {
+  left: -0.5rem;
+}
+.crs-reviews__arrow--next {
+  right: -0.5rem;
+}
+@media (min-width: 1280px) {
+  .crs-reviews__arrow--prev {
+    left: -1.375rem;
+  }
+  .crs-reviews__arrow--next {
+    right: -1.375rem;
   }
 }
 .crs-review {
@@ -1086,10 +1143,8 @@
   color: var(--crs-coral-ink);
 }
 
-.crs-faq {
-  margin: 0 auto;
-  max-width: 48rem;
-  padding: 6rem 1.25rem;
+.crs-section--last {
+  padding-bottom: 6rem;
 }
 
 /* Appel final : bandeau bleu nuit, quatre installations clients à droite. */

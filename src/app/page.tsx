@@ -91,7 +91,7 @@ export default function Home() {
         <HeroSlider slides={slides} />
       </div>
 
-      <CarrouselHome faq={homeFaq} />
+      <CarrouselHome />
       </div>
     </>
   )
