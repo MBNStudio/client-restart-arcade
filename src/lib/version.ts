@@ -4,9 +4,9 @@
  * sessionStorage, comme le thème : une nouvelle visite repart sur la version par
  * défaut. `?version=plateau` dans l'URL force une version (lien de démo).
  *
- * Deux autres propositions, Panorama et Showroom, sont des sites à part sur le
- * même dépôt (branches theme-*, publiées sous /panorama/ et /showroom/) : le
- * sélecteur les propose par lien (`externalVersions`).
+ * Trois autres propositions, Panorama, Showroom et Atelier, sont des sites à part
+ * sur le même dépôt (branches theme-*, publiées sous /panorama/, /showroom/ et
+ * /atelier/) : le sélecteur les propose par lien (`externalVersions`).
  */
 import { themes } from '@/lib/themes'
 
@@ -20,10 +20,11 @@ export const versions: { id: VersionId; name: string; desc: string }[] = [
 ]
 
 /** Versions publiées comme sites à part sur le même dépôt, ouvertes par lien. */
-export type ExternalVersionId = 'panorama' | 'showroom'
+export type ExternalVersionId = 'panorama' | 'showroom' | 'atelier'
 export const externalVersions: { id: ExternalVersionId; name: string; desc: string; path: string; dev?: string }[] = [
   { id: 'panorama', name: 'Panorama', desc: 'Une pièce en plein écran qui réunit tous les jeux', path: '/panorama/', dev: 'http://localhost:3107/' },
   { id: 'showroom', name: 'Showroom', desc: "Mise en page d'après poltronesofa.com : marine, crème et rouge", path: '/showroom/' },
+  { id: 'atelier', name: 'Atelier', desc: "Mise en page d'après ab-agencement.com : lin, noyer et chêne", path: '/atelier/', dev: 'http://localhost:3108/' },
 ]
 
 /** Site GitHub Pages du dépôt restart-arcade, qui héberge toutes les versions. */

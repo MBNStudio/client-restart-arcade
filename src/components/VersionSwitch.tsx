@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
-import { ArrowUpRight, Check, Disc3, Images, Lightbulb, Sofa, Store, Sun } from 'lucide-react'
+import { ArrowUpRight, Check, Disc3, Hammer, Images, Lightbulb, Sofa, Store, Sun } from 'lucide-react'
 import {
   applyVersion,
   currentVersion,
@@ -17,6 +17,7 @@ import { track } from '@/lib/analytics'
 const icons: Record<VersionId | ExternalVersionId, typeof Images> = {
   panorama: Sofa,
   showroom: Store,
+  atelier: Hammer,
   plateau: Disc3,
   'plateau-clair': Sun,
   halo: Lightbulb,
