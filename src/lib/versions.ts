@@ -1,15 +1,19 @@
 /**
- * Les six propositions de refonte, toutes publiées sur le site GitHub Pages du
+ * Les sept propositions de refonte, toutes publiées sur le site GitHub Pages du
  * dépôt restart-arcade : Plateau, Plateau clair, Halo et Carrousel sur main (à la
- * racine, `?version=`), Panorama et Showroom sur leur branche theme-* (sous-dossier).
+ * racine, `?version=`), Panorama, Showroom et Atelier sur leur branche theme-* (sous-dossier).
  * Cette branche ne sert qu'une version : l'onglet « Version » renvoie vers les
  * autres, chacune à son adresse. En local, chaque site pointe vers son serveur de dev.
  */
 const ROOT = 'https://stephanebally69-star.github.io/restart-arcade'
 
-type Site = 'main' | 'panorama' | 'showroom'
-const SITE_PATH: Record<Site, string> = { main: '', panorama: '/panorama', showroom: '/showroom' }
-const DEV: Partial<Record<Site, string>> = { main: 'http://localhost:4321', panorama: 'http://localhost:3107' }
+type Site = 'main' | 'panorama' | 'showroom' | 'atelier'
+const SITE_PATH: Record<Site, string> = { main: '', panorama: '/panorama', showroom: '/showroom', atelier: '/atelier' }
+const DEV: Partial<Record<Site, string>> = {
+  main: 'http://localhost:4321',
+  panorama: 'http://localhost:3107',
+  atelier: 'http://localhost:3108',
+}
 
 export type SiteVersion = { id: string; name: string; desc: string; site: Site; path: string }
 
@@ -20,6 +24,13 @@ export const versions: SiteVersion[] = [
     name: 'Showroom',
     desc: "Mise en page d'après poltronesofa.com : marine, crème et rouge",
     site: 'showroom',
+    path: '/',
+  },
+  {
+    id: 'atelier',
+    name: 'Atelier',
+    desc: "Mise en page d'après ab-agencement.com : lin, noyer et chêne",
+    site: 'atelier',
     path: '/',
   },
   { id: 'plateau', name: 'Plateau', desc: 'Sombre, un produit à la fois sur un plateau tournant en 3D', site: 'main', path: '/?version=plateau' },
