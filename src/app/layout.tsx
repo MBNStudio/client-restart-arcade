@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import { Header } from '@/components/Header'
-import { TopBar } from '@/components/TopBar'
 import { Footer } from '@/components/Footer'
 import { Analytics } from '@/components/Analytics'
 import { ConsentBanner } from '@/components/ConsentBanner'
@@ -146,7 +145,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Analytics />
         <div className="flex min-h-screen flex-col">
           <div className="site-chrome">
-            <TopBar />
             <Header />
           </div>
           <main id="contenu" className="flex-1">
