@@ -10,21 +10,21 @@ export const versions: SiteVersion[] = [
     label: 'V1',
     name: 'Papier',
     desc: 'Crème et indigo, gabarit éditorial',
-    url: 'https://stephanebally69-star.github.io/restart-arcade/papier',
+    url: 'https://mbnstudio.github.io/client-restart-arcade/papier',
   },
   {
     id: 'v2',
     label: 'V2',
     name: 'Studio doré',
     desc: "Cartes blanches, scène à l'heure dorée",
-    url: 'https://stephanebally69-star.github.io/restart-arcade',
+    url: 'https://mbnstudio.github.io/client-restart-arcade',
   },
   {
     id: 'v3',
     label: 'V3',
     name: 'Onde pixel',
     desc: 'Grille de pixels vivante, noir et cyan',
-    url: 'https://stephanebally69-star.github.io/restart-arcade/onde-pixel',
+    url: 'https://mbnstudio.github.io/client-restart-arcade/onde-pixel',
   },
 ]
 
