@@ -5,7 +5,7 @@
  * Cette branche ne sert qu'une version : l'onglet « Version » renvoie vers les
  * autres, chacune à son adresse. En local, chaque site pointe vers son serveur de dev.
  */
-const ROOT = 'https://stephanebally69-star.github.io/restart-arcade'
+const ROOT = 'https://mbnstudio.github.io/client-restart-arcade'
 
 type Site = 'main' | 'panorama' | 'showroom' | 'atelier'
 const SITE_PATH: Record<Site, string> = { main: '', panorama: '/panorama', showroom: '/showroom', atelier: '/atelier' }

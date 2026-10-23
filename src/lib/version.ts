@@ -27,7 +27,7 @@ export const externalVersions: { id: ExternalVersionId; name: string; desc: stri
 ]
 
 /** Site GitHub Pages du dépôt restart-arcade, qui héberge toutes les versions. */
-export const PAGES_URL = 'https://stephanebally69-star.github.io/restart-arcade'
+export const PAGES_URL = 'https://mbnstudio.github.io/client-restart-arcade'
 
 /** Adresse d'une version externe : son serveur de dev en local, sinon le site Pages. */
 export function externalVersionUrl(v: (typeof externalVersions)[number]) {
