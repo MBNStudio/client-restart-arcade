@@ -20,11 +20,18 @@ export const versions: { id: VersionId; name: string; desc: string }[] = [
 ]
 
 /** Versions publiées comme sites à part sur le même dépôt, ouvertes par lien. */
-export type ExternalVersionId = 'panorama' | 'showroom' | 'atelier'
+export type ExternalVersionId = 'panorama' | 'showroom' | 'atelier' | 'plateau-v2'
 export const externalVersions: { id: ExternalVersionId; name: string; desc: string; path: string; dev?: string }[] = [
   { id: 'panorama', name: 'Panorama', desc: 'Une pièce en plein écran qui réunit tous les jeux', path: '/panorama/', dev: 'http://localhost:3107/' },
   { id: 'showroom', name: 'Showroom', desc: "Mise en page d'après poltronesofa.com : marine, crème et rouge", path: '/showroom/' },
   { id: 'atelier', name: 'Atelier', desc: "Mise en page d'après ab-agencement.com : lin, noyer et chêne", path: '/atelier/', dev: 'http://localhost:3108/' },
+  {
+    id: 'plateau-v2',
+    name: 'Plateau, retours du 28/10',
+    desc: 'Pop-up de choix, un accueil général et un accueil par espace',
+    path: '/plateau-v2/',
+    dev: 'http://localhost:3109/',
+  },
 ]
 
 /** Site GitHub Pages du dépôt restart-arcade, qui héberge toutes les versions. */

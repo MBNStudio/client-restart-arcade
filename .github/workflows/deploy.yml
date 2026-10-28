@@ -30,6 +30,7 @@ jobs:
           - { branch: theme-showroom, dir: showroom }
           - { branch: theme-panorama, dir: panorama }
           - { branch: theme-atelier, dir: atelier }
+          - { branch: theme-plateau-v2, dir: plateau-v2 }
     steps:
       - uses: actions/checkout@v4
         with:
@@ -94,6 +95,11 @@ jobs:
         with:
           name: site-atelier
           path: out/atelier
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: site-plateau-v2
+          path: out/plateau-v2
 
       - name: Désactiver le traitement Jekyll
         run: touch out/.nojekyll
