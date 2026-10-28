@@ -17,7 +17,7 @@ export const audiences: { id: Audience; label: string; short: string; blurb: str
   },
   {
     id: 'particulier',
-    label: 'Chez moi',
+    label: 'Particulier',
     short: 'À la maison',
     blurb: "La salle d'arcade dans votre salon ou votre garage, livrée montée et prête à jouer.",
   },

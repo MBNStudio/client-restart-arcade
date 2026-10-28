@@ -4,24 +4,39 @@ import { ArrowRight } from 'lucide-react'
 import { CtaLink } from './CtaLink'
 
 /**
- * Héros Plateau : le titre à gauche, un visuel à droite. Plateau y met le mur
- * de photos (`PhotoWall`), Plateau clair les gammes une à une
- * (`PlateauGammes`) ; les deux sont rendus et le CSS n'affiche que celui de la
- * version (`.pl-only-dark`, `.pl-only-clair`).
+ * Héros Plateau : le titre à gauche, le mur de photos à droite. L'accueil de
+ * chaque espace y met son propre titre (`h1`, sinon le titre de l'accueil
+ * générale, qui a son h1 à part), son étiquette et son texte.
  */
-export function PlateauHero({ children }: { children: ReactNode }) {
+export function PlateauHero({
+  children,
+  eyebrow,
+  title,
+  text = "Bornes d'arcade, fléchettes, baby-foot, billards et flippers. Personnalisés à votre image, livrés montés et installés partout en France.",
+}: {
+  children: ReactNode
+  eyebrow?: string
+  title?: string
+  text?: string
+}) {
   return (
     <section className="pl-hero relative overflow-hidden">
       <div aria-hidden="true" className="pl-hero-glow" />
       <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-5 pb-12 pt-14 sm:px-6 md:pt-16 lg:grid-cols-[0.95fr_1.15fr] lg:gap-6 lg:pb-16">
         <div className="relative z-10">
-          <p aria-hidden="true" className="pl-display text-[3.1rem] leading-[0.98] sm:text-[4.2rem] lg:text-[4.9rem]">
-            Transformez vos espaces
-          </p>
-          <p className="mt-6 max-w-md text-[17px] leading-relaxed text-pl-ink/60">
-            Bornes d&apos;arcade, fléchettes, baby-foot, billards et flippers. Personnalisés à votre image, livrés montés et
-            installés partout en France.
-          </p>
+          {eyebrow && (
+            <p className="mb-6 inline-flex items-center rounded-full border border-pl-ink/10 bg-pl-ink/[0.04] px-3 py-1 text-[12px] font-semibold uppercase tracking-[0.16em] text-pl-gold">
+              {eyebrow}
+            </p>
+          )}
+          {title ? (
+            <h1 className="pl-display text-[2.7rem] leading-[1] sm:text-[3.6rem] lg:text-[4.1rem]">{title}</h1>
+          ) : (
+            <p aria-hidden="true" className="pl-display text-[3.1rem] leading-[0.98] sm:text-[4.2rem] lg:text-[4.9rem]">
+              Transformez vos espaces
+            </p>
+          )}
+          <p className="mt-6 max-w-md text-[17px] leading-relaxed text-pl-ink/60">{text}</p>
           <div className="mt-9 flex flex-wrap items-center gap-3">
             <CtaLink />
             <Link

@@ -1,4 +1,5 @@
-import { AudiencePageView, audienceMetadata } from '@/components/AudiencePage'
+import { audienceMetadata } from '@/components/AudiencePage'
+import { PlateauEspaceHome } from '@/components/plateau/PlateauEspaceHome'
 import { audiencePage } from '@/data/audiencePages'
 
 const page = audiencePage('entreprise')
@@ -6,5 +7,5 @@ const page = audiencePage('entreprise')
 export const metadata = audienceMetadata(page)
 
 export default function EntreprisesPage() {
-  return <AudiencePageView page={page} />
+  return <PlateauEspaceHome page={page} />
 }

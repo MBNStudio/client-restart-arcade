@@ -7,36 +7,17 @@ import { ConsentBanner } from '@/components/ConsentBanner'
 import { JsonLd } from '@/components/ui'
 import { site } from '@/lib/site'
 
-import { ThemeSwitcher } from '@/components/ThemeSwitcher'
 import { fontVariables } from '@/lib/fonts'
-import { CUSTOM_STORAGE_KEY, DEFAULT_THEME, THEME_STORAGE_KEY, themes } from '@/lib/themes'
-import { VersionSwitch } from '@/components/VersionSwitch'
-import { DEFAULT_VERSION, VERSION_SCHEMES, VERSION_STORAGE_KEY, versions } from '@/lib/version'
+import { EspaceBar } from '@/components/EspaceBar'
+import { EspaceChooser } from '@/components/EspaceChooser'
+import { espaceBootScript } from '@/lib/espace'
 
 /**
- * Applique le thème choisi pendant la visite avant le premier rendu, pour éviter
- * un flash. Le choix vit en sessionStorage : chaque nouvelle visite repart sur le
- * thème par défaut (Studio doré). Même principe pour la version du site
- * (`?version=plateau` la force). Les anciens choix permanents sont effacés. Les valeurs viennent de nos données, jamais d'une saisie.
+ * Cette version ne sert que Plateau, sans onglets Thèmes ni Version : la palette
+ * est fixée dans le HTML. Le script du <head> renvoie la visite qui revient sur
+ * l'accueil général vers l'accueil de l'espace choisi (voir lib/espace.ts).
  */
-const themeBootScript = `(function(){try{
-var d=document.documentElement,K=${JSON.stringify(THEME_STORAGE_KEY)},C=${JSON.stringify(CUSTOM_STORAGE_KEY)};
-var m=${JSON.stringify(Object.fromEntries(themes.map((t) => [t.id, t.scheme])))};
-var q=new URLSearchParams(location.search).get('theme');
-localStorage.removeItem(K);localStorage.removeItem(C);
-var S=sessionStorage;
-if(q&&m[q]){S.setItem(K,q);S.removeItem(C);}
-var t=S.getItem(K);
-if(t&&m[t]){d.dataset.theme=t;d.dataset.scheme=m[t];}
-var V=${JSON.stringify(VERSION_STORAGE_KEY)},vs=${JSON.stringify(versions.map((v) => v.id))};
-var qv=new URLSearchParams(location.search).get('version');
-if(qv&&vs.indexOf(qv)>-1)S.setItem(V,qv);
-var v=S.getItem(V);if(v&&vs.indexOf(v)>-1)d.dataset.version=v;
-var vsc=${JSON.stringify(VERSION_SCHEMES)};
-var c=S.getItem(C);
-if(c){c=JSON.parse(c);for(var k in c.vars)d.style.setProperty(k,c.vars[k]);d.dataset.scheme=c.scheme;d.dataset.custom='true';}
-if(vsc[d.dataset.version])d.dataset.scheme=vsc[d.dataset.version];
-}catch(e){}})();`
+const bootScript = espaceBootScript(process.env.NEXT_PUBLIC_BASE_PATH ?? '')
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -60,8 +41,8 @@ export const metadata: Metadata = {
 }
 
 export const viewport = {
-  themeColor: '#f6f6f5',
-  colorScheme: 'light',
+  themeColor: '#000000',
+  colorScheme: 'dark',
 }
 
 /**
@@ -131,19 +112,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html
       lang="fr"
       className={fontVariables}
-      data-theme={DEFAULT_THEME}
-      data-version={DEFAULT_VERSION}
-      data-scheme={themes.find((t) => t.id === DEFAULT_THEME)!.scheme}
+      data-theme="studio"
+      data-version="plateau"
+      data-scheme="dark"
       suppressHydrationWarning
     >
       <head>
-        <script dangerouslySetInnerHTML={{ __html: themeBootScript }} />
+        <script dangerouslySetInnerHTML={{ __html: bootScript }} />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <JsonLd data={organizationSchema} />
       </head>
       <body>
         <Analytics />
         <div className="flex min-h-screen flex-col">
+          <EspaceBar />
           <Header />
           <main id="contenu" className="flex-1">
             {children}
@@ -151,8 +133,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Footer />
         </div>
         <ConsentBanner />
-        <ThemeSwitcher />
-        <VersionSwitch />
+        <EspaceChooser />
       </body>
     </html>
   )

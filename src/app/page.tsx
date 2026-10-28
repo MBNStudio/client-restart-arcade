@@ -1,10 +1,5 @@
 import type { Metadata } from 'next'
-import { formatPrice, univers } from '@/data/catalogue'
-import { HeroSlider, type HeroSlide } from '@/components/HeroSlider'
-import { HaloHero } from '@/components/HaloHero'
 import { PlateauHome } from '@/components/plateau/PlateauHome'
-import { CarrouselHome } from '@/components/carrousel/CarrouselHome'
-import { heroImage } from '@/data/images'
 
 export const metadata: Metadata = {
   title: "Bornes d'arcade, fléchettes et baby-foot personnalisés, en vente et en location",
@@ -36,63 +31,12 @@ const homeFaq = [
   },
 ]
 
-/** Accroche de chaque gamme dans le carrousel, tirée de sa page univers. */
-const heroTitles: Record<string, string> = {
-  'borne-arcade': 'De la borne enfant à la borne pro avec monnayeur',
-  flechettes: 'Plus de 30 modes de jeu, comptage automatique',
-  'baby-foot': "Du hêtre massif aux modèles qui restent dehors toute l'année",
-  'fauteuil-massant': 'Zéro gravité, chauffage lombaire et sept zones de massage',
-  billard: "L'équipement qui retient le plus longtemps autour de lui",
-  'flipper-numerique': 'Plus de 500 tables dans une seule machine',
-  'cocon-de-repos': 'Vingt minutes de micro-sieste, isolé du bruit et de la lumière',
-}
-
-const heroAlt: Record<string, string> = {
-  'borne-arcade': "Rangée de bornes d'arcade éclairées en bleu, joysticks colorés",
-  flechettes: 'Fléchettes vertes plantées au centre de la cible',
-  'baby-foot': 'Baby-foot colorés dans une salle lumineuse, des joueurs autour',
-  'fauteuil-massant': "Fauteuil massant dans un salon de détente d'entreprise",
-  billard: 'Billard dans une grande pièce lumineuse aux baies vitrées',
-  'flipper-numerique': 'Plateau de flipper illuminé, bumpers et cartes à jouer',
-  'cocon-de-repos': 'Cocons de repos Nap&Up installés dans une salle de récupération',
-}
-
+/** Accueil général : celui des visiteurs qui n'ont pas choisi d'espace (voir lib/espace.ts). */
 export default function Home() {
-  const slides: HeroSlide[] = univers.map((u) => {
-    const priced = u.models.flatMap((m) => (m.price != null ? [m.price] : []))
-    return {
-      slug: u.slug,
-      image: heroImage(u.slug),
-      alt: heroAlt[u.slug],
-      name: u.name,
-      title: heroTitles[u.slug],
-      detail:
-        priced.length > 1
-          ? `${u.models.length} modèles, de ${formatPrice(Math.min(...priced))} à ${formatPrice(Math.max(...priced))}`
-          : priced.length === 1
-            ? `${formatPrice(priced[0])}, livré monté et installé`
-            : 'Sur devis, en achat ou en location',
-      href: `/produits/${u.slug}/`,
-    }
-  })
-
   return (
     <>
       <h1 className="sr-only">Transformez vos espaces avec RESTART.</h1>
-      <div className="version-plateau">
-        <PlateauHome faq={homeFaq} />
-      </div>
-      <div className="version-halo">
-        <PlateauHome faq={homeFaq} hero={<HaloHero />} />
-      </div>
-
-      <div className="version-classic">
-      <div className="version-studio pt-6 md:pt-8">
-        <HeroSlider slides={slides} />
-      </div>
-
-      <CarrouselHome />
-      </div>
+      <PlateauHome faq={homeFaq} />
     </>
   )
 }
