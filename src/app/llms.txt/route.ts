@@ -1,3 +1,4 @@
+import { produitsHref } from '@/data/v2/espaces'
 import { allModels, formatPrice, univers } from '@/data/catalogue'
 import { blogPosts } from '@/data/blog'
 import { site } from '@/lib/site'
@@ -16,12 +17,12 @@ export function GET() {
   const lignesProduits = allModels
     .map(
       (m) =>
-        `- ${m.name} (${m.sku}) : ${m.price != null ? formatPrice(m.price) : 'sur devis'}. ${m.headline}. ${site.url}/produits/${m.universSlug}/${m.slug}/`,
+        `- ${m.name} (${m.sku}) : ${m.price != null ? formatPrice(m.price) : 'sur devis'}. ${m.headline}. ${site.url}${produitsHref(m.audiences[0], m.universSlug, m.slug)}`,
     )
     .join('\n')
 
   const lignesUnivers = univers
-    .map((u) => `- [${u.name}](${site.url}/produits/${u.slug}/) : ${u.answer}`)
+    .map((u) => `- [${u.name}](${site.url}/entreprises/produits/${u.slug}/) : ${u.answer}`)
     .join('\n')
 
   const lignesArticles = blogPosts
@@ -68,7 +69,7 @@ Billards, flippers numériques et cocons de repos : tarif sur devis, à l'achat 
 ## Pages principales
 
 - [Accueil](${site.url}/)
-- [Catalogue complet](${site.url}/produits/)
+- [Catalogue complet](${site.url}/entreprises/produits/)
 - [Qui sommes-nous](${site.url}/qui-sommes-nous/)
 - [Réalisations](${site.url}/realisations/)
 - [Contact et devis](${site.url}/contact/)

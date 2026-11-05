@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { univers } from '@/data/catalogue'
+import { espacesV2 } from '@/data/v2/espaces'
 import { Section } from '@/components/ui'
 
 export const metadata = {
@@ -17,13 +17,13 @@ export default function NotFound() {
         plus utiles.
       </p>
       <div className="mx-auto mt-10 flex max-w-2xl flex-wrap justify-center gap-2">
-        {univers.map((u) => (
+        {espacesV2.map((u) => (
           <Link
-            key={u.slug}
-            href={`/produits/${u.slug}/`}
+            key={u.id}
+            href={u.path}
             className="rounded-full border border-input px-4 py-2 text-sm text-ink-soft transition hover:border-cyan hover:text-heading"
           >
-            {u.navLabel}
+            {u.label}
           </Link>
         ))}
       </div>

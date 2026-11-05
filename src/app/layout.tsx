@@ -1,23 +1,30 @@
 import type { Metadata } from 'next'
 import './globals.css'
-import { Header } from '@/components/Header'
-import { Footer } from '@/components/Footer'
+import { SiteHeader } from '@/components/v2/SiteHeader'
+import { SiteFooter } from '@/components/v2/SiteFooter'
+import { ThemePicker } from '@/components/v2/ThemePicker'
+import { Reveal } from '@/components/v2/Reveal'
+import { v2FontVariables } from '@/lib/v2/fonts'
+import { v2ThemeBootScript } from '@/lib/v2/themes'
 import { Analytics } from '@/components/Analytics'
 import { ConsentBanner } from '@/components/ConsentBanner'
 import { JsonLd } from '@/components/ui'
 import { site } from '@/lib/site'
 
 import { fontVariables } from '@/lib/fonts'
-import { EspaceBar } from '@/components/EspaceBar'
 import { EspaceChooser } from '@/components/EspaceChooser'
 import { espaceBootScript } from '@/lib/espace'
 
 /**
- * Cette version ne sert que Plateau, sans onglets Thèmes ni Version : la palette
- * est fixée dans le HTML. Le script du <head> renvoie la visite qui revient sur
- * l'accueil général vers l'accueil de l'espace choisi (voir lib/espace.ts).
+ * V2 (retours de RESTART du 5 novembre 2026) : un site général en une page et trois
+ * sites par public, six thèmes au choix. Les scripts du <head> posent le thème choisi
+ * et renvoient la visite qui revient sur l'accueil général vers l'accueil de l'espace
+ * choisi (voir lib/espace.ts), avant le premier rendu.
  */
-const bootScript = espaceBootScript(process.env.NEXT_PUBLIC_BASE_PATH ?? '')
+const bootScript =
+  "document.documentElement.classList.add('js');" +
+  v2ThemeBootScript() +
+  espaceBootScript(process.env.NEXT_PUBLIC_BASE_PATH ?? '')
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -41,8 +48,7 @@ export const metadata: Metadata = {
 }
 
 export const viewport = {
-  themeColor: '#000000',
-  colorScheme: 'dark',
+  themeColor: '#16100b',
 }
 
 /**
@@ -111,10 +117,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="fr"
-      className={fontVariables}
-      data-theme="studio"
-      data-version="plateau"
-      data-scheme="dark"
+      className={`${fontVariables} ${v2FontVariables}`}
+      data-theme="atelier"
+      data-version="v2"
+      data-scheme="light"
       suppressHydrationWarning
     >
       <head>
@@ -125,15 +131,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <Analytics />
         <div className="flex min-h-screen flex-col">
-          <EspaceBar />
-          <Header />
+          <SiteHeader />
           <main id="contenu" className="flex-1">
             {children}
           </main>
-          <Footer />
+          <SiteFooter />
         </div>
         <ConsentBanner />
         <EspaceChooser />
+        <ThemePicker />
+        <Reveal />
       </body>
     </html>
   )

@@ -12,10 +12,19 @@ import { asset } from '@/lib/site'
 export type EspaceChoice = Audience | 'general'
 
 /** Clé propre à cette version : le site Pages partage son localStorage avec les autres propositions. */
-export const ESPACE_STORAGE_KEY = 'restart-plateau-v2-espace'
+export const ESPACE_STORAGE_KEY = 'restart-v2-espace'
 /** Posée à la première page de la visite : on ne redirige qu'en arrivant sur le site. */
-export const ESPACE_SESSION_KEY = 'restart-plateau-v2-visite'
+export const ESPACE_SESSION_KEY = 'restart-v2-visite'
 export const ESPACE_OPEN_EVENT = 'restart:espace-open'
+
+/**
+ * Ouvre la pop-up. `rest` est la page visée dans l'espace (« produits/baby-foot/ ») :
+ * le site général n'a qu'une page, chaque lien vers un produit ou une page d'espace
+ * fait réapparaître la pop-up pour mener au bon site (mail de RESTART du 5 novembre).
+ */
+export function openEspaceChooser(rest = '') {
+  window.dispatchEvent(new CustomEvent(ESPACE_OPEN_EVENT, { detail: { rest } }))
+}
 
 /** Ordre donné par RESTART : commerce, entreprise, particulier. */
 export const espaces: { id: Audience; label: string; short: string; line: string; photo: string; alt: string }[] = [
@@ -62,6 +71,7 @@ export function storedEspace(): EspaceChoice | null {
 export function storeEspace(choice: EspaceChoice) {
   try {
     localStorage.setItem(ESPACE_STORAGE_KEY, choice)
+    window.dispatchEvent(new Event('restart:espace-stored'))
   } catch {
     // Stockage indisponible (navigation privée) : le choix vaut pour la page en cours.
   }

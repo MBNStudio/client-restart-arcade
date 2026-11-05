@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next'
-import { allModels, univers } from '@/data/catalogue'
+import { allModels, findUnivers } from '@/data/catalogue'
+import { espacesV2, espaceHref, produitsHref } from '@/data/v2/espaces'
 import { audiencePages } from '@/data/audiencePages'
 import { blogPosts } from '@/data/blog'
 import { site } from '@/lib/site'
@@ -17,7 +18,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const statiques: MetadataRoute.Sitemap = [
     { url: url('/'), changeFrequency: 'monthly', priority: 1, lastModified: now },
-    { url: url('/produits/'), changeFrequency: 'monthly', priority: 0.9, lastModified: now },
     { url: url('/contact/'), changeFrequency: 'yearly', priority: 0.9, lastModified: now },
     { url: url('/qui-sommes-nous/'), changeFrequency: 'yearly', priority: 0.6, lastModified: now },
     { url: url('/realisations/'), changeFrequency: 'monthly', priority: 0.7, lastModified: now },
@@ -31,19 +31,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: now,
   }))
 
-  const pagesUnivers: MetadataRoute.Sitemap = univers.map((u) => ({
-    url: url(`/produits/${u.slug}/`),
-    changeFrequency: 'monthly',
-    priority: 0.8,
-    lastModified: now,
-  }))
-
-  const fiches: MetadataRoute.Sitemap = allModels.map((m) => ({
-    url: url(`/produits/${m.universSlug}/${m.slug}/`),
-    changeFrequency: 'monthly',
-    priority: 0.8,
-    lastModified: now,
-  }))
+  // V2 : chaque espace a ses pages produits et son concept.
+  const parEspace: MetadataRoute.Sitemap = espacesV2.flatMap((e) => [
+    { url: url(produitsHref(e.id)), changeFrequency: 'monthly' as const, priority: 0.9, lastModified: now },
+    { url: url(espaceHref(e.id, 'concept/')), changeFrequency: 'yearly' as const, priority: 0.6, lastModified: now },
+    ...e.univers.flatMap((slug) => [
+      { url: url(produitsHref(e.id, slug)), changeFrequency: 'monthly' as const, priority: 0.8, lastModified: now },
+      ...allModels
+        .filter((m) => m.universSlug === slug && m.audiences.includes(e.id) && findUnivers(slug))
+        .map((m) => ({ url: url(produitsHref(e.id, slug, m.slug)), changeFrequency: 'monthly' as const, priority: 0.8, lastModified: now })),
+    ]),
+  ])
 
   const articles: MetadataRoute.Sitemap = blogPosts.map((p) => ({
     url: url(`/blog/${p.slug}/`),
@@ -52,5 +50,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(p.date),
   }))
 
-  return [...statiques, ...publics, ...pagesUnivers, ...fiches, ...articles]
+  return [...statiques, ...publics, ...parEspace, ...articles]
 }
