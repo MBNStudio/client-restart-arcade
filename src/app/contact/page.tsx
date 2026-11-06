@@ -2,9 +2,11 @@ import type { Metadata } from 'next'
 import { Suspense } from 'react'
 import { ContactFormWithPreset } from '@/components/ContactFormWithPreset'
 import { Check } from 'lucide-react'
-import { Faq, JsonLd } from '@/components/ui'
+import { JsonLd } from '@/components/ui'
+import { FaqShowroom } from '@/components/v2/FaqShowroom'
+import { FaqJsonLd } from '@/components/v2/sections'
 import { Frame, PageHero, BriefPoints } from '@/components/kit'
-import { site } from '@/lib/site'
+import { asset, site } from '@/lib/site'
 
 export const metadata: Metadata = {
   title: 'Contact et devis gratuit sous 48 h',
@@ -69,9 +71,10 @@ export default function ContactPage() {
         }
         primary={null}
         secondary={null}
+        row
         aside={
-          <div className="flex w-full flex-col gap-5">
-            <div className="card-paper rounded-2xl p-6">
+          <>
+            <div className="card-paper h-full rounded-[24px] p-6">
               <h2 className="font-serif text-lg font-medium tracking-tight">Notre atelier</h2>
               <address className="mt-3 text-sm not-italic text-foreground/70">
                 {site.address.street}
@@ -84,7 +87,7 @@ export default function ContactPage() {
                 Visite sur rendez-vous pour essayer les équipements avant de choisir.
               </p>
             </div>
-            <div className="card-paper rounded-2xl p-6">
+            <div className="card-paper h-full rounded-[24px] p-6">
               <h2 className="font-serif text-lg font-medium tracking-tight">Ce qu&apos;on vous enverra</h2>
               <ul className="mt-3 space-y-2 text-sm text-foreground/70">
                 {[
@@ -100,12 +103,23 @@ export default function ContactPage() {
                 ))}
               </ul>
             </div>
-          </div>
+          </>
         }
       />
 
-      <section className="mx-auto w-full max-w-3xl px-6 py-10 md:py-14">
-        <Faq items={faq} />
+      <section className="py-20 lg:py-28">
+        <div className="v-wrap">
+          <FaqJsonLd items={faq} />
+          <FaqShowroom
+            title={
+              <>
+                Vos <em>questions</em>
+              </>
+            }
+            items={faq}
+            photos={['entreprise-2', 'bar-commerce-3', 'particulier-4'].map((n) => ({ src: asset(`/img/v2/scenes/${n}.webp`), alt: '' }))}
+          />
+        </div>
       </section>
 
       <JsonLd

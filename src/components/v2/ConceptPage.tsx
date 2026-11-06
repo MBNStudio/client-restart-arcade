@@ -20,11 +20,12 @@ const titles: Record<Audience, { title: string; description: string; crumb: stri
       "Le concept RESTART pour les entreprises : des salles de pause et des espaces d'accueil qui créent du lien, au service du bien-être de vos collaborateurs et de l'expérience de vos visiteurs.",
     crumb: 'Le concept',
   },
+  // « Je crée » et « Livraison & installation » menaient à la même page : une seule entrée, comme sur les deux autres sites.
   particulier: {
-    title: 'Je crée : une borne, des fléchettes, un baby-foot à votre image',
+    title: 'Notre concept : un jeu à votre image, livré et installé chez vous',
     description:
       "Personnalisez votre jeu RESTART : covering, boutons LED ou dorés, stickers, porte-gobelet. Assemblé dans notre atelier en Isère, livré et installé partout en France, Corse comprise.",
-    crumb: 'Je crée',
+    crumb: 'Notre concept',
   },
 }
 
@@ -35,7 +36,7 @@ export const conceptMetadata = (id: Audience): Metadata => ({
 })
 
 /**
- * Page « Notre concept » (« Je crée » pour les particuliers) : expliquée avec les
+ * Page « Notre concept » (personnalisation et livraison pour les particuliers) : expliquée avec les
  * blocs qui entrent au défilement de la version Panorama (mail du 5 novembre).
  */
 export function ConceptView({ id }: { id: Audience }) {

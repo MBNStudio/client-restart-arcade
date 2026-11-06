@@ -366,8 +366,7 @@ const espacesData: Espace[] = [
     marquee: ["Bornes d'arcade", 'Fléchettes électroniques', 'Baby-foot', 'Fauteuils massants', 'Covering à vos couleurs', 'Paiement en 4x', 'Livré monté'],
     univers: ['borne-arcade', 'flechettes', 'baby-foot', 'fauteuil-massant'],
     nav: [
-      { label: 'Je crée', href: espaceHref('particulier', 'concept/') },
-      { label: 'Livraison & installation', href: espaceHref('particulier', 'concept/#livraison') },
+      { label: 'Notre concept', href: espaceHref('particulier', 'concept/') },
       { label: 'Qui sommes-nous', href: '/qui-sommes-nous/' },
       { label: 'Contact', href: '/contact/' },
     ],

@@ -44,6 +44,26 @@ export function SectionHead({
   text?: ReactNode
   action?: ReactNode
 }) {
+  // Sans bouton, le texte passe à droite du titre : pas de grand vide à droite.
+  if (text && !action) {
+    return (
+      <div className="grid items-end gap-6 lg:grid-cols-12 lg:gap-12">
+        <div className="lg:col-span-7">
+          {eyebrow && (
+            <p className="v-eyebrow" data-reveal>
+              {eyebrow}
+            </p>
+          )}
+          <h2 className="v-display v-h2 mt-6" data-reveal style={delai(80)}>
+            {title}
+          </h2>
+        </div>
+        <p className="v-lead lg:col-span-5 lg:pb-2" data-reveal style={delai(140)}>
+          {text}
+        </p>
+      </div>
+    )
+  }
   return (
     <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
       <div className="max-w-2xl">

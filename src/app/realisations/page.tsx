@@ -6,6 +6,7 @@ import { Breadcrumbs } from '@/components/ui'
 import { realisationPhotos } from '@/data/images'
 import { Reviews, delai } from '@/components/v2/sections'
 import { GuardLink } from '@/components/v2/GuardLink'
+import { RealisationsGallery } from '@/components/v2/RealisationsGallery'
 
 export const metadata: Metadata = {
   title: 'Nos réalisations : espaces de pause, bars et salons équipés',
@@ -66,18 +67,11 @@ export default function RealisationsPage() {
       <section id="galerie" className="border-t border-v-line py-24 lg:py-28">
         <div className="v-wrap">
           <h2 className="v-display v-h2" data-reveal>
-            Toutes les <em>photos</em>
+            Par <em>produit</em>
           </h2>
-          <ul className="mt-12 columns-2 gap-3 sm:gap-5 lg:columns-3">
-            {realisationPhotos.map((src, i) => (
-              <li key={src} className="mb-3 break-inside-avoid sm:mb-5" data-reveal="image" style={delai((i % 3) * 80)}>
-                <div className="v-photo">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={src} alt={`Installation RESTART chez un client, photo ${i + 1}`} loading="lazy" className="!h-auto" />
-                </div>
-              </li>
-            ))}
-          </ul>
+          <div className="mt-10">
+            <RealisationsGallery />
+          </div>
         </div>
       </section>
 

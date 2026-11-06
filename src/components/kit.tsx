@@ -95,7 +95,7 @@ export function BriefCard({ label = 'En bref', children }: { label?: string; chi
   return (
     <aside
       aria-label={label}
-      className="card-brand w-full rounded-[24px] px-6 py-7 text-sm leading-relaxed sm:px-8 md:text-[15px]"
+      className="card-brand h-full w-full rounded-[24px] px-6 py-7 text-sm leading-relaxed sm:px-8 md:text-[15px]"
     >
       <Glow className="-right-16 -top-20 size-56 bg-[#f2a457]/25" />
       <div className="[&_a]:underline [&_a]:underline-offset-2">{children}</div>
@@ -181,7 +181,7 @@ export function InfoCard({
 /** Carte « Conçu par » : l'atelier, l'adresse et une ligne directe. */
 export function MakerCard() {
   return (
-    <div className="rounded-[24px] border border-border bg-card p-6 shadow-[var(--shadow-paper-sm)]">
+    <div className="h-full rounded-[24px] border border-border bg-card p-6 shadow-[var(--shadow-paper-sm)]">
       <p className="text-[11px] font-medium uppercase tracking-[0.12em] text-muted-foreground">
         Conçu et installé par
       </p>
@@ -299,7 +299,10 @@ export function PageHero({
   primary = { href: '/contact/', label: 'Demander un devis' },
   secondary = { href: `tel:${site.phoneE164}`, label: 'Appeler' },
   aside,
+  row = false,
 }: {
+  /** Synthèse et cartes de côté sur une seule rangée de même hauteur (une carte par colonne). */
+  row?: boolean
   crumbs?: { href: string; label: string }[]
   title: ReactNode
   visual: ReactNode
@@ -315,10 +318,18 @@ export function PageHero({
       {crumbs && <Breadcrumbs items={crumbs} />}
       <InfoCard eyebrow={eyebrow} title={title} primary={primary} secondary={secondary} />
       <div className="relative mt-6 w-full min-w-0">{visual}</div>
-      <div className="mt-6 grid items-start gap-6 lg:grid-cols-[1fr_360px]">
-        <BriefCard label={briefLabel}>{brief}</BriefCard>
-        <div className="flex flex-col gap-6">{aside ?? <MakerCard />}</div>
-      </div>
+      {row ? (
+        <div className="mt-6 grid items-stretch gap-6 md:grid-cols-3">
+          <BriefCard label={briefLabel}>{brief}</BriefCard>
+          {aside}
+        </div>
+      ) : (
+        // Cartes de même hauteur : la synthèse s'étire à la hauteur de la colonne de droite.
+        <div className="mt-6 grid items-stretch gap-6 lg:grid-cols-[1fr_360px]">
+          <BriefCard label={briefLabel}>{brief}</BriefCard>
+          <div className="flex flex-col gap-6 [&>*:only-child]:h-full">{aside ?? <MakerCard />}</div>
+        </div>
+      )}
     </section>
   )
 }

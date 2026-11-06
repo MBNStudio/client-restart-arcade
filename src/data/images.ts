@@ -50,6 +50,15 @@ export const realisationPhotos = [
   135, 136, 140, 149, 157,
 ].map((n) => asset(`/img/realisations/r${n}.webp`))
 
+/** Les mêmes photos, classées par produit (page Réalisations). Une photo à deux produits va au plus visible. */
+export const realisationCategories: { slug: string; label: string; photos: number[] }[] = [
+  { slug: 'borne-arcade', label: "Bornes d'arcade", photos: [140, 157, 117, 27, 40, 41, 46, 61] },
+  { slug: 'flechettes', label: 'Fléchettes', photos: [149, 131, 135, 136, 50, 60, 64, 67, 68, 73, 75] },
+  { slug: 'baby-foot', label: 'Baby-foot', photos: [33, 58, 35, 36] },
+  { slug: 'billard', label: 'Billard', photos: [126, 125, 123, 129] },
+]
+export const realisationPhoto = (n: number) => asset(`/img/realisations/r${n}.webp`)
+
 export const ambiance = {
   salleDePause: asset('/img/ambiance/0.webp'),
   bar: asset('/img/ambiance/1.webp'),

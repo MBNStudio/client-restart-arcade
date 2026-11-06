@@ -10,7 +10,9 @@ import { ViewItem } from '@/components/ViewItem'
 import { Breadcrumbs, JsonLd } from '@/components/ui'
 import { site } from '@/lib/site'
 import { DesignCarousel, type DesignSlide } from './DesignCarousel'
-import { FaqCta, GammeMosaic, SectionHead, delai, priceFrom, situation, situationAlt } from './sections'
+import { FaqJsonLd, GammeMosaic, SectionHead, delai, priceFrom, situation, situationAlt } from './sections'
+import { FaqShowroom } from './FaqShowroom'
+import { asset } from '@/lib/site'
 
 /*
  * Pages produits, déclinées pour chacun des trois sites (mail du 5 novembre :
@@ -258,6 +260,35 @@ function MoreGammes({ id, exclude }: { id: Audience; exclude?: string }) {
   )
 }
 
+/** Questions fréquentes sous chaque produit, dans la mise en page « Où allez-vous jouer ? » (Showroom). */
+function ProductFaq({ id, u, text, cta }: { id: Audience; u: Univers; text: string; cta: { href: string; label: string } }) {
+  const photos = [situation(u.slug), ...[1, 2, 3, 4].map((n) => asset(`/img/v2/scenes/${id}-${n}.webp`))].map((src) => ({ src, alt: '' }))
+  return (
+    <section className="border-t border-v-line py-24 lg:py-28">
+      <div className="v-wrap">
+        <FaqJsonLd items={u.faq} />
+        <FaqShowroom
+          title={
+            <>
+              Vos <em>questions</em>
+            </>
+          }
+          items={u.faq}
+          photos={photos}
+          aside={
+            <div className="mt-10 flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:justify-between">
+              <p className="max-w-sm text-[15px] text-v-soft">{text}</p>
+              <Link href={cta.href} className="v-btn v-btn--solid shrink-0">
+                {cta.label} <ArrowRight aria-hidden="true" />
+              </Link>
+            </div>
+          }
+        />
+      </div>
+    </section>
+  )
+}
+
 /* ------------------------------------------------------------------ */
 /* Pages                                                               */
 /* ------------------------------------------------------------------ */
@@ -407,8 +438,10 @@ export function UniversView({ id, slug }: { id: Audience; slug: string }) {
         </div>
       </section>
 
-      <FaqCta
-        faq={u.faq}
+      <ProductFaq
+        id={id}
+        u={u}
+        text="Une autre question ? Décrivez votre projet en deux minutes : réponse sous 48 heures."
         cta={shop && models.length ? { href: '#modeles', label: 'Choisir mon modèle' } : { href: `/contact/?produit=${encodeURIComponent(u.name)}`, label: 'Demander un devis gratuit' }}
       />
 
@@ -545,19 +578,11 @@ export function ModeleView({ id, univers, modele }: { id: Audience; univers: str
         </div>
       </section>
 
-      <FaqCta
-        faq={u.faq}
-        title={
-          shop ? (
-            <>
-              Livré monté.
-              <br />
-              Prêt à jouer.
-            </>
-          ) : undefined
-        }
-        text={shop ? 'Une question sur ce modèle, une personnalisation ? On vous répond sous 48 heures.' : undefined}
-        cta={shop ? { href: `/contact/?produit=${encodeURIComponent(m.sku)}`, label: 'Poser une question' } : { href: `/contact/?produit=${encodeURIComponent(m.sku)}`, label: 'Demander un devis gratuit' }}
+      <ProductFaq
+        id={id}
+        u={u}
+        text={shop ? 'Une question sur ce modèle, une personnalisation ? On vous répond sous 48 heures.' : 'Décrivez votre projet en deux minutes : proposition chiffrée sous 48 heures.'}
+        cta={{ href: `/contact/?produit=${encodeURIComponent(m.sku)}`, label: shop ? 'Poser une question' : 'Demander un devis gratuit' }}
       />
 
       {siblings.length > 0 && (

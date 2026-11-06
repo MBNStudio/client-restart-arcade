@@ -1,9 +1,11 @@
 import type { Metadata } from 'next'
 import { Check } from 'lucide-react'
-import { Faq, FinalCta } from '@/components/ui'
+import { FinalCta } from '@/components/ui'
+import { FaqShowroom } from '@/components/v2/FaqShowroom'
+import { FaqJsonLd } from '@/components/v2/sections'
 import { Block, CtaBand, Frame, PageHero, PaperCard, SectionHeading, BriefPoints } from '@/components/kit'
 import { ambiance } from '@/data/images'
-import { site } from '@/lib/site'
+import { asset, site } from '@/lib/site'
 
 export const metadata: Metadata = {
   title: "Qui sommes-nous : l'aménagement d'espaces conviviaux depuis l'Isère",
@@ -93,11 +95,22 @@ export default function QuiSommesNousPage() {
       </Block>
 
       <Block>
-        <div className="grid items-start gap-10 lg:grid-cols-[35fr_65fr] lg:gap-16">
-          <h2 className="text-balance font-serif text-3xl font-medium tracking-tight md:text-4xl">
-            Un espace de pause vide reste vide. Un espace avec un jeu se remplit tout seul.
-          </h2>
-          <div className="space-y-5 text-foreground/75">
+        <div className="grid items-stretch gap-10 lg:grid-cols-[42fr_58fr] lg:gap-16">
+          {/* Le titre sur une photo qui zoome très lentement. */}
+          <div className="v-photo relative flex min-h-[22rem] items-end overflow-hidden lg:min-h-[28rem]" data-reveal="image">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={asset('/img/v2/scenes/entreprise-1.webp')}
+              alt="Collègues qui rient autour d'un baby-foot et d'une borne d'arcade, dans une salle de pause lumineuse"
+              loading="lazy"
+              className="v-kenburns absolute inset-0"
+            />
+            <span aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/10" />
+            <h2 className="relative text-balance p-7 font-serif text-3xl font-medium tracking-tight text-white md:p-9 md:text-4xl">
+              Un espace de pause vide reste vide. Un espace avec un jeu se remplit tout seul.
+            </h2>
+          </div>
+          <div className="space-y-5 self-center text-foreground/75">
             <p>
               Les entreprises ont multiplié les chartes de qualité de vie au travail, les bars ont
               multiplié les écrans. Dans les deux cas, le problème est le même : rien ne donne
@@ -139,8 +152,19 @@ export default function QuiSommesNousPage() {
         primary={{ href: '/contact/', label: 'Prendre rendez-vous' }}
       />
 
-      <section className="mx-auto w-full max-w-3xl px-6 py-10 md:py-14">
-        <Faq items={faq} />
+      <section className="py-20 lg:py-28">
+        <div className="v-wrap">
+          <FaqJsonLd items={faq} />
+          <FaqShowroom
+            title={
+              <>
+                Vos <em>questions</em>
+              </>
+            }
+            items={faq}
+            photos={[ambiance.showroom, asset('/img/realisations/r117.webp'), asset('/img/v2/scenes/bar-commerce-1.webp')].map((src) => ({ src, alt: '' }))}
+          />
+        </div>
       </section>
 
       <FinalCta
