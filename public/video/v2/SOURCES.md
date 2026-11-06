@@ -10,4 +10,4 @@
 | Lancer de fléchettes entre amis | https://www.pexels.com/video/8757813/ (Kevin Malik) |
 | Deux amis au baby-foot | https://www.pexels.com/video/9003124/ |
 
-`hero-bar-commerce.mp4`, `hero-entreprise.mp4`, `hero-particulier.mp4` : photos générées avec gpt-image-2 (produits RESTART en référence), montées avec un mouvement lent et des fondus.
+`hero-bar-commerce.mp4`, `hero-entreprise.mp4`, `hero-particulier.mp4` : photos générées avec gpt-image-2 (produits RESTART en référence), montées avec un mouvement lent et des fondus. Le mouvement est calculé au sous-pixel (transformation affine bicubique), et non avec le `zoompan` de ffmpeg qui arrondit au pixel et faisait trembler l'image.
