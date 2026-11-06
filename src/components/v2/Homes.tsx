@@ -143,7 +143,7 @@ export function GeneralHome() {
           src: asset('/video/v2/hero-general.mp4'),
           poster: asset('/video/v2/hero-general.jpg'),
           fallback: asset('/img/situations/bar.webp'),
-          alt: "Film : un flipper en gros plan, des amis devant une borne d'arcade, puis des parties de baby-foot et de fléchettes entre amis et entre collègues",
+          alt: "Film : un flipper en gros plan, des amis devant une borne d'arcade, puis des parties de baby-foot et de fléchettes entre amis",
         }}
         eyebrow="Créateur de bien-être · Près de Lyon"
         lines={['Transformez', 'vos espaces', 'avec RESTART.']}
