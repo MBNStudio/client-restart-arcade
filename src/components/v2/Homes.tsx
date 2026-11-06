@@ -143,7 +143,7 @@ export function GeneralHome() {
           src: asset('/video/v2/hero-general.mp4'),
           poster: asset('/video/v2/hero-general.jpg'),
           fallback: asset('/img/situations/bar.webp'),
-          alt: "Montage : des clients, des collègues et une famille jouent au baby-foot, au billard, aux fléchettes et sur une borne d'arcade",
+          alt: "Film : un flipper en gros plan, des amis devant une borne d'arcade, des parties de baby-foot et de fléchettes, puis une fête où l'on lève son verre",
         }}
         eyebrow="Créateur de bien-être · Près de Lyon"
         lines={['Transformez', 'vos espaces', 'avec RESTART.']}
