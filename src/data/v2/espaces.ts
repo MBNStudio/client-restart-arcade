@@ -100,7 +100,6 @@ const espacesData: Espace[] = [
       { label: 'Notre concept', href: espaceHref('bar-commerce', 'concept/') },
       { label: 'Nos réalisations', href: '/realisations/' },
       { label: 'Qui sommes-nous', href: '/qui-sommes-nous/' },
-      { label: 'Blog', href: '/blog/' },
       { label: 'Contact', href: '/contact/' },
     ],
     values: [
@@ -231,7 +230,6 @@ const espacesData: Espace[] = [
       { label: 'Le concept', href: espaceHref('entreprise', 'concept/') },
       { label: 'Nos réalisations', href: '/realisations/' },
       { label: 'Qui sommes-nous', href: '/qui-sommes-nous/' },
-      { label: 'Blog', href: '/blog/' },
       { label: 'Contact', href: '/contact/' },
     ],
     values: [
@@ -371,7 +369,6 @@ const espacesData: Espace[] = [
       { label: 'Je crée', href: espaceHref('particulier', 'concept/') },
       { label: 'Livraison & installation', href: espaceHref('particulier', 'concept/#livraison') },
       { label: 'Qui sommes-nous', href: '/qui-sommes-nous/' },
-      { label: 'Blog', href: '/blog/' },
       { label: 'Contact', href: '/contact/' },
     ],
     values: [

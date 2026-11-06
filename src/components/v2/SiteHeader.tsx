@@ -20,7 +20,6 @@ const overlayPaths = ['/', ...espacesV2.map((e) => e.path)]
 const generalNav = [
   { label: 'Réalisations', href: '/realisations/' },
   { label: 'Qui sommes-nous', href: '/qui-sommes-nous/' },
-  { label: 'Blog', href: '/blog/' },
   { label: 'Contact', href: '/contact/' },
 ]
 

@@ -24,7 +24,7 @@ const legal = [
 /**
  * Pied de page de la version Atelier (« notre préféré », mail du 5 novembre) :
  * « Parlons de votre projet », colonnes Contact et Le site, réseaux, logo, mentions.
- * La colonne « Le site » suit le menu de l'espace. Le bloc NAP doit rester identique
+ * La colonne « Le site » suit le menu de l'espace, plus le blog (sorti du menu principal). Le bloc NAP doit rester identique
  * au schema LocalBusiness du layout.
  */
 export function SiteFooter() {
@@ -32,7 +32,7 @@ export function SiteFooter() {
   const e = espace ? espaceV2(espace) : null
   const annee = new Date().getFullYear()
   const siteLinks = e
-    ? [{ label: 'Accueil', href: e.path }, { label: 'Produits', href: produitsHref(e.id) }, ...e.nav]
+    ? [{ label: 'Accueil', href: e.path }, { label: 'Produits', href: produitsHref(e.id) }, ...e.nav, { label: 'Blog', href: '/blog/' }]
     : [
         { label: 'Accueil', href: '/' },
         { label: 'Réalisations', href: '/realisations/' },
