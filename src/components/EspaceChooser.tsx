@@ -94,7 +94,7 @@ export function EspaceChooser() {
         role="dialog"
         aria-modal="true"
         aria-labelledby="espace-title"
-        className="v-pop relative max-h-[calc(100dvh-1.5rem)] w-full max-w-5xl overflow-y-auto border border-v-line bg-v-surface text-v-ink shadow-[0_40px_120px_-30px_rgba(0,0,0,0.7)]"
+        className="v-pop relative flex max-h-[calc(100dvh-1.5rem)] w-full max-w-5xl flex-col overflow-y-auto border border-v-line bg-v-surface text-v-ink shadow-[0_40px_120px_-30px_rgba(0,0,0,0.7)]"
         style={{ borderRadius: 'calc(var(--v-radius) + 0.75rem)' }}
       >
         <button
@@ -106,9 +106,9 @@ export function EspaceChooser() {
           <X className="size-4" aria-hidden="true" />
         </button>
 
-        <div className="px-6 pb-2 pt-9 text-center sm:px-10 sm:pt-12">
+        <div className="v-pop-head px-14 pb-2 pt-9 text-center sm:px-16 sm:pt-12">
           <p className="v-eyebrow justify-center">Bienvenue chez RESTART</p>
-          <h2 id="espace-title" className="v-display v-h2 mt-5">
+          <h2 id="espace-title" className="v-pop-title v-display v-h2 mt-5">
             {goingSomewhere ? (
               <>
                 Pour quel <em>espace</em> ?
@@ -119,14 +119,14 @@ export function EspaceChooser() {
               </>
             )}
           </h2>
-          <p className="v-lead mx-auto mt-4 max-w-md text-[15px]">
+          <p className="v-pop-lead v-lead mx-auto mt-4 max-w-md text-[15px]">
             {goingSomewhere
               ? 'Les produits, les prix et les formules changent selon votre lieu : choisissez le vôtre, on vous y emmène.'
               : 'Choisissez votre espace : on vous montre les équipements, les formules et les conseils qui vous concernent.'}
           </p>
         </div>
 
-        <ul className="grid gap-3 p-4 sm:grid-cols-3 sm:gap-4 sm:p-8">
+        <ul className="v-pop-list grid gap-3 p-4 sm:grid-cols-3 sm:gap-4 sm:p-8">
           {espacesV2.map((e) => (
             <li key={e.id}>
               <button
@@ -136,7 +136,7 @@ export function EspaceChooser() {
                 className="group relative flex h-full w-full items-center gap-4 overflow-hidden border border-v-line p-2 text-left transition hover:border-v-accent focus-visible:border-v-accent focus-visible:outline-none sm:flex-col sm:items-stretch sm:p-0"
                 style={{ borderRadius: 'var(--v-radius)' }}
               >
-                <span className="relative block aspect-square w-24 shrink-0 overflow-hidden sm:aspect-[4/5] sm:w-full" style={{ borderRadius: 'calc(var(--v-radius) - 0.25rem)' }}>
+                <span className="v-pop-photo relative block aspect-square w-24 shrink-0 overflow-hidden sm:aspect-auto sm:w-full" style={{ borderRadius: 'calc(var(--v-radius) - 0.25rem)' }}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={e.video.fallback}
@@ -159,7 +159,7 @@ export function EspaceChooser() {
           ))}
         </ul>
 
-        <div className="flex flex-col items-center gap-3 border-t border-v-line px-6 py-5 text-center sm:flex-row sm:justify-between sm:px-8 sm:text-left">
+        <div className="v-pop-foot flex flex-col items-center gap-3 border-t border-v-line px-6 py-5 text-center sm:flex-row sm:justify-between sm:px-8 sm:text-left">
           <p className="text-[13px] text-v-soft">
             Votre choix est gardé pour vos prochaines visites. Vous pourrez changer d&apos;espace dans le menu.
           </p>

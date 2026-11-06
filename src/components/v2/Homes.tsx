@@ -47,12 +47,47 @@ const generalValues: ValueBlock[] = [
   },
 ]
 
-/** Les trois cibles, en cartes à contour (version Plateau). */
+/** Les trois cibles, en cartes à contour (version Plateau) : une phrase, puis l'essentiel en puces. */
+const targetSummary: Record<Audience, { text: string; points: string[] }> = {
+  'bar-commerce': {
+    text: 'Pour les lieux qui reçoivent du public.',
+    points: [
+      'Bars, restaurants, campings, complexes sportifs',
+      'Bornes, fléchettes, baby-foot, billards, flippers',
+      'Achat ou location longue durée',
+      'Monnayeur en option',
+      'À votre enseigne : covering et logo',
+      'Livraison et installation partout en France',
+    ],
+  },
+  entreprise: {
+    text: 'Pour vos salariés et vos visiteurs.',
+    points: [
+      "Salles de pause, CSE, espaces d'accueil",
+      'Bornes, baby-foot, billards, fléchettes',
+      'Fauteuils massants et cocons de repos',
+      'Achat ou location, maintenance incluse',
+      'À vos couleurs : logo et charte graphique',
+      'Devis gratuit sous 48 heures',
+    ],
+  },
+  particulier: {
+    text: 'Pour jouer chez vous.',
+    points: [
+      'Salon, salle de jeux, garage, jardin',
+      "Bornes d'arcade dès 899 €",
+      'Baby-foot, fléchettes, fauteuils massants',
+      'Prix affichés, paiement en 2x, 3x ou 4x',
+      'Livré monté et installé',
+      'Personnalisé à votre goût',
+    ],
+  },
+}
+
 const targetCards: Offer[] = espacesV2.map((e) => ({
   tag: e.label,
   title: e.line,
-  text: e.hero.text,
-  points: e.hero.marks.map(([a]) => a),
+  ...targetSummary[e.id],
   image: e.video.fallback,
   alt: e.video.alt,
   href: e.path,

@@ -144,7 +144,7 @@ export function SiteHeader() {
           <Brand />
         </Link>
 
-        <nav className="hidden items-center gap-6 lg:flex xl:gap-7" aria-label="Navigation principale">
+        <nav className="hidden items-center gap-5 whitespace-nowrap xl:flex 2xl:gap-6" aria-label="Navigation principale">
           <button
             type="button"
             className="v-nav-link inline-flex items-center gap-1"
@@ -166,7 +166,7 @@ export function SiteHeader() {
           <button
             type="button"
             onClick={() => openEspaceChooser('')}
-            className="hidden h-10 items-center gap-1.5 rounded-full border px-3.5 text-[13px] font-semibold opacity-90 transition hover:opacity-100 md:inline-flex"
+            className="hidden h-10 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full border px-3.5 text-[13px] font-semibold opacity-90 transition hover:opacity-100 md:inline-flex"
             style={{ borderColor: 'color-mix(in srgb, currentColor 22%, transparent)' }}
             title="Changer d'espace"
           >
@@ -176,7 +176,7 @@ export function SiteHeader() {
           <a
             href={`tel:${site.phoneE164}`}
             onClick={() => contactClick('phone', 'header')}
-            className="hidden h-10 items-center gap-2 px-2 text-sm font-medium opacity-85 transition hover:opacity-100 2xl:inline-flex"
+            className="hidden h-10 items-center gap-2 px-2 text-sm font-medium opacity-85 transition hover:opacity-100 min-[1700px]:inline-flex"
           >
             <Phone className="size-3.5" aria-hidden="true" />
             {site.phone}
@@ -184,7 +184,7 @@ export function SiteHeader() {
           <Link
             href="/contact/"
             onClick={() => ctaClick('Demander un devis', 'header')}
-            className="v-header__cta hidden h-10 items-center rounded-full px-5 text-sm font-semibold transition hover:-translate-y-px sm:inline-flex"
+            className="v-header__cta hidden h-10 shrink-0 items-center whitespace-nowrap rounded-full px-5 text-sm font-semibold transition hover:-translate-y-px sm:inline-flex"
             style={{ borderRadius: 'var(--v-pill)' }}
           >
             {e?.kind === 'boutique' ? 'Nous contacter' : 'Devis gratuit'}
@@ -195,7 +195,7 @@ export function SiteHeader() {
             aria-label={open ? 'Fermer le menu' : 'Ouvrir le menu'}
             aria-expanded={open}
             aria-controls="v-menu-mobile"
-            className="inline-flex size-10 items-center justify-center rounded-full border transition lg:hidden"
+            className="inline-flex size-10 items-center justify-center rounded-full border transition xl:hidden"
             style={{ borderColor: 'color-mix(in srgb, currentColor 22%, transparent)' }}
           >
             {open ? <X className="size-4" /> : <Menu className="size-4" />}
@@ -234,7 +234,7 @@ export function SiteHeader() {
       {/* Menu mobile */}
       <div
         id="v-menu-mobile"
-        className="v-mobile-menu fixed inset-x-3 top-[5.25rem] z-30 max-h-[calc(100dvh-6rem)] overflow-y-auto border border-v-line bg-v-surface text-v-ink shadow-[0_30px_70px_-24px_rgba(0,0,0,0.35)] lg:hidden"
+        className="v-mobile-menu fixed inset-x-3 top-[5.25rem] z-30 max-h-[calc(100dvh-6rem)] overflow-y-auto border border-v-line bg-v-surface text-v-ink shadow-[0_30px_70px_-24px_rgba(0,0,0,0.35)] xl:hidden"
         style={{ borderRadius: '1.5rem' }}
         data-open={open || undefined}
         aria-hidden={!open}

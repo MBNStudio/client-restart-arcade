@@ -67,6 +67,16 @@ export function DesignCarousel({ slides }: { slides: DesignSlide[] }) {
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={s.image} alt={i === active ? s.alt : ''} loading="lazy" />
+            {/* Cliquer sur une voisine la fait venir au centre (les flèches restent pour le clavier). */}
+            {Math.abs(rel[i]) === 1 && (
+              <button
+                type="button"
+                tabIndex={-1}
+                onClick={() => go(rel[i])}
+                aria-label={rel[i] < 0 ? 'Diapositive précédente' : 'Diapositive suivante'}
+                className="absolute inset-0 cursor-pointer"
+              />
+            )}
           </figure>
         ))}
       </div>
