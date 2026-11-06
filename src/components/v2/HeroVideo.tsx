@@ -9,7 +9,8 @@ const delai = (ms: number) => ({ ['--delai' as string]: `${ms}ms` }) as React.CS
  * Ouverture de la V2 : la mise en page Atelier (menu en haut, titre à gauche sur
  * trois lignes qui se dévoilent, trois repères en bas) sur une vidéo plein écran
  * comme Halo. La vidéo ne se lance pas si l'utilisateur réduit les animations ;
- * un bouton la met en pause.
+ * un bouton la met en pause. Pas d'effet d'entrée : l'affiche est la première image
+ * de la vidéo, qui part tout de suite à son cadrage normal.
  */
 export function HeroVideo({
   video,
@@ -34,7 +35,6 @@ export function HeroVideo({
 }) {
   const ref = useRef<HTMLVideoElement>(null)
   const [playing, setPlaying] = useState(true)
-  const [canPlay, setCanPlay] = useState(false)
 
   useEffect(() => {
     const v = ref.current
@@ -86,8 +86,6 @@ export function HeroVideo({
           playsInline
           preload="auto"
           aria-label={video.alt}
-          onCanPlay={() => setCanPlay(true)}
-          style={{ opacity: canPlay ? 1 : 0, transition: 'opacity 0.8s ease' }}
         />
         <div className="v-hero__shade" />
       </div>
