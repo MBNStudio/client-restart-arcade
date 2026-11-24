@@ -34,7 +34,7 @@ export function SiteHeader() {
   const espace = useEspace()
   const e = espace ? espaceV2(espace) : null
   const [scrolled, setScrolled] = useState(false)
-  const [hidden, setHidden] = useState(false)
+  const [compact, setCompact] = useState(false)
   const [mega, setMega] = useState(false)
   const [open, setOpen] = useState(false)
   const rootRef = useRef<HTMLDivElement>(null)
@@ -45,19 +45,56 @@ export function SiteHeader() {
     setMega(false)
   }, [pathname])
 
+  /**
+   * Même effet que mabellenote.com : l'en-tête reste fixe ; en descendant il se resserre légèrement
+   * (barre plus basse et plus étroite), en remontant il reprend sa forme normale. Seuil de 32 px,
+   * 500 ms entre deux changements pour éviter le clignotement, en haut de page toujours normal,
+   * pas d'effet sur mobile.
+   */
   useEffect(() => {
-    let last = window.scrollY
-    const onScroll = () => {
+    const desktop = window.matchMedia('(min-width: 640px)')
+    let anchorY = window.scrollY
+    let isCompact = false
+    let toggledAt = 0
+    let queued = false
+
+    const apply = (next: boolean) => {
+      if (next === isCompact) return
+      isCompact = next
+      toggledAt = performance.now()
+      setCompact(next)
+    }
+    const update = () => {
+      queued = false
       const y = window.scrollY
       setScrolled(y > 24)
-      // Se cache en descendant, revient dès qu'on remonte.
-      setHidden(y > 400 && y > last + 4)
-      if (y < last - 4) setHidden(false)
-      last = y
+      if (y < 24) {
+        apply(false)
+        anchorY = y
+        return
+      }
+      const delta = y - anchorY
+      if (Math.abs(delta) < 32) return
+      anchorY = y
+      if (performance.now() - toggledAt < 500) return
+      apply(delta > 0)
     }
-    onScroll()
+    const onScroll = () => {
+      if (queued) return
+      queued = true
+      requestAnimationFrame(update)
+    }
+    const onQuery = () => {
+      if (!desktop.matches) apply(false)
+      anchorY = window.scrollY
+    }
+    update()
+    desktop.addEventListener('change', onQuery)
     window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
+    return () => {
+      desktop.removeEventListener('change', onQuery)
+      window.removeEventListener('scroll', onScroll)
+    }
   }, [])
 
   useEffect(() => {
@@ -129,7 +166,7 @@ export function SiteHeader() {
       data-overlay={overlay || undefined}
       data-top={top || undefined}
       data-open={open || mega || undefined}
-      data-hidden={(hidden && !open && !mega) || undefined}
+      data-compact={(compact && !open && !mega) || undefined}
     >
       <a
         href="#contenu"

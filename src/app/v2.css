@@ -560,8 +560,33 @@
   -webkit-backdrop-filter: blur(18px) saturate(1.4);
   box-shadow: 0 14px 40px -18px rgba(0, 0, 0, 0.3);
 }
-.v-header[data-hidden] .v-header__pill {
-  transform: translateY(-140%);
+/* Défilement vers le bas : la barre se resserre (comme mabellenote.com), vers le haut elle se rétablit. */
+@media (min-width: 640px) {
+  .v-header__pill {
+    transition:
+      max-width 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+      height 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+      background-color 0.5s var(--ease-v),
+      border-color 0.5s var(--ease-v),
+      box-shadow 0.5s var(--ease-v);
+  }
+  .v-header[data-compact] .v-header__pill {
+    height: 3.25rem;
+    max-width: 64rem;
+    box-shadow: 0 16px 34px -18px rgba(0, 0, 0, 0.45);
+  }
+  .v-header[data-compact] .v-header__cta {
+    padding-inline: 0.9rem;
+    padding-block: 0.4rem;
+  }
+  .v-header[data-compact] .v-brand__img {
+    height: 1.3rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .v-header__pill {
+    transition: none;
+  }
 }
 .v-nav-link {
   position: relative;
@@ -664,6 +689,7 @@
   display: block;
   height: 1.5rem;
   width: auto;
+  transition: height 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .v-brand__img--blanc {
   display: none;
