@@ -12,7 +12,7 @@ import { selectAudience } from '@/lib/analytics'
  * Pop-up de choix de l'espace (bar & commerce, entreprise, particulier).
  * S'ouvre à la première visite sur le site général, puis chaque fois qu'un lien du
  * site général mène vers une page d'espace (produits, concept…) : elle conduit alors
- * à cette page dans l'espace choisi. Fermer laisse sur le site général.
+ * à cette page dans l'espace choisi. Le lien du bas mène au site général ; la croix ferme et laisse sur la page.
  */
 export function EspaceChooser() {
   const pathname = usePathname()
@@ -47,6 +47,14 @@ export function EspaceChooser() {
     setOpen(false)
     returnFocus.current?.focus()
   }, [])
+
+  /** Lien du bas : mène au site général (accueil), et s'en souvient pour ne pas être renvoyé vers un espace. */
+  const goGeneral = () => {
+    storeEspace('general')
+    selectAudience('general', 'espace_popup')
+    setOpen(false)
+    if (pathname !== '/') router.push('/')
+  }
 
   const choose = (id: Audience) => {
     storeEspace(id)
@@ -165,10 +173,10 @@ export function EspaceChooser() {
           </p>
           <button
             type="button"
-            onClick={close}
+            onClick={goGeneral}
             className="inline-flex shrink-0 items-center gap-1.5 text-[13px] font-semibold text-v-ink/80 transition hover:text-v-ink"
           >
-            {pathname === '/' ? 'Rester sur le site général' : 'Fermer'}
+            {pathname === '/' ? 'Rester sur le site général' : 'Aller sur le site général'}
             <ArrowRight className="size-3.5" aria-hidden="true" />
           </button>
         </div>
