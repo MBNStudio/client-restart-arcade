@@ -946,7 +946,7 @@
 }
 /* Titre d'ouverture : suit la largeur ET la hauteur de l'écran pour que tout le contenu tienne dans la première vue. */
 .v-hero .v-h1 {
-  font-size: clamp(1.8rem, min(3.9vw, 6vh), 3.6rem);
+  font-size: clamp(1.9rem, min(4.3vw, 6.6vh), 4rem);
   line-height: 1.1;
   margin-top: clamp(0.75rem, 2.4vh, 1.5rem);
 }
