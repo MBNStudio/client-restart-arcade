@@ -1,8 +1,7 @@
 # Feuille de route : V3 (retours de RESTART sur la V2, mail du 19/11/2026)
 
-Statut : **préparée, aucun développement lancé.** Base de travail : branche `theme-v2` (sources de la V2 ;
-`main` ne porte que le build publié sous `/v2/`). Proposition : nouvelle branche `theme-v3` créée depuis
-`theme-v2`, publiée sous `/v3/` (voir mémoire « Versions du site » : un seul dépôt, jamais de dépôt dupliqué).
+Statut au 24/11/2026 : **lots 1 à 4 faits, lots 5 à 7 préparés** (branche `theme-v3`, créée depuis `theme-v2` ;
+`main` ne porte que le build publié sous `/v2/`). Publication prévue sous `/v3/` (voir mémoire « Versions du site » : un seul dépôt, jamais de dépôt dupliqué).
 Ne rien pousser ni publier sans demande explicite.
 
 Éléments fournis, rangés dans `assets-client/` (lire `assets-client/README.md`) :
@@ -15,6 +14,21 @@ logos (`2026-11/logos/`), 300 photos de références clients (`2026-11/photos-re
 - Responsive.
 - Pièce interactive : **gardée de côté** « pour un autre endroit, en tête pour le moment ». Ne pas la
   supprimer du code, la retirer des pages d'accueil seulement (voir lot 4).
+
+## Avancement
+
+| Lot | État |
+|---|---|
+| 1 Identité | **Fait** : logo blanc/noir (`public/img/logo/`), icône `src/app/icon.png`, Poppins (`lib/v2/fonts.ts`) + Orbitron, principale `#4444FE` |
+| 2 Trois thèmes | **Fait** : `arcade-particulier`, `arcade-entreprise` (clair, `#e6e7e8`), `arcade-bar` (CTA `#00CCD5`), imposés par univers (`ThemeByEspace`) ; sélecteur gardé pour comparer |
+| 3 Actualité | **Fait** : `/<espace>/actualite/` filtré par cible (`audiences` dans `data/blog.ts`), menu et sitemap. Les articles gardent une seule adresse, `/blog/<slug>/` (pas de doublon) |
+| 4 Accueil | **Fait** : pièce interactive retirée des accueils (composant conservé), mosaïque gardée |
+| 5 Photos | **Préparé, en attente de RESTART** : remplacer les scènes IA exige le tri des 300 photos et l'accord des clients |
+| 6 Médiathèque | **Préparé** : index `src/data/references.generated.json` (300 photos, 3 commerciaux), `scripts/build-references.mjs`, section « Chez nos clients » sur `/realisations/` (vide tant qu'aucune photo n'est dans `references-accords.json`) |
+| 7 Hébergement | **Préparé** : `scripts/gen-htaccess.mjs` → `deploy/.htaccess`, procédure dans `docs/deploiement-o2switch.md` ; reste le dépôt sur o2switch, à faire avec RESTART |
+
+Couleurs : sur fond sombre `#4444FE` n'atteint que 3,2:1 ; textes et liens y utilisent la teinte claire `#7c7cff`
+(5,6:1), `#4444FE` reste pour les aplats, la sélection et, en mode clair, les liens (4,8:1).
 
 ## Lots, par ordre de réalisation
 

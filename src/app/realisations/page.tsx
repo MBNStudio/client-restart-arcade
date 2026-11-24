@@ -7,6 +7,7 @@ import { realisationPhotos } from '@/data/images'
 import { Reviews, delai } from '@/components/v2/sections'
 import { GuardLink } from '@/components/v2/GuardLink'
 import { RealisationsGallery } from '@/components/v2/RealisationsGallery'
+import { referencesPubliees, referenceSrc } from '@/data/references'
 
 export const metadata: Metadata = {
   title: 'Nos réalisations : espaces de pause, bars et salons équipés',
@@ -74,6 +75,26 @@ export default function RealisationsPage() {
           </div>
         </div>
       </section>
+
+      {referencesPubliees.length > 0 && (
+        <section className="pb-20 lg:pb-28">
+          <div className="v-wrap">
+            <p className="v-eyebrow">Chez nos clients</p>
+            <ul className="mt-8 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3">
+              {referencesPubliees.map((r) => (
+                <li key={r.id}>
+                  <div className="v-photo aspect-[4/3]">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={referenceSrc(r)} alt={`${r.produit} installé chez ${r.client}`} loading="lazy" />
+                  </div>
+                  <p className="mt-3 text-sm font-semibold">{r.client}</p>
+                  <p className="text-[13px] text-v-soft">{r.produit}{r.ville ? ` · ${r.ville}` : ''}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      )}
 
       <Reviews />
     </>

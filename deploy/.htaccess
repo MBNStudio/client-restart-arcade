@@ -1,0 +1,114 @@
+# Généré par scripts/gen-htaccess.mjs depuis docs/redirections.md : ne pas éditer à la main.
+# Hébergement : o2switch (Apache), site statique (export Next.js) à la racine de restart-arcade.fr.
+
+RewriteEngine On
+
+# Adresse unique : https, sans www.
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} ^www. [NC]
+RewriteRule ^ https://restart-arcade.fr%{REQUEST_URI} [L,R=301]
+
+# Pages sans équivalent (410)
+Redirect gone /sample-page/
+Redirect gone /test/
+Redirect gone /test-2/
+Redirect gone /panier/
+Redirect gone /commande/
+
+# Redirections de l'ancien site (301)
+Redirect 301 /accueil/ /entreprises/
+Redirect 301 /accueil-particulier/ /particuliers/
+Redirect 301 /accueil-bars-commerces/ /bars-commerces/
+Redirect 301 /qui-sommes-nous-particulier/ /qui-sommes-nous/
+Redirect 301 /qui-sommes-nous-bars-commerces/ /qui-sommes-nous/
+Redirect 301 /le-concept/ /qui-sommes-nous/
+Redirect 301 /bars-commerces-notre-concept/ /qui-sommes-nous/
+Redirect 301 /nos-realisations/ /realisations/
+Redirect 301 /nos-realisations-bars-commerces/ /realisations/
+Redirect 301 /nos-produits/ /produits/
+Redirect 301 /shop/ /produits/
+Redirect 301 /je-cree-particulier/ /contact/
+Redirect 301 /livraison-installation-particulier/ /contact/
+Redirect 301 /borne-arcade/ /produits/borne-arcade/
+Redirect 301 /borne-darcade-particulier/ /produits/borne-arcade/
+Redirect 301 /borne-arcade-bars-commerces/ /produits/borne-arcade/
+Redirect 301 /flechettes/ /produits/flechettes/
+Redirect 301 /flechettes-particulier/ /produits/flechettes/
+Redirect 301 /flechettes-bars-commerces/ /produits/flechettes/
+Redirect 301 /baby-foot/ /produits/baby-foot/
+Redirect 301 /baby-foot-particulier/ /produits/baby-foot/
+Redirect 301 /baby-foot-bars-commerces/ /produits/baby-foot/
+Redirect 301 /billard/ /produits/billard/
+Redirect 301 /billard-bars-commerces/ /produits/billard/
+Redirect 301 /flipper-numerique/ /produits/flipper-numerique/
+Redirect 301 /flipper-numerique-bars-commerces/ /produits/flipper-numerique/
+Redirect 301 /fauteuil-massant/ /produits/fauteuil-massant/
+Redirect 301 /fauteuil-massant-particulier/ /produits/fauteuil-massant/
+Redirect 301 /cocon-de-repos/ /produits/cocon-de-repos/
+Redirect 301 /produit/r-kids/ /produits/borne-arcade/r-kids/
+Redirect 301 /produit/r-level/ /produits/borne-arcade/r-level/
+Redirect 301 /produit/rborne-arcade-cocktail-twin/ /produits/borne-arcade/r-twin/
+Redirect 301 /produit/r-evolution/ /produits/borne-arcade/r-evolution/
+Redirect 301 /produit/r-pro/ /produits/borne-arcade/r-pro/
+Redirect 301 /produit/sk-pub/ /produits/borne-arcade/
+Redirect 301 /produit/sk-business/ /produits/borne-arcade/
+Redirect 301 /produit/sk-4-saisons/ /produits/borne-arcade/
+Redirect 301 /produit/r-dart/ /produits/flechettes/r-dart/
+Redirect 301 /produit/r-dart-pro/ /produits/flechettes/r-dart-pro/
+Redirect 301 /produit/bf-start/ /produits/baby-foot/bf-start/
+Redirect 301 /produit/bf-premium/ /produits/baby-foot/bf-premium/
+Redirect 301 /produit/bf-4-saisons/ /produits/baby-foot/bf-4-saisons/
+Redirect 301 /produit/bf-4-saisons-6-joueurs/ /produits/baby-foot/bf-4-saisons-6-joueurs/
+Redirect 301 /produit/m-serenity/ /produits/fauteuil-massant/m-serenity/
+Redirect 301 /categorie-produit/borne-darcade/ /produits/borne-arcade/
+Redirect 301 /categorie-produit/flechettes/ /produits/flechettes/
+Redirect 301 /categorie-produit/baby-foot/ /produits/baby-foot/
+Redirect 301 /categorie-produit/billard/ /produits/billard/
+Redirect 301 /categorie-produit/fauteuil-massant/ /produits/fauteuil-massant/
+Redirect 301 /blog-professionnel/ /blog/
+Redirect 301 /blog-particulier/ /blog/
+Redirect 301 /blog-bars-commerces/ /blog/
+Redirect 301 /presentation-produits/ /produits/
+Redirect 301 /presentation-borne-arcade/ /produits/borne-arcade/
+Redirect 301 /presentation-flechette/ /produits/flechettes/
+Redirect 301 /notices-des-produits-restart/ /contact/
+Redirect 301 /contact-particulier/ /contact/
+Redirect 301 /contact-bc/ /contact/
+Redirect 301 /mentions-legales-2/ /mentions-legales/
+Redirect 301 /rgpd-2/ /rgpd/
+Redirect 301 /politique-de-cookies-ue/ /politique-de-cookies/
+
+# Anciens articles du blog
+Redirect 301 /comment-occuper-vos-vacanciers-meme-quand-la-meteo-nest-pas-au-rendez-vous/ /blog/comment-occuper-vos-vacanciers-meme-quand-la-meteo-nest-pas-au-rendez-vous/
+Redirect 301 /club-house-buvette-comment-generer-plus-de-convivialite-et-de-consommation/ /blog/club-house-buvette-comment-generer-plus-de-convivialite-et-de-consommation/
+Redirect 301 /le-role-des-jeux-baby-foot-arcade-flechettes-dans-la-cohesion-dequipe/ /blog/le-role-des-jeux-baby-foot-arcade-flechettes-dans-la-cohesion-dequipe/
+Redirect 301 /lattente-comme-levier-marketing-transformer-un-moment-perdu-en-experience-positive/ /blog/lattente-comme-levier-marketing-transformer-un-moment-perdu-en-experience-positive/
+Redirect 301 /le-role-du-divertissement-et-du-bien-etre-dans-la-fidelisation-des-talents-en-2026/ /blog/le-role-du-divertissement-et-du-bien-etre-dans-la-fidelisation-des-talents-en-2026/
+Redirect 301 /comment-preparer-vos-espaces-pour-un-debut-dannee-motivant-et-differenciant/ /blog/comment-preparer-vos-espaces-pour-un-debut-dannee-motivant-et-differenciant/
+Redirect 301 /noel-au-bureau-5-installations-originales-pour-surprendre-vos-collaborateurs/ /blog/noel-au-bureau-5-installations-originales-pour-surprendre-vos-collaborateurs/
+Redirect 301 /bars-restaurants-comment-booster-vos-soirees-de-fin-dannee-grace-au-divertissement/ /blog/bars-restaurants-comment-booster-vos-soirees-de-fin-dannee-grace-au-divertissement/
+Redirect 301 /comment-creer-des-evenements-internes-dynamiques-et-federateurs/ /blog/comment-creer-des-evenements-internes-dynamiques-et-federateurs/
+Redirect 301 /comment-surprendre-vos-clients-avec-des-espaces-conviviaux-dans-vos-gites-et-hotels/ /blog/comment-surprendre-vos-clients-avec-des-espaces-conviviaux-dans-vos-gites-et-hotels/
+Redirect 301 /comment-le-divertissement-prolonge-l-experience-client-dans-un-bar-ou-restaurant/ /blog/comment-le-divertissement-prolonge-l-experience-client-dans-un-bar-ou-restaurant/
+Redirect 301 /5-bonnes-raisons-dintegrer-le-bien-etre-et-le-divertissement-en-entreprise/ /blog/5-bonnes-raisons-dintegrer-le-bien-etre-et-le-divertissement-en-entreprise/
+
+# Page d'erreur de l'export statique
+ErrorDocument 404 /404.html
+
+# Dossiers : /produits/ sert /produits/index.html (export avec slash final)
+DirectoryIndex index.html
+Options -Indexes
+
+# Cache : fichiers versionnés par Next.js (immuables), images et polices un an, pages revalidées
+<IfModule mod_headers.c>
+  <FilesMatch ".(webp|jpg|jpeg|png|svg|woff2|mp4|webm|ico)$">
+    Header set Cache-Control "public, max-age=31536000"
+  </FilesMatch>
+  <FilesMatch ".(html|txt|xml)$">
+    Header set Cache-Control "public, max-age=0, must-revalidate"
+  </FilesMatch>
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json image/svg+xml text/plain
+</IfModule>
