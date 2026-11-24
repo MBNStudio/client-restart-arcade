@@ -203,7 +203,7 @@ export function SiteHeader() {
           <button
             type="button"
             onClick={() => openEspaceChooser('')}
-            className="v-header__espace hidden h-10 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full border px-3.5 text-[13px] font-semibold opacity-90 transition hover:opacity-100 md:inline-flex"
+            className="v-header__espace hidden h-10 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full border px-3 text-[13px] font-semibold opacity-90 transition hover:opacity-100 md:inline-flex"
             style={{ borderColor: 'color-mix(in srgb, currentColor 22%, transparent)' }}
             title="Changer d'espace"
           >
@@ -221,7 +221,7 @@ export function SiteHeader() {
           <Link
             href="/contact/"
             onClick={() => ctaClick('Demander un devis', 'header')}
-            className="v-header__cta hidden h-10 shrink-0 items-center whitespace-nowrap rounded-full px-5 text-sm font-semibold transition hover:-translate-y-px sm:inline-flex"
+            className="v-header__cta hidden h-10 shrink-0 items-center whitespace-nowrap rounded-full px-4 text-sm font-semibold transition hover:-translate-y-px sm:inline-flex"
             style={{ borderRadius: 'var(--v-pill)' }}
           >
             {e?.kind === 'boutique' ? 'Nous contacter' : 'Devis gratuit'}
