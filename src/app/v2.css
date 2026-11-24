@@ -706,9 +706,8 @@
 .v-header[data-open] .v-header__pill {
   max-width: 110rem;
   border-color: var(--v-line);
-  background: color-mix(in srgb, var(--v-surface) 86%, transparent);
-  backdrop-filter: blur(18px) saturate(1.4);
-  -webkit-backdrop-filter: blur(18px) saturate(1.4);
+  /* Fond plein : le contenu qui défile derrière ne doit pas transparaître. */
+  background: var(--v-surface);
   box-shadow: 0 14px 40px -18px rgba(0, 0, 0, 0.3);
 }
 /* Défilement vers le bas : la barre se resserre (comme mabellenote.com), vers le haut elle se rétablit. */
