@@ -704,7 +704,7 @@
 }
 .v-header:not([data-top]) .v-header__pill,
 .v-header[data-open] .v-header__pill {
-  max-width: 76rem;
+  max-width: 110rem;
   border-color: var(--v-line);
   background: color-mix(in srgb, var(--v-surface) 86%, transparent);
   backdrop-filter: blur(18px) saturate(1.4);
@@ -724,7 +724,7 @@
   }
   .v-header[data-compact] .v-header__pill {
     height: 3.25rem;
-    max-width: 68rem;
+    max-width: 110rem;
     box-shadow: 0 16px 34px -18px rgba(0, 0, 0, 0.45);
   }
   .v-header[data-compact] .v-header__cta {
@@ -752,6 +752,17 @@
     transition: none;
   }
 }
+/* Grand écran : logo à gauche, menu centré sur la barre, espace et bouton à droite. */
+@media (min-width: 1280px) {
+  .v-header__pill {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+  }
+  .v-header__pill > div:last-child {
+    justify-self: end;
+  }
+}
+
 /* En-tête caché en haut des pages d'ouverture ; il apparaît au milieu de l'ouverture et disparaît en remontant. */
 .v-header {
   transition:
@@ -936,7 +947,7 @@
 }
 /* Titre d'ouverture : suit la largeur ET la hauteur de l'écran pour que tout le contenu tienne dans la première vue. */
 .v-hero .v-h1 {
-  font-size: clamp(1.6rem, min(3.4vw, 5.4vh), 3.1rem);
+  font-size: clamp(1.8rem, min(3.9vw, 6vh), 3.6rem);
   line-height: 1.1;
   margin-top: clamp(0.75rem, 2.4vh, 1.5rem);
 }

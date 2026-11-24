@@ -170,7 +170,7 @@ export function SiteHeader() {
       data-top={top || undefined}
       data-open={open || mega || undefined}
       data-concealed={(overlay && beforeReveal && !open) || undefined}
-      data-compact={(compact && !open && !mega) || undefined}
+      data-compact={((compact || overlay) && !open && !mega) || undefined}
     >
       <a
         href="#contenu"
