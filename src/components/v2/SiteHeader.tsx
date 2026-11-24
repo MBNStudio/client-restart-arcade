@@ -34,9 +34,7 @@ export function SiteHeader() {
   const espace = useEspace()
   const e = espace ? espaceV2(espace) : null
   const [scrolled, setScrolled] = useState(false)
-  const [compact, setCompact] = useState(false)
-  /** Pages d'ouverture vidéo : l'en-tête n'apparaît qu'une fois le milieu de l'ouverture dépassé (comme mabellenote.com). */
-  const [beforeReveal, setBeforeReveal] = useState(true)
+  const [compact, setCompact] = useState(overlayPaths.includes(pathname))
   const [mega, setMega] = useState(false)
   const [open, setOpen] = useState(false)
   const rootRef = useRef<HTMLDivElement>(null)
@@ -56,7 +54,10 @@ export function SiteHeader() {
   useEffect(() => {
     const desktop = window.matchMedia('(min-width: 640px)')
     let anchorY = window.scrollY
-    let isCompact = false
+    // Sur les pages d'ouverture, le menu est replié par défaut, y compris tout en haut.
+    const restCompact = overlayPaths.includes(pathname)
+    let isCompact = restCompact
+    setCompact(restCompact)
     let toggledAt = 0
     let queued = false
 
@@ -70,9 +71,8 @@ export function SiteHeader() {
       queued = false
       const y = window.scrollY
       setScrolled(y > 24)
-      setBeforeReveal(y < window.innerHeight * 0.5)
       if (y < 24) {
-        apply(false)
+        apply(restCompact)
         anchorY = y
         return
       }
@@ -98,7 +98,7 @@ export function SiteHeader() {
       desktop.removeEventListener('change', onQuery)
       window.removeEventListener('scroll', onScroll)
     }
-  }, [])
+  }, [pathname])
 
   useEffect(() => {
     if (!mega) return
@@ -125,7 +125,8 @@ export function SiteHeader() {
 
   const nav = e ? e.nav : generalNav
   const uList = e ? e.univers.map((s) => findUnivers(s)!) : allUnivers
-  const top = !scrolled && !open && !mega
+  // Pages d'ouverture vidéo : barre pleine et repliée dès l'arrivée ; ailleurs, transparente en haut de page.
+  const top = !scrolled && !open && !mega && !overlay
   const homeHref = e ? e.path : '/'
   const current = (href: string) => (pathname === href.split('#')[0] ? 'page' : undefined)
 
@@ -169,7 +170,6 @@ export function SiteHeader() {
       data-overlay={overlay || undefined}
       data-top={top || undefined}
       data-open={open || mega || undefined}
-      data-concealed={(overlay && beforeReveal && !open) || undefined}
       data-compact={(compact && !open && !mega) || undefined}
     >
       <a
