@@ -34,7 +34,7 @@ export function SiteHeader() {
   const espace = useEspace()
   const e = espace ? espaceV2(espace) : null
   const [scrolled, setScrolled] = useState(false)
-  const [compact, setCompact] = useState(overlayPaths.includes(pathname))
+  const [compact, setCompact] = useState(false)
   const [mega, setMega] = useState(false)
   const [open, setOpen] = useState(false)
   const rootRef = useRef<HTMLDivElement>(null)
@@ -54,10 +54,7 @@ export function SiteHeader() {
   useEffect(() => {
     const desktop = window.matchMedia('(min-width: 640px)')
     let anchorY = window.scrollY
-    // Sur les pages d'ouverture, le menu est replié par défaut, y compris tout en haut.
-    const restCompact = overlayPaths.includes(pathname)
-    let isCompact = restCompact
-    setCompact(restCompact)
+    let isCompact = false
     let toggledAt = 0
     let queued = false
 
@@ -72,7 +69,7 @@ export function SiteHeader() {
       const y = window.scrollY
       setScrolled(y > 24)
       if (y < 24) {
-        apply(restCompact)
+        apply(false)
         anchorY = y
         return
       }
@@ -98,7 +95,7 @@ export function SiteHeader() {
       desktop.removeEventListener('change', onQuery)
       window.removeEventListener('scroll', onScroll)
     }
-  }, [pathname])
+  }, [])
 
   useEffect(() => {
     if (!mega) return
@@ -125,7 +122,7 @@ export function SiteHeader() {
 
   const nav = e ? e.nav : generalNav
   const uList = e ? e.univers.map((s) => findUnivers(s)!) : allUnivers
-  // Pages d'ouverture vidéo : barre pleine et repliée dès l'arrivée ; ailleurs, transparente en haut de page.
+  // Pages d'ouverture vidéo : barre pleine et dépliée dès l'arrivée, elle se replie en descendant ; ailleurs, transparente en haut de page.
   const top = !scrolled && !open && !mega && !overlay
   const homeHref = e ? e.path : '/'
   const current = (href: string) => (pathname === href.split('#')[0] ? 'page' : undefined)
