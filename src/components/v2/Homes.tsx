@@ -7,7 +7,6 @@ import { asset } from '@/lib/site'
 import { Chapters } from './Chapters'
 import { FaqShowroom } from './FaqShowroom'
 import { HeroVideo } from './HeroVideo'
-import { InteractiveRoom } from './InteractiveRoom'
 import { ChooseEspaceButton } from './ChooseEspaceButton'
 import { FaqJsonLd, GammeMosaic, Marquee, OfferCards, Projects, Reviews, SectionHead, delai } from './sections'
 
@@ -189,8 +188,6 @@ export function GeneralHome() {
 
       <Chapters blocks={generalValues} />
 
-      <InteractiveRoom />
-
       <section className="py-24 lg:py-32">
         <div className="v-wrap">
           <SectionHead
@@ -337,8 +334,6 @@ export function EspaceHome({ id }: { id: Audience }) {
           </div>
         </div>
       </section>
-
-      <InteractiveRoom espace={id} univers={e.univers} />
 
       <Projects items={e.projects} />
 

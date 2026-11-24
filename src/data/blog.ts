@@ -1,4 +1,5 @@
 import raw from './blog.json'
+import type { Audience } from './catalogue'
 
 export type BlogBlock =
   | { type: 'p' | 'h2' | 'h3'; text: string }
@@ -12,6 +13,8 @@ export type BlogPost = {
   words: number
   blocks: BlogBlock[]
   category: string
+  /** Univers (cibles) auxquels l'article s'adresse : alimente la rubrique Actualité de chaque univers. */
+  audiences: Audience[]
 }
 
 /**
@@ -71,14 +74,26 @@ const overrides: Record<string, { title: string; category: string }> = {
   },
 }
 
-export const blogPosts: BlogPost[] = (raw as Omit<BlogPost, 'category'>[])
+/** Cible de chaque rubrique : un article d'une rubrique n'apparaît que dans l'actualité des univers listés. */
+const audiencesOfCategory: Record<string, Audience[]> = {
+  QVCT: ['entreprise'],
+  'Bars & commerces': ['bar-commerce'],
+  'Hôtellerie & tourisme': ['bar-commerce'],
+  'Expérience client': ['bar-commerce', 'entreprise'],
+}
+
+export const blogPosts: BlogPost[] = (raw as Omit<BlogPost, 'category' | 'audiences'>[])
   .map((p) => ({
     ...p,
     blocks: p.blocks as BlogBlock[],
     title: overrides[p.slug]?.title ?? p.title,
     category: overrides[p.slug]?.category ?? 'Actualités',
+    audiences: audiencesOfCategory[overrides[p.slug]?.category ?? ''] ?? [],
   }))
   .sort((a, b) => b.date.localeCompare(a.date))
+
+/** Articles d'un univers, du plus récent au plus ancien. */
+export const postsFor = (audience: Audience) => blogPosts.filter((p) => p.audiences.includes(audience))
 
 export const findPost = (slug: string) => blogPosts.find((p) => p.slug === slug)
 

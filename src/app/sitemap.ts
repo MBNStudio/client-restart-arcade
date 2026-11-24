@@ -35,6 +35,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const parEspace: MetadataRoute.Sitemap = espacesV2.flatMap((e) => [
     { url: url(produitsHref(e.id)), changeFrequency: 'monthly' as const, priority: 0.9, lastModified: now },
     { url: url(espaceHref(e.id, 'concept/')), changeFrequency: 'yearly' as const, priority: 0.6, lastModified: now },
+    { url: url(espaceHref(e.id, 'actualite/')), changeFrequency: 'weekly' as const, priority: 0.7, lastModified: now },
     ...e.univers.flatMap((slug) => [
       { url: url(produitsHref(e.id, slug)), changeFrequency: 'monthly' as const, priority: 0.8, lastModified: now },
       ...allModels
