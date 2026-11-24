@@ -659,12 +659,15 @@
   position: sticky;
   top: 0;
   z-index: 40;
+  /* Hauteur fixe : la barre qui se resserre ne décale pas la page (comme mabellenote.com). */
+  height: 4.75rem;
   padding: 0.75rem 0.75rem 0;
   color: var(--v-ink);
   transition: color 0.4s var(--ease-v);
 }
 @media (min-width: 640px) {
   .v-header {
+    height: 5rem;
     padding: 1rem 1.5rem 0;
   }
 }
@@ -683,7 +686,7 @@
   gap: 0.75rem;
   height: 4rem;
   margin-inline: auto;
-  max-width: 110rem;
+  max-width: 80rem;
   padding: 0 0.5rem 0 1rem;
   border: 1px solid transparent;
   border-radius: 999px;
@@ -699,51 +702,67 @@
    marge de 3 rem, ramenée à celle de la barre sur écran étroit. */
 @media (min-width: 1024px) {
   .v-header[data-top]:not([data-open]) .v-header__pill {
+    max-width: 110rem;
     padding-inline: clamp(1.5rem, calc((100vw - 1760px) / 2 + 1.5rem), 3rem);
   }
 }
 .v-header:not([data-top]) .v-header__pill,
 .v-header[data-open] .v-header__pill {
-  max-width: 110rem;
+  max-width: 80rem;
   border-color: var(--v-line);
   /* Fond plein : le contenu qui défile derrière ne doit pas transparaître. */
   background: var(--v-surface);
   box-shadow: 0 14px 40px -18px rgba(0, 0, 0, 0.3);
 }
-/* Défilement vers le bas : la barre se resserre (comme mabellenote.com), vers le haut elle se rétablit. */
+/* Défilement vers le bas : la barre se resserre (comme mabellenote.com), vers le haut elle se rétablit.
+   Mêmes valeurs : 500 ms, courbe (0.22, 1, 0.36, 1), hauteur 4 → 3,25 rem, largeur 80 → 64 rem. */
 @media (min-width: 640px) {
   .v-header__pill {
     transition:
       max-width 0.5s cubic-bezier(0.22, 1, 0.36, 1),
       height 0.5s cubic-bezier(0.22, 1, 0.36, 1),
-      padding 0.5s var(--ease-v),
-      background-color 0.5s var(--ease-v),
-      border-color 0.5s var(--ease-v),
-      box-shadow 0.5s var(--ease-v);
+      padding 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+      background-color 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1);
   }
   .v-header[data-compact] .v-header__pill {
     height: 3.25rem;
-    max-width: 110rem;
-    box-shadow: 0 16px 34px -18px rgba(0, 0, 0, 0.45);
+    max-width: 64rem;
+    box-shadow: 0 12px 26px -16px rgba(0, 0, 0, 0.45);
+  }
+  .v-header__cta,
+  .v-header__espace {
+    transition:
+      padding 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+      height 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.3s var(--ease-v),
+      background-color 0.3s,
+      opacity 0.3s;
   }
   .v-header[data-compact] .v-header__cta {
+    height: 2.25rem;
     padding-inline: 0.9rem;
-    padding-block: 0.4rem;
   }
-  .v-header[data-compact] .v-brand {
-    --logo-h: 1.4rem;
+  .v-header[data-compact] .v-header__espace {
+    height: 2.25rem;
   }
-  .v-header[data-compact] .v-brand__clip {
-    width: calc(var(--logo-h) * 167 / 169);
+  /* Barre repliée : seul le « R » reste ; le reste du mot se replie vite et réapparaît au survol. */
+  .v-header[data-compact] .v-brand__rest {
+    width: 0;
+    opacity: 0;
+    transition:
+      width 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+      opacity 0.2s ease;
   }
-  /* Au survol de la barre resserrée, le logo complet se redéploie. */
   @media (hover: hover) {
-    .v-header[data-compact] .v-header__pill:hover .v-brand__clip {
-      width: calc(var(--logo-h) * 1200 / 169);
+    .v-header[data-compact] .v-header__pill:hover .v-brand__rest {
+      width: calc(var(--logo-h) * 1024 / 169);
+      opacity: 1;
+      transition:
+        width 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.15s,
+        opacity 0.35s ease 0.15s;
     }
-  }
-  .v-header[data-compact] .v-header__pill {
-    gap: 0.5rem;
   }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -873,24 +892,39 @@
   clip-path: inset(0 0 0 0 round 1.5rem);
 }
 
-/* Marque : logo RESTART, version blanche sur fond sombre, noire sur fond clair */
-.v-brand {
-  display: inline-flex;
-  align-items: center;
-  line-height: 0;
-}
+/* Marque : logo RESTART, version blanche sur fond sombre, noire sur fond clair.
+   « R » fixe + reste du mot qui se replie (même mécanique que le logo de mabellenote.com). */
 .v-brand {
   --logo-h: 1.5rem;
-}
-/* Le logo est rogné à droite pour ne montrer que le « R » (164 px sur 1200 du fichier) quand l'en-tête est resserré. */
-.v-brand__clip {
-  display: block;
-  overflow: hidden;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  flex: none;
   width: calc(var(--logo-h) * 1200 / 169);
   height: var(--logo-h);
+  line-height: 0;
+}
+.v-brand__r,
+.v-brand__rest {
+  display: block;
+  overflow: hidden;
+  height: var(--logo-h);
+}
+.v-brand__r {
+  flex: none;
+  width: calc(var(--logo-h) * 176 / 169);
+}
+.v-brand__rest {
+  position: absolute;
+  top: 0;
+  left: calc(var(--logo-h) * 176 / 169);
+  width: calc(var(--logo-h) * 1024 / 169);
   transition:
-    width 0.5s cubic-bezier(0.22, 1, 0.36, 1),
-    height 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    width 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.15s,
+    opacity 0.35s ease 0.15s;
+}
+.v-brand__rest .v-brand__img {
+  margin-left: calc(var(--logo-h) * -176 / 169);
 }
 .v-brand__img {
   display: block;

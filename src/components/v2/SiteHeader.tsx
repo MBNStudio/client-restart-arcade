@@ -206,7 +206,7 @@ export function SiteHeader() {
           <button
             type="button"
             onClick={() => openEspaceChooser('')}
-            className="hidden h-10 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full border px-3.5 text-[13px] font-semibold opacity-90 transition hover:opacity-100 md:inline-flex"
+            className="v-header__espace hidden h-10 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full border px-3.5 text-[13px] font-semibold opacity-90 transition hover:opacity-100 md:inline-flex"
             style={{ borderColor: 'color-mix(in srgb, currentColor 22%, transparent)' }}
             title="Changer d'espace"
           >
