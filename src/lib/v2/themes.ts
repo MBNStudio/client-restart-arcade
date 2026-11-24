@@ -40,6 +40,41 @@ export const v2Themes: V2Theme[] = [
     scheme: 'dark',
     swatch: ['#0b0d17', '#e8ebf5', '#00ccd5', '#4444fe'],
   },
+  {
+    id: 'theme-1',
+    name: 'Thème 1',
+    desc: 'Indigo profond, tout en bleu RESTART',
+    scheme: 'dark',
+    swatch: ['#0b0e2e', '#eceeff', '#4444fe', '#aab0ff'],
+  },
+  {
+    id: 'theme-2',
+    name: 'Thème 2',
+    desc: 'Perle bleutée, clair et net',
+    scheme: 'light',
+    swatch: ['#e9eaf4', '#10123a', '#4444fe', '#10123a'],
+  },
+  {
+    id: 'theme-3',
+    name: 'Thème 3',
+    desc: 'Noir et jaune arcade, angles vifs',
+    scheme: 'dark',
+    swatch: ['#0a0a0a', '#f6f4ea', '#ffd400', '#4444fe'],
+  },
+  {
+    id: 'theme-4',
+    name: 'Thème 4',
+    desc: 'Sable chaud, bleu RESTART en accent',
+    scheme: 'light',
+    swatch: ['#ebe5da', '#1a1a2e', '#4444fe', '#1a1a2e'],
+  },
+  {
+    id: 'theme-5',
+    name: 'Thème 5',
+    desc: 'Graphite et vert néon',
+    scheme: 'dark',
+    swatch: ['#0e1311', '#e9f2ed', '#39ff88', '#4444fe'],
+  },
 ]
 
 export const V2_DEFAULT_THEME = 'arcade-particulier'
