@@ -99,7 +99,6 @@ const espacesData: Espace[] = [
     nav: [
       { label: 'Notre concept', href: espaceHref('bar-commerce', 'concept/') },
       { label: 'Nos réalisations', href: '/realisations/' },
-      { label: 'Actualité', href: espaceHref('bar-commerce', 'actualite/') },
       { label: 'Qui sommes-nous', href: '/qui-sommes-nous/' },
       { label: 'Contact', href: '/contact/' },
     ],
@@ -230,7 +229,6 @@ const espacesData: Espace[] = [
     nav: [
       { label: 'Le concept', href: espaceHref('entreprise', 'concept/') },
       { label: 'Nos réalisations', href: '/realisations/' },
-      { label: 'Actualité', href: espaceHref('entreprise', 'actualite/') },
       { label: 'Qui sommes-nous', href: '/qui-sommes-nous/' },
       { label: 'Contact', href: '/contact/' },
     ],
@@ -369,7 +367,6 @@ const espacesData: Espace[] = [
     univers: ['borne-arcade', 'flechettes', 'baby-foot', 'fauteuil-massant'],
     nav: [
       { label: 'Notre concept', href: espaceHref('particulier', 'concept/') },
-      { label: 'Actualité', href: espaceHref('particulier', 'actualite/') },
       { label: 'Qui sommes-nous', href: '/qui-sommes-nous/' },
       { label: 'Contact', href: '/contact/' },
     ],

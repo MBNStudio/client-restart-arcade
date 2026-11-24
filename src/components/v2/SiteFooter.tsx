@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { ArrowRight, Phone } from 'lucide-react'
 import { site } from '@/lib/site'
 import { contactClick, ctaClick } from '@/lib/analytics'
-import { espacesV2, espaceV2, produitsHref } from '@/data/v2/espaces'
+import { espaceHref, espacesV2, espaceV2, produitsHref } from '@/data/v2/espaces'
 import { useEspace } from '@/lib/v2/useEspace'
 import { Brand } from './Brand'
 
@@ -32,7 +32,7 @@ export function SiteFooter() {
   const e = espace ? espaceV2(espace) : null
   const annee = new Date().getFullYear()
   const siteLinks = e
-    ? [{ label: 'Accueil', href: e.path }, { label: 'Produits', href: produitsHref(e.id) }, ...e.nav, { label: 'Blog', href: '/blog/' }]
+    ? [{ label: 'Accueil', href: e.path }, { label: 'Produits', href: produitsHref(e.id) }, ...e.nav, { label: 'Actualité', href: espaceHref(e.id, 'actualite/') }, { label: 'Blog', href: '/blog/' }]
     : [
         { label: 'Accueil', href: '/' },
         { label: 'Réalisations', href: '/realisations/' },

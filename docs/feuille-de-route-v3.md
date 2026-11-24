@@ -21,7 +21,7 @@ logos (`2026-11/logos/`), 300 photos de références clients (`2026-11/photos-re
 |---|---|
 | 1 Identité | **Fait** : logo blanc/noir (`public/img/logo/`), icône `src/app/icon.png`, Poppins (`lib/v2/fonts.ts`) + Orbitron, principale `#4444FE` |
 | 2 Trois thèmes | **Fait** : `arcade-particulier`, `arcade-entreprise` (clair, `#e6e7e8`), `arcade-bar` (CTA `#00CCD5`), imposés par univers (`ThemeByEspace`) ; sélecteur gardé pour comparer |
-| 3 Actualité | **Fait** : `/<espace>/actualite/` filtré par cible (`audiences` dans `data/blog.ts`), menu et sitemap. Les articles gardent une seule adresse, `/blog/<slug>/` (pas de doublon) |
+| 3 Actualité | **Fait** : `/<espace>/actualite/` filtré par cible (`audiences` dans `data/blog.ts`), lien dans le pied de page (retiré du menu à la demande de RESTART) et sitemap. Les articles gardent une seule adresse, `/blog/<slug>/` (pas de doublon) |
 | 4 Accueil | **Fait** : pièce interactive retirée des accueils (composant conservé), mosaïque gardée |
 | 5 Photos | **Préparé, en attente de RESTART** : remplacer les scènes IA exige le tri des 300 photos et l'accord des clients |
 | 6 Médiathèque | **Préparé** : index `src/data/references.generated.json` (300 photos, 3 commerciaux), `scripts/build-references.mjs`, section « Chez nos clients » sur `/realisations/` (vide tant qu'aucune photo n'est dans `references-accords.json`) |
@@ -66,7 +66,7 @@ Implémentation proposée :
 
 Livrable : captures des trois univers côte à côte, pour décision de RESTART.
 
-### Lot 3 : rubrique « Actualité » dans le menu des trois univers
+### Lot 3 : rubrique « Actualité » (pied de page des trois univers)
 
 - Ajouter « Actualité » dans `nav` de chaque espace (`src/data/v2/espaces.ts`, lignes ~99, ~229, ~368) et dans
   le menu mobile.
