@@ -572,15 +572,27 @@
   }
   .v-header[data-compact] .v-header__pill {
     height: 3.25rem;
-    max-width: 64rem;
+    max-width: 68rem;
     box-shadow: 0 16px 34px -18px rgba(0, 0, 0, 0.45);
   }
   .v-header[data-compact] .v-header__cta {
     padding-inline: 0.9rem;
     padding-block: 0.4rem;
   }
-  .v-header[data-compact] .v-brand__img {
-    height: 1.3rem;
+  .v-header[data-compact] .v-brand {
+    --logo-h: 1.4rem;
+  }
+  .v-header[data-compact] .v-brand__clip {
+    width: calc(var(--logo-h) * 167 / 169);
+  }
+  /* Au survol de la barre resserrée, le logo complet se redéploie. */
+  @media (hover: hover) {
+    .v-header[data-compact] .v-header__pill:hover .v-brand__clip {
+      width: calc(var(--logo-h) * 1200 / 169);
+    }
+  }
+  .v-header[data-compact] .v-header__pill {
+    gap: 0.5rem;
   }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -685,11 +697,24 @@
   align-items: center;
   line-height: 0;
 }
+.v-brand {
+  --logo-h: 1.5rem;
+}
+/* Le logo est rogné à droite pour ne montrer que le « R » (164 px sur 1200 du fichier) quand l'en-tête est resserré. */
+.v-brand__clip {
+  display: block;
+  overflow: hidden;
+  width: calc(var(--logo-h) * 1200 / 169);
+  height: var(--logo-h);
+  transition:
+    width 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    height 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
 .v-brand__img {
   display: block;
-  height: 1.5rem;
+  height: var(--logo-h);
   width: auto;
-  transition: height 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  max-width: none;
 }
 .v-brand__img--blanc {
   display: none;

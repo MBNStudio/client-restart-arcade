@@ -48,9 +48,6 @@ export function SiteFooter() {
           <div className="grid gap-14 lg:grid-cols-12">
             <div className="lg:col-span-6" data-reveal>
               <p className="v-eyebrow">Un projet ?</p>
-              <h2 className="v-display v-h2 mt-6">
-                Parlons de votre <em>projet</em>.
-              </h2>
               <p className="mt-6 max-w-md text-lg leading-relaxed text-v-on-dark-soft">
                 {e?.id === 'particulier'
                   ? 'Une salle de jeux à aménager, une borne à personnaliser ? Écrivez-nous ou appelez-nous : on vous conseille sur le modèle, les finitions et la livraison.'
@@ -126,14 +123,11 @@ export function SiteFooter() {
             </div>
           </div>
 
-          <div className="mt-20 border-b border-v-dark-line pb-8 lg:mt-24">
-            <Link href={e ? e.path : '/'} aria-label={`${site.name}, ${site.tagline.toLowerCase()}`}>
+          <div className="mt-20 flex flex-col gap-4 border-t border-v-dark-line pt-8 text-sm text-v-on-dark-soft/70 lg:mt-24 lg:flex-row lg:items-center lg:justify-between lg:gap-8">
+            <Link href={e ? e.path : '/'} aria-label={`${site.name}, ${site.tagline.toLowerCase()}`} className="shrink-0 text-v-on-dark">
               <Brand />
             </Link>
-          </div>
-
-          <div className="mt-8 flex flex-col gap-3 text-sm text-v-on-dark-soft/70 sm:flex-row sm:items-center sm:justify-between">
-            <p>
+            <p className="lg:flex-1">
               © {annee} {site.name} · {site.tagline} à {site.address.city} (Isère) · Exploité par {site.company.name}
             </p>
             <ul className="flex flex-wrap gap-x-5 gap-y-1">
