@@ -35,6 +35,8 @@ export function SiteHeader() {
   const e = espace ? espaceV2(espace) : null
   const [scrolled, setScrolled] = useState(false)
   const [compact, setCompact] = useState(false)
+  /** Pages d'ouverture vidéo : l'en-tête n'apparaît qu'une fois le milieu de l'ouverture dépassé (comme mabellenote.com). */
+  const [beforeReveal, setBeforeReveal] = useState(true)
   const [mega, setMega] = useState(false)
   const [open, setOpen] = useState(false)
   const rootRef = useRef<HTMLDivElement>(null)
@@ -68,6 +70,7 @@ export function SiteHeader() {
       queued = false
       const y = window.scrollY
       setScrolled(y > 24)
+      setBeforeReveal(y < window.innerHeight * 0.5)
       if (y < 24) {
         apply(false)
         anchorY = y
@@ -166,6 +169,7 @@ export function SiteHeader() {
       data-overlay={overlay || undefined}
       data-top={top || undefined}
       data-open={open || mega || undefined}
+      data-concealed={(overlay && beforeReveal && !open) || undefined}
       data-compact={(compact && !open && !mega) || undefined}
     >
       <a

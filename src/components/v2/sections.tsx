@@ -99,7 +99,7 @@ export function Marquee({ words, label = 'Nos équipements' }: { words: string[]
           <div key={copy} className="flex items-center" aria-hidden={copy === 1 ? true : undefined}>
             {words.map((m) => (
               <span key={m} className="flex items-center">
-                <span className="v-display whitespace-nowrap px-6 text-3xl lg:px-10 lg:text-5xl">{m}</span>
+                <span className="v-display whitespace-nowrap px-5 text-xl lg:px-8 lg:text-3xl">{m}</span>
                 <Power className="size-5 text-v-accent lg:size-6" strokeWidth={2.5} aria-hidden="true" />
               </span>
             ))}
