@@ -137,26 +137,86 @@
   color-scheme: light;
 }
 
-:root[data-theme='arcade'] {
+/* ===== V3 : trois thèmes, un par univers. Principale #4444FE (logo). Sur fond sombre, #4444FE n'atteint que
+   3,2:1 : les textes et liens utilisent la teinte claire #7c7cff (5,6:1), #4444FE reste pour aplats et focus. ===== */
+/* Particulier : Arcade V2, appel à l'action rose */
+:root[data-theme='arcade-particulier'] {
   --v-bg: #0b0d17;
   --v-bg-alt: #10131f;
   --v-surface: #151a2a;
   --v-ink: #e8ebf5;
-  --v-soft: #8e95ad;
+  --v-soft: #9aa1b8;
   --v-line: rgba(255, 255, 255, 0.09);
-  --v-accent: #22e3ff;
+  --v-primary: #4444fe;
+  --v-accent: #7c7cff;
   --v-btn: #ff2e93;
   --v-btn-ink: #ffffff;
   --v-btn-hover: #d61f7c;
+  --v-dark-accent: #ff2e93;
   --v-dark: #06070d;
+  --v-on-dark: #e8ebf5;
+  --v-on-dark-soft: rgba(232, 235, 245, 0.68);
+  --v-dark-line: rgba(255, 255, 255, 0.1);
+  --v-font-display: var(--ff-orbitron), var(--ff-poppins), system-ui, sans-serif;
+  --v-font-body: var(--ff-poppins), system-ui, sans-serif;
+  --v-display-weight: 800;
+  --v-display-tracking: 0;
+  --v-display-case: none;
+  --v-radius: 0.9rem;
+  --v-pill: 999px;
+  color-scheme: dark;
+}
+
+/* Entreprise : Arcade V2 en mode clair, gris perle (pas de fond blanc) */
+:root[data-theme='arcade-entreprise'] {
+  --v-bg: #e6e7e8;
+  --v-bg-alt: #d8dadd;
+  --v-surface: #eeeff1;
+  --v-ink: #12132a;
+  --v-soft: #4f5468;
+  --v-line: #c6c9cf;
+  --v-primary: #4444fe;
+  --v-accent: #4444fe;
+  --v-btn: #ff2e93;
+  --v-btn-ink: #ffffff;
+  --v-btn-hover: #d61f7c;
+  --v-dark: #0b0d17;
   --v-on-dark: #e8ebf5;
   --v-on-dark-soft: rgba(232, 235, 245, 0.68);
   --v-dark-accent: #ff2e93;
   --v-dark-line: rgba(255, 255, 255, 0.1);
-  --v-font-display: var(--ff-space), var(--ff-inter), system-ui, sans-serif;
-  --v-font-body: var(--ff-inter), system-ui, sans-serif;
-  --v-display-weight: 600;
-  --v-display-tracking: -0.03em;
+  --v-font-display: var(--ff-orbitron), var(--ff-poppins), system-ui, sans-serif;
+  --v-font-body: var(--ff-poppins), system-ui, sans-serif;
+  --v-display-weight: 800;
+  --v-display-tracking: 0;
+  --v-display-case: none;
+  --v-radius: 0.9rem;
+  --v-pill: 999px;
+  color-scheme: light;
+}
+
+/* Bars & commerces : Arcade V2, appel à l'action bleu cyan */
+:root[data-theme='arcade-bar'] {
+  --v-bg: #0b0d17;
+  --v-bg-alt: #10131f;
+  --v-surface: #151a2a;
+  --v-ink: #e8ebf5;
+  --v-soft: #9aa1b8;
+  --v-line: rgba(255, 255, 255, 0.09);
+  --v-primary: #4444fe;
+  --v-accent: #7c7cff;
+  --v-btn: #00ccd5;
+  --v-btn-ink: #06070d;
+  --v-btn-hover: #00aab2;
+  --v-dark-accent: #00ccd5;
+  --v-dark: #06070d;
+  --v-on-dark: #e8ebf5;
+  --v-on-dark-soft: rgba(232, 235, 245, 0.68);
+  --v-dark-line: rgba(255, 255, 255, 0.1);
+  --v-font-display: var(--ff-orbitron), var(--ff-poppins), system-ui, sans-serif;
+  --v-font-body: var(--ff-poppins), system-ui, sans-serif;
+  --v-display-weight: 800;
+  --v-display-tracking: 0;
   --v-display-case: none;
   --v-radius: 0.9rem;
   --v-pill: 999px;
@@ -225,8 +285,8 @@
   font-family: var(--v-font-body);
 }
 :root[data-version='v2'] ::selection {
-  background: var(--v-accent);
-  color: var(--v-bg);
+  background: var(--v-primary, var(--v-accent));
+  color: #fff;
 }
 :root[data-version='v2'] :focus-visible {
   outline: 2px solid var(--v-accent);
@@ -594,35 +654,29 @@
   clip-path: inset(0 0 0 0 round 1.5rem);
 }
 
-/* Marque : pastille « marche » et nom */
+/* Marque : logo RESTART, version blanche sur fond sombre, noire sur fond clair */
 .v-brand {
   display: inline-flex;
   align-items: center;
-  gap: 0.6rem;
-  font-family: var(--ff-inter), system-ui, sans-serif;
-  font-size: 1.35rem;
-  font-weight: 650;
-  letter-spacing: -0.025em;
-  line-height: 1;
-  white-space: nowrap;
+  line-height: 0;
 }
-.v-brand__dot {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.1rem;
-  height: 2.1rem;
-  border-radius: 999px;
-  background: currentColor;
+.v-brand__img {
+  display: block;
+  height: 1.5rem;
+  width: auto;
 }
-.v-brand__dot svg {
-  width: 1rem;
-  height: 1rem;
-  color: var(--v-bg);
+.v-brand__img--blanc {
+  display: none;
 }
-.v-header[data-overlay][data-top]:not([data-open]) .v-brand__dot svg,
-.v-dark .v-brand__dot svg {
-  color: var(--v-dark);
+:root[data-scheme='dark'] .v-brand__img--blanc,
+.v-header[data-overlay][data-top]:not([data-open]) .v-brand__img--blanc,
+.v-dark .v-brand__img--blanc {
+  display: block;
+}
+:root[data-scheme='dark'] .v-brand__img--noir,
+.v-header[data-overlay][data-top]:not([data-open]) .v-brand__img--noir,
+.v-dark .v-brand__img--noir {
+  display: none;
 }
 
 /* ---------- Ouverture vidéo (mise en page Atelier, fond vidéo Halo) ---------- */

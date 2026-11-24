@@ -3,9 +3,10 @@ import './globals.css'
 import { SiteHeader } from '@/components/v2/SiteHeader'
 import { SiteFooter } from '@/components/v2/SiteFooter'
 import { ThemePicker } from '@/components/v2/ThemePicker'
+import { ThemeByEspace } from '@/components/v2/ThemeByEspace'
 import { Reveal } from '@/components/v2/Reveal'
 import { v2FontVariables } from '@/lib/v2/fonts'
-import { v2ThemeBootScript } from '@/lib/v2/themes'
+import { V2_DEFAULT_THEME, v2ThemeBootScript } from '@/lib/v2/themes'
 import { Analytics } from '@/components/Analytics'
 import { ConsentBanner } from '@/components/ConsentBanner'
 import { JsonLd } from '@/components/ui'
@@ -13,17 +14,17 @@ import { site } from '@/lib/site'
 
 import { fontVariables } from '@/lib/fonts'
 import { EspaceChooser } from '@/components/EspaceChooser'
-import { espaceBootScript } from '@/lib/espace'
+import { espaceBootScript, espacePaths } from '@/lib/espace'
 
 /**
- * V2 (retours de RESTART du 5 novembre 2026) : un site général en une page et trois
+ * V3 (retours de RESTART du 19 novembre 2026 sur la V2 du 5 novembre) : un site général en une page et trois
  * sites par public, six thèmes au choix. Les scripts du <head> posent le thème choisi
  * et renvoient la visite qui revient sur l'accueil général vers l'accueil de l'espace
  * choisi (voir lib/espace.ts), avant le premier rendu.
  */
 const bootScript =
   "document.documentElement.classList.add('js');" +
-  v2ThemeBootScript() +
+  v2ThemeBootScript(process.env.NEXT_PUBLIC_BASE_PATH ?? '', espacePaths) +
   espaceBootScript(process.env.NEXT_PUBLIC_BASE_PATH ?? '')
 
 export const metadata: Metadata = {
@@ -48,7 +49,7 @@ export const metadata: Metadata = {
 }
 
 export const viewport = {
-  themeColor: '#16100b',
+  themeColor: '#0b0d17',
 }
 
 /**
@@ -118,9 +119,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html
       lang="fr"
       className={`${fontVariables} ${v2FontVariables}`}
-      data-theme="atelier"
+      data-theme={V2_DEFAULT_THEME}
       data-version="v2"
-      data-scheme="light"
+      data-scheme="dark"
       suppressHydrationWarning
     >
       <head>
@@ -139,6 +140,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </div>
         <ConsentBanner />
         <EspaceChooser />
+        <ThemeByEspace />
         <ThemePicker />
         <Reveal />
       </body>

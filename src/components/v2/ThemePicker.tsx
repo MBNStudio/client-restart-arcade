@@ -5,9 +5,8 @@ import { Check, Palette, X } from 'lucide-react'
 import { applyV2Theme, V2_DEFAULT_THEME, V2_THEME_EVENT, v2Themes } from '@/lib/v2/themes'
 
 /**
- * Sélecteur de thème, en bas à gauche : chaque thème change tout le site (couleurs,
- * polices, arrondis). Le choix est gardé pour les visites suivantes. En attendant la
- * nouvelle charte de RESTART, il sert à comparer les ambiances.
+ * Sélecteur de thème, en bas à gauche : sert à comparer les trois thèmes (un par univers) pendant la
+ * recette. Le thème de l'univers est réimposé à chaque changement d'univers (voir ThemeByEspace).
  */
 export function ThemePicker() {
   const [open, setOpen] = useState(false)
@@ -79,7 +78,7 @@ export function ThemePicker() {
           })}
         </ul>
         <p className="border-t border-v-line px-4 py-3 text-[11.5px] leading-snug text-v-soft">
-          Logo provisoire : la nouvelle charte RESTART remplacera ces thèmes.
+          Chaque univers a son thème : celui-ci sert à comparer les trois propositions, puis sera retiré.
         </p>
       </div>
       <button
