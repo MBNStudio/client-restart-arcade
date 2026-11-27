@@ -16,8 +16,8 @@ export const metadata: Metadata = {
 
 const values = [
   {
-    title: 'On regarde avant de vendre',
-    text: "Un équipement mal placé ne sert à personne. Nous commençons toujours par l'espace, les flux de passage et l'usage réel, pas par le catalogue.",
+    title: 'Une équipe à votre service',
+    text: 'Composée de professionnels en développement commercial, technique et marketing, notre équipe met à votre service son savoir-faire pour renforcer la fidélité à votre marque.',
   },
   {
     title: 'Personnalisé veut dire personnalisé',
@@ -36,7 +36,7 @@ const values = [
 const faq = [
   {
     q: 'Où se trouve RESTART ?',
-    a: `L'atelier RESTART est situé ${site.address.street}, ${site.address.postalCode} ${site.address.city}, dans l'est lyonnais (Isère). Les visites sont possibles sur rendez-vous pour essayer les équipements avant de choisir.`,
+    a: `L'atelier RESTART est situé ${site.address.street}, ${site.address.postalCode} ${site.address.city}, dans l'est lyonnais (Isère).`,
   },
   {
     q: 'RESTART fabrique-t-il ses équipements ?',
@@ -44,7 +44,7 @@ const faq = [
   },
   {
     q: 'Travaillez-vous avec les particuliers comme avec les entreprises ?',
-    a: "Oui. Les particuliers achètent surtout des bornes d'arcade et des baby-foot, les entreprises et les bars combinent plus souvent plusieurs équipements et privilégient la location. Le catalogue et l'accompagnement sont les mêmes.",
+    a: "Oui. RESTART équipe les particuliers (salon, salle de jeux, coin détente), les entreprises (salles de pause, espaces d'accueil) et les bars, commerces et lieux de loisirs.",
   },
 ]
 
@@ -75,14 +75,14 @@ export default function QuiSommesNousPage() {
             ]}
           />
         }
-        primary={{ href: '/contact/', label: 'Prendre rendez-vous' }}
+        primary={{ href: '/contact/', label: 'Nous contacter' }}
       />
 
       <Block>
         <div className="grid grid-cols-2 gap-5 lg:grid-cols-4">
           {[
             ['7', "familles d'équipements"],
-            ['12', 'modèles au catalogue'],
+            ['13', 'modèles au catalogue'],
             ['3 ans', 'de garantie maximum'],
             ['5/5', 'sur les avis Google'],
           ].map(([v, l]) => (
@@ -149,7 +149,7 @@ export default function QuiSommesNousPage() {
       <CtaBand
         title="Venez essayer avant de choisir"
         subtitle="L'atelier est ouvert sur rendez-vous. C'est souvent la visite qui tranche entre deux modèles."
-        primary={{ href: '/contact/', label: 'Prendre rendez-vous' }}
+        primary={{ href: '/contact/', label: 'Nous contacter' }}
       />
 
       <section className="py-20 lg:py-28">

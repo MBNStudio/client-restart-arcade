@@ -38,6 +38,11 @@ portent **uniquement sur les 4 pages d'accueil** (couleur, photos, textes, typo 
 
 `assets-client/` reste hors git.
 
+## Retours complémentaires (27/11)
+
+- Particulier : plus aucun rose, tout en `#4444FE` (accueil général et pages communes compris, même thème). Entreprise inchangé.
+- Frais de livraison : 99 € TTC. CGV : le texte existant uniquement, rien d'inventé.
+
 ## Lot 1 : thèmes, couleur, typo
 
 | Demande | Capture | Réalisation | Fichiers |
@@ -109,7 +114,7 @@ Comparaison du 27/11 entre la V3 et le texte public de restart-arcade.fr (hors C
 |---|---|---|---|
 | « Livré monté » (31 occurrences, 10 fichiers) | 0 | Alicia ; CGV art. 20 : montage et mise en service non compris | Supprimer partout |
 | Installation chez le client | titre « Livraison et installation » sur une page, qui dit aussi « simples et rapides à monter » | Alicia ; CGV art. 8 et 20 | Supprimer ; « livraison » + « simple à mettre en place » |
-| « Livraison comprise / incluse » (prix, llms.txt) | 0 | Alicia : 99 € TTC ; CGV art. 8 : frais non compris | « Livraison en supplément » |
+| « Livraison comprise / incluse » (prix, llms.txt) | 0 | Alicia : 99 € TTC ; CGV art. 8 : frais non compris | « Frais de livraison : 99 € TTC » |
 | « Maintenance incluse / assurée » (25) | 0 | Alicia | Supprimer |
 | « Retapissage des billards » | 0 | | Supprimer |
 | « Devis sous 48 heures » (32) | 0 | | « Devis gratuit » |
@@ -132,7 +137,7 @@ pages produits de l'ancien site le sont **très peu** (0 à 2 phrases sur 15 à 
 
 - Reprendre les textes d'origine, mot pour mot, des pages univers (une par gamme et par public) dans
   `data/contenus.generated.json` (script `scripts/build-contenus.py`), affichés sur les pages univers.
-- Ajouter sur chaque accueil le texte de présentation de l'ancien accueil correspondant.
+- Pas de bloc de présentation sur les accueils (retiré le 27/11 : non demandé).
 - Catalogue Particulier : ajouter R-DART PRO, R-PRO et BF 4 SAISONS 6 joueurs, vendus aux particuliers sur le site
   actuel.
 
@@ -145,8 +150,8 @@ pages produits de l'ancien site le sont **très peu** (0 à 2 phrases sur 15 à 
 | **Boutique** | Décidée (lot 6). À la bascule, faire pointer les boutons « Acheter » vers `boutique.restart-arcade.fr` (`SHOP_BASE` dans `components/v2/ProductPages.tsx`) ; ils visent aujourd'hui `restart-arcade.fr/produit/…`, qui ne répondra plus. | MBN |
 | **Redirections cassées** | 41 règles visent `/produits/…`, qui n'a aucune page (les fiches sont sous `/<espace>/produits/`). Les 3 `SK-*` (billards) renvoient vers les bornes d'arcade. Les anciennes adresses de la boutique (`/produit/…`, `/panier/`, `/commande/`, catégories) sont à renvoyer vers `boutique.restart-arcade.fr`. | MBN |
 | **Formulaire de devis** | Ouvre la messagerie du visiteur (`mailto:`) : brancher un envoi réel (script PHP o2switch ou service tiers). | MBN, adresse de réception à confirmer |
-| Rétractation | Le site actuel a un formulaire « Renoncer au contrat ici » ; la page de la refonte n'a que le texte. | MBN |
-| Pages légales | Mentions légales, RGPD, cookies et rétractation de la refonte sont des rédactions à comparer au site actuel. | RESTART + MBN |
+| Rétractation | Les CGV (art. 23.2) renvoient à une fonction « en bas de la page » `/cgv/` et à un formulaire type : la refonte ne reproduit ni l'une ni l'autre. La page `/retractation/` reprend les articles 23 à 27, sans autre texte. | MBN |
+| Pages légales | Mentions légales, RGPD et cookies de la refonte sont des rédactions à comparer au site actuel. | RESTART + MBN |
 | Accès o2switch | Capture cPanel reçue le 19/11 ; vérifier la connexion, changer le mot de passe (envoyé en clair). | RESTART + MBN |
 | Mesure | Identifiant GA4 à fournir au build (`NEXT_PUBLIC_GA4_ID`). | RESTART |
 | E-mails | Vérifier que le changement d'hébergement ne touche pas les MX. | RESTART + MBN |
@@ -164,8 +169,8 @@ Décision du 27/11/2026 : **la vente en ligne reste sur le WordPress actuel**, h
 
 ## Questions à poser à Alicia
 
-1. Frais de livraison : 99 € TTC pour tous les produits ? Le site actuel montre aussi 149 € (exemple de panier dans la
-   balise de partage de la page « Panier »). Grille exacte ?
+1. Frais de livraison : **99 € TTC** affichés (décision du 27/11, d'après son mail ; `site.fraisLivraison`). Le site actuel
+   montre aussi 149 € dans un exemple de panier : le signaler. Les CGV ne donnent aucun montant et ne sont pas modifiées.
 2. « Sans frais » : le paiement en 2x, 3x ou 4x (Pledg) est-il bien sans frais pour le client ? La ligne
    « Sans frais, livraison chez vous » ne risque-t-elle pas d'être lue « livraison gratuite » ?
 3. Corse : « même en Corse » (page livraison) ou « sur devis » (CGV) ?

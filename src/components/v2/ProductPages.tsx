@@ -193,7 +193,7 @@ function Reassurance({ id }: { id: Audience }) {
   const items =
     id === 'particulier'
       ? [
-          { icon: Truck, title: 'Livré chez vous', text: 'En supplément, partout en France' },
+          { icon: Truck, title: 'Livraison', text: `${site.fraisLivraison}, en France métropolitaine` },
           { icon: CreditCard, title: 'En 2x, 3x ou 4x', text: 'Paiement en plusieurs fois' },
           { icon: Check, title: "Jusqu'à 3 ans", text: 'De garantie selon le modèle' },
         ]
@@ -411,7 +411,7 @@ export function UniversView({ id, slug }: { id: Audience; slug: string }) {
                   Choisissez votre <em>{u.name.toLowerCase()}</em>
                 </>
               }
-              text={shop ? 'Prix TTC, livraison en supplément.' : 'Prix d’achat indicatifs. La location longue durée se chiffre sur devis.'}
+              text={shop ? `Prix TTC, hors frais de livraison (${site.fraisLivraison}).` : 'Prix d’achat indicatifs. La location longue durée se chiffre sur devis.'}
             />
             <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {models.map((m, i) => (
@@ -514,7 +514,7 @@ export function ModeleView({ id, univers, modele }: { id: Audience; univers: str
                     <p className="v-display text-[2.6rem] leading-none">{m.price != null ? formatPrice(m.price) : 'Sur devis'}</p>
                     {m.price != null && (
                       <p className="mt-2 text-[14px] text-v-soft">
-                        TTC, livraison en supplément · ou 4 × {pay4(m.price)}
+                        TTC, livraison {site.fraisLivraison} en sus · ou 4 × {pay4(m.price)}
                       </p>
                     )}
                   </>

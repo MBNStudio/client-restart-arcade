@@ -6,6 +6,8 @@ export const site = {
     "Vente et location de bornes d'arcade, fléchettes électroniques, baby-foot, billards et flippers numériques personnalisés. Livraison partout en France.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://restart-arcade.fr',
   locale: 'fr_FR',
+  /** Frais de livraison annoncés par RESTART (mail du 27 novembre 2026). Les CGV ne donnent pas de montant. */
+  fraisLivraison: '99 € TTC',
   phone: '06 67 44 36 02',
   phoneE164: '+33667443602',
   email: 'contact@restart-arcade.fr',

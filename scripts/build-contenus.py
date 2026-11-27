@@ -16,11 +16,8 @@ from html.parser import HTMLParser
 BASE = "https://restart-arcade.fr/"
 OUT = os.path.join(os.path.dirname(__file__), "..", "src", "data", "contenus.generated.json")
 
-# clé « public » ou « public/gamme » -> adresse sur le site actuel
+# clé « public/gamme » -> adresse sur le site actuel
 PAGES = {
-    "entreprise": "accueil/",
-    "bar-commerce": "accueil-bars-commerces/",
-    "particulier": "accueil-particulier/",
     "entreprise/borne-arcade": "borne-arcade/",
     "entreprise/flechettes": "flechettes/",
     "entreprise/baby-foot": "baby-foot/",
@@ -102,9 +99,6 @@ def blocks(items, key):
         if not key.endswith("borne-arcade") and "Nos bornes d’arcade sont disponibles" in text:
             continue
         seen.add(text)
-        # Titre du bloc d'avis, resté devant le texte « Qui sommes-nous » de l'accueil particulier.
-        if title and title.startswith("Ils ont essayé"):
-            title = "Qui sommes-nous ?"
         if not out or out[-1]["titre"] != title:
             out.append({"titre": title, "textes": []})
         out[-1]["textes"].append(text)

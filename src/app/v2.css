@@ -139,7 +139,7 @@
 
 /* ===== Un thème par univers. Principale #4444FE (logo), demandée telle quelle par RESTART (27/11). Sur le fond
    nuit elle n'atteint que 3,2:1 : réservée aux grands titres, aplats et icônes, le petit texte reste clair. ===== */
-/* Particulier : Arcade V2, appel à l'action rose */
+/* Particulier : Arcade V2, tout en bleu RESTART (plus de rose, retour du 27/11) */
 :root[data-theme='arcade-particulier'] {
   --v-bg: #0b0d17;
   --v-bg-alt: #10131f;
@@ -149,10 +149,10 @@
   --v-line: rgba(255, 255, 255, 0.09);
   --v-primary: #4444fe;
   --v-accent: #4444fe;
-  --v-btn: #ff2e93;
+  --v-btn: #4444fe;
   --v-btn-ink: #ffffff;
-  --v-btn-hover: #d61f7c;
-  --v-dark-accent: #ff2e93;
+  --v-btn-hover: #3333d6;
+  --v-dark-accent: #4444fe;
   --v-dark: #06070d;
   --v-on-dark: #e8ebf5;
   --v-on-dark-soft: rgba(232, 235, 245, 0.68);
@@ -177,13 +177,13 @@
   --v-line: #c6c9cf;
   --v-primary: #4444fe;
   --v-accent: #4444fe;
-  --v-btn: #ff2e93;
+  --v-btn: #4444fe;
   --v-btn-ink: #ffffff;
-  --v-btn-hover: #d61f7c;
+  --v-btn-hover: #3333d6;
   --v-dark: #0b0d17;
   --v-on-dark: #e8ebf5;
   --v-on-dark-soft: rgba(232, 235, 245, 0.68);
-  --v-dark-accent: #ff2e93;
+  --v-dark-accent: #4444fe;
   --v-dark-line: rgba(255, 255, 255, 0.1);
   --v-font-display: var(--ff-orbitron), var(--ff-poppins), system-ui, sans-serif;
   --v-font-body: var(--ff-poppins), system-ui, sans-serif;
@@ -1552,8 +1552,20 @@
 :root[data-theme='arcade-particulier'] .v-eyebrow:not(.v-on-photo *, .v-dark *)::before {
   background: var(--v-accent);
 }
-:root[data-theme='arcade-particulier'] .v-ch:not([data-tone='dark']) {
+:root[data-theme='arcade-particulier'] .v-ch {
   --ch-accent-ink: #ffffff;
+}
+:root[data-theme='arcade-entreprise'] .v-ch {
+  --ch-accent-ink: #ffffff;
+}
+:root[data-theme='arcade-entreprise'] .v-btn--light:hover,
+:root[data-theme='arcade-entreprise'] .bg-v-dark-accent {
+  color: #ffffff;
+}
+/* Aplats bleus : texte blanc (les valeurs de base y posent un texte sombre). */
+:root[data-theme='arcade-particulier'] .v-btn--light:hover,
+:root[data-theme='arcade-particulier'] .bg-v-dark-accent {
+  color: #ffffff;
 }
 
 :root[data-theme='arcade-particulier'] :not(.v-dark) .v-tick {

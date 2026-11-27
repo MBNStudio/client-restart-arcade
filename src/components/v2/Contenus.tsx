@@ -6,12 +6,12 @@ type Bloc = { titre: string | null; textes: string[] }
 const pages = contenus as Record<string, Bloc[]>
 
 /**
- * Texte de présentation repris, mot pour mot, du site actuel de RESTART (scripts/build-contenus.py) : sur les
- * accueils (`<public>`) et sur les pages gamme (`<public>/<gamme>`). Les premiers blocs sont lisibles
+ * Texte de présentation repris, mot pour mot, du site actuel de RESTART (scripts/build-contenus.py), sur les
+ * pages gamme (`<public>/<gamme>`). Pas sur les accueils : RESTART ne l'a pas demandé. Les premiers blocs sont lisibles
  * directement ; la suite se déplie, pour ne pas alourdir la page (le texte reste dans le HTML, donc indexé).
  */
-export function Presentation({ id, univers }: { id: Audience; univers?: string }) {
-  const blocs = pages[univers ? `${id}/${univers}` : id]
+export function Presentation({ id, univers }: { id: Audience; univers: string }) {
+  const blocs = pages[`${id}/${univers}`]
   if (!blocs?.length) return null
   const visibles = blocs.slice(0, 2)
   const suite = blocs.slice(2)

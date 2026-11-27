@@ -54,6 +54,10 @@ const photos = {
   'blocs/bar-commerce-1': [refs, 'thibaut/le-bigourdan-borne-d-arcade-babyfoot.jpg'],
   'blocs/bar-commerce-2': [refs, 'thibaut/chope-compagnie-flechette-babyfoot-2.jpg'],
   'blocs/bar-commerce-3': [refs, 'thibaut/bar-le-central-borne-d-arcade-3.jpg'],
+  // Accueil général
+  'blocs/general-1': [refs, 'thibaut/le-ludic-borne-d-arcade-1.jpg'],
+  'blocs/general-2': [refs, 'thibaut/orge-houblon-flechette-babyfoot-billard-1.jpg'],
+  'blocs/general-3': [refs, 'thibaut/chez-lolo-s-billard-borne-d-arcade-2.jpg'],
 }
 
 for (const [dest, [dir, file]] of Object.entries(photos)) {

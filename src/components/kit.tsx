@@ -183,7 +183,7 @@ export function MakerCard() {
   return (
     <div className="h-full rounded-[24px] border border-border bg-card p-6 shadow-[var(--shadow-paper-sm)]">
       <p className="text-[11px] font-medium uppercase tracking-[0.12em] text-muted-foreground">
-        Conçu et installé par
+        Conçu par
       </p>
       <div className="mt-3 flex items-center gap-3">
         <BrandMark className="size-11" />

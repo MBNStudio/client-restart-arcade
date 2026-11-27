@@ -21,16 +21,16 @@ export const v2Themes: V2Theme[] = [
   {
     id: 'arcade-particulier',
     name: 'Particulier',
-    desc: "Arcade de nuit, bleu RESTART et appel à l'action rose",
+    desc: 'Arcade de nuit, tout en bleu RESTART',
     scheme: 'dark',
-    swatch: ['#0b0d17', '#e8ebf5', '#ff2e93', '#4444fe'],
+    swatch: ['#0b0d17', '#e8ebf5', '#4444fe', '#4444fe'],
   },
   {
     id: 'arcade-entreprise',
     name: 'Entreprise',
     desc: 'Arcade en mode clair, gris perle (pas de fond blanc)',
     scheme: 'light',
-    swatch: ['#e6e7e8', '#12132a', '#ff2e93', '#4444fe'],
+    swatch: ['#e6e7e8', '#12132a', '#4444fe', '#4444fe'],
   },
   {
     id: 'theme-1',

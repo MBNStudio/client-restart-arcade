@@ -1,3 +1,5 @@
+import { site } from '@/lib/site'
+
 export type Audience = 'entreprise' | 'bar-commerce' | 'particulier'
 
 export const audiences: { id: Audience; label: string; short: string; blurb: string }[] = [
@@ -459,7 +461,7 @@ export const univers: Univers[] = [
     faq: [
       {
         q: 'Combien coûte un fauteuil massant professionnel ?',
-        a: "Le M-SERENITY est proposé à 1 558,80 €, livraison en supplément. Il est également disponible en location pour les entreprises et les établissements recevant du public.",
+        a: `Le M-SERENITY est proposé à 1 558,80 €, plus ${site.fraisLivraison} de frais de livraison. Il est également disponible en location pour les entreprises et les établissements recevant du public.`,
       },
       {
         q: "Qu'est-ce que le mode zéro gravité ?",

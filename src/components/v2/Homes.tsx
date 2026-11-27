@@ -3,9 +3,8 @@ import { ArrowRight } from 'lucide-react'
 import { univers } from '@/data/catalogue'
 import { espacesV2, espaceV2, produitsHref, type Offer, type ValueBlock } from '@/data/v2/espaces'
 import type { Audience } from '@/data/catalogue'
-import { asset } from '@/lib/site'
+import { asset, site } from '@/lib/site'
 import { Chapters } from './Chapters'
-import { Presentation } from './Contenus'
 import { FaqShowroom } from './FaqShowroom'
 import { HeroVideo } from './HeroVideo'
 import { ChooseEspaceButton } from './ChooseEspaceButton'
@@ -21,8 +20,8 @@ const generalValues: ValueBlock[] = [
     title: 'Chaque jeu raconte un peu de vous',
     text: 'Covering, couleur des boutons, T-Molding, logo ou charte graphique : vous validez un visuel avant toute fabrication. Pour une enseigne, une entreprise ou un salon.',
     points: ['Vos couleurs, votre logo, votre identité', 'Covering PVC sur bornes et fléchettes', 'Baby-foot en 6 à 8 couleurs'],
-    image: asset('/img/hero/baby-foot.webp'),
-    alt: 'Baby-foot de toutes les couleurs, en pleine partie',
+    image: asset('/img/v4/blocs/general-1.webp'),
+    alt: "Borne d'arcade personnalisée à l'enseigne d'un bar à jeux",
     caption: 'Un visuel validé avant fabrication',
   },
   {
@@ -31,19 +30,19 @@ const generalValues: ValueBlock[] = [
     title: "À l'achat ou en location longue durée",
     text: "Les particuliers achètent, en payant en 2, 3 ou 4 fois. Les professionnels choisissent : la location longue durée évite d'immobiliser de la trésorerie.",
     points: ['Location longue durée pour les professionnels', 'Paiement en 2x, 3x ou 4x pour les particuliers', 'Monnayeur en option pour les lieux publics'],
-    image: scene('bar-commerce-2'),
-    alt: 'Quatre amis penchés sur un baby-foot en bois pendant une partie animée, dans un bar-restaurant le soir',
-    caption: 'Un baby-foot en location dans un bar-restaurant',
+    image: asset('/img/v4/blocs/general-2.webp'),
+    alt: 'Billard, baby-foot et borne de fléchettes dans la salle d’un établissement',
+    caption: 'Chez nos clients',
   },
   {
     label: 'Livraison',
     short: 'Partout en France',
     title: 'Livré chez vous, partout en France',
     text: "Avant chaque expédition, nos équipements sont testés et soigneusement emballés dans notre atelier de Villette-d'Anthon, en Isère.",
-    points: ['Livraison en France métropolitaine, Corse sur devis', 'Devis gratuit', "Jusqu'à 3 ans de garantie selon le modèle"],
-    image: asset('/img/ambiance/2.webp'),
-    alt: "Le showroom RESTART : borne d'arcade, cible de fléchettes, baby-foot, fauteuil massant et cocon de repos",
-    caption: "Notre atelier et showroom, à Villette-d'Anthon (38)",
+    points: ['Livraison en France métropolitaine, Corse sur devis', `Frais de livraison : ${site.fraisLivraison}`, "Jusqu'à 3 ans de garantie selon le modèle"],
+    image: asset('/img/v4/blocs/general-3.webp'),
+    alt: "Billard et borne d'arcade dans un établissement lumineux",
+    caption: 'Chez nos clients',
   },
 ]
 
@@ -88,7 +87,7 @@ const targetCards: Offer[] = espacesV2.map((e) => ({
   tag: e.label,
   title: e.line,
   ...targetSummary[e.id],
-  image: e.video.fallback,
+  image: e.video.poster,
   alt: e.video.alt,
   href: e.path,
   cta: e.kind === 'boutique' ? 'Voir la boutique' : `Entrer dans l'espace ${e.label.toLowerCase()}`,
@@ -101,7 +100,7 @@ const generalFaq = [
   },
   {
     q: 'Où RESTART livre-t-il ?',
-    a: "Partout en France métropolitaine ; la Corse sur devis. Les frais de livraison s'ajoutent au prix. Notre atelier est situé à Villette-d'Anthon (38280), dans l'est lyonnais.",
+    a: `Partout en France métropolitaine ; la Corse sur devis. Les frais de livraison, de ${site.fraisLivraison}, s'ajoutent au prix. Notre atelier est situé à Villette-d'Anthon (38280), dans l'est lyonnais.`,
   },
   {
     q: 'Peut-on personnaliser un équipement ?',
@@ -306,8 +305,6 @@ export function EspaceHome({ id }: { id: Audience }) {
       </section>
 
       <Chapters blocks={values} />
-
-      <Presentation id={id} />
 
       <section className="py-24 lg:py-32">
         <div className="v-wrap">

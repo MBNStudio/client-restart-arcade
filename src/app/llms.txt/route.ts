@@ -49,7 +49,7 @@ export function GET() {
 
 ${lignesUnivers}
 
-## Catalogue et prix (TTC, livraison en supplément)
+## Catalogue et prix (TTC, hors frais de livraison de ${site.fraisLivraison})
 
 ${lignesProduits}
 

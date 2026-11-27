@@ -1,5 +1,5 @@
 import type { Audience } from '@/data/catalogue'
-import { asset } from '@/lib/site'
+import { asset, site } from '@/lib/site'
 
 /**
  * Une page par public, comme les trois accueils de l'ancien restart-arcade.fr
@@ -161,7 +161,7 @@ export const audiencePages: AudiencePage[] = [
     photoAlt: "Amis réunis dans un salon autour d'une borne d'arcade",
     brief: [
       'Paiement en 2x, 3x ou 4x',
-      'Livraison partout en France métropolitaine, en supplément',
+      `Livraison en France métropolitaine : ${site.fraisLivraison}`,
       'Conçu et fabriqué dans notre atelier en Isère (38)',
       "Jusqu'à 3 ans de garantie",
     ],

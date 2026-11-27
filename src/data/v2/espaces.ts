@@ -1,6 +1,6 @@
 import { audiencePage, audiencePath } from '@/data/audiencePages'
 import { findUnivers, type Audience } from '@/data/catalogue'
-import { asset } from '@/lib/site'
+import { asset, site } from '@/lib/site'
 
 /**
  * Les trois sites de la V2 (mail de RESTART du 5 novembre 2026) : un site par
@@ -9,7 +9,7 @@ import { asset } from '@/lib/site'
  *
  * Contenu : ne rien affirmer qui ne figure pas sur le site actuel, dans ses CGV ou dans un mail de RESTART.
  * En particulier (mail du 27 novembre 2026) : les jeux ne sont livrés ni montés ni installés, la livraison est
- * en supplément et aucune maintenance n'est annoncée comme incluse.
+ * en supplément (`site.fraisLivraison`) et aucune maintenance n'est annoncée comme incluse.
  */
 
 export type NavItem = { label: string; href: string }
@@ -87,7 +87,7 @@ const livraison = (photo: { image: string; alt: string }): ValueBlock => ({
   short: 'Partout en France',
   title: 'Livré chez vous, partout en France',
   text: "Testés et emballés dans notre atelier en Isère, nos produits sont conçus pour être simples et rapides à mettre en place.",
-  points: ['Livraison en France métropolitaine, Corse sur devis', 'Frais de livraison en supplément', "Jusqu'à 3 ans de garantie selon le modèle"],
+  points: ['Livraison en France métropolitaine, Corse sur devis', `Frais de livraison : ${site.fraisLivraison}`, "Jusqu'à 3 ans de garantie selon le modèle"],
   ...photo,
   caption: 'Chez nos clients',
 })
@@ -409,7 +409,7 @@ const espacesData: Espace[] = [
         label: 'Paiement',
         short: 'En plusieurs fois',
         title: 'Les prix affichés, le paiement en 2x, 3x ou 4x',
-        text: "Chaque modèle affiche son prix TTC. Vous commandez en ligne et réglez en plusieurs fois ; les frais de livraison s'ajoutent à la commande.",
+        text: `Chaque modèle affiche son prix TTC. Vous commandez en ligne et réglez en plusieurs fois ; les frais de livraison de ${site.fraisLivraison} s'ajoutent à la commande.`,
         points: ['Prix TTC affiché sur chaque modèle', 'Paiement en 2x, 3x ou 4x', "Jusqu'à 3 ans de garantie selon le modèle"],
         image: bloc('particulier', 2),
         alt: 'Baby-foot d’extérieur dans un jardin',

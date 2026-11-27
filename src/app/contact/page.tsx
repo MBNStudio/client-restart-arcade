@@ -22,11 +22,11 @@ const faq = [
   },
   {
     q: 'Le devis est-il payant ou engageant ?',
-    a: "Ni l'un ni l'autre. Le devis et l'audit de vos espaces sont gratuits et sans engagement, y compris si nous nous déplaçons.",
+    a: "Ni l'un ni l'autre. Le devis et l'audit de vos espaces sont gratuits et sans engagement.",
   },
   {
     q: 'Intervenez-vous en dehors de la région lyonnaise ?',
-    a: "Oui, nous livrons partout en France métropolitaine ; la Corse sur devis. Notre atelier est à Villette-d'Anthon (38280), ce qui nous permet simplement d'être plus réactifs sur Lyon, Grenoble et Saint-Étienne.",
+    a: "Oui, nous livrons partout en France métropolitaine ; la Corse sur devis. Notre atelier est à Villette-d'Anthon (38280).",
   },
 ]
 
@@ -91,7 +91,7 @@ export default function ContactPage() {
               <h2 className="font-serif text-lg font-medium tracking-tight">Ce qu&apos;on vous enverra</h2>
               <ul className="mt-3 space-y-2 text-sm text-foreground/70">
                 {[
-                  'Une proposition chiffrée, options comprises',
+                  'Une proposition chiffrée',
                   'Un visuel de personnalisation si vous en voulez une',
                   'Le délai réel de livraison',
                   'Les deux formules : achat et location',
