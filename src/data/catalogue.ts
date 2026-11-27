@@ -19,7 +19,7 @@ export const audiences: { id: Audience; label: string; short: string; blurb: str
     id: 'particulier',
     label: 'Particulier',
     short: 'À la maison',
-    blurb: "La salle d'arcade dans votre salon ou votre garage, livrée montée et prête à jouer.",
+    blurb: "La salle d'arcade dans votre salon ou votre garage, prête à jouer.",
   },
 ]
 
@@ -57,16 +57,16 @@ export const univers: Univers[] = [
     navLabel: "Bornes d'arcade",
     metaTitle: "Borne d'arcade personnalisée : 5 modèles de 899 € à 2 478 €",
     metaDescription:
-      "Bornes d'arcade multijeux jusqu'à 5 000 jeux, covering personnalisable à votre image, norme CE, livrées montées partout en France. Modèles enfant, salon, bar et entreprise.",
+      "Bornes d'arcade multijeux jusqu'à 5 000 jeux, covering personnalisable à votre image, norme CE, livrées partout en France. Modèles enfant, salon, bar et entreprise.",
     h1: "Bornes d'arcade personnalisées",
     intro:
-      "De la borne enfant à la borne professionnelle avec monnayeur, cinq modèles couvrent tous les usages. Toutes sont livrées montées, prêtes à jouer, et personnalisables à votre image.",
+      "De la borne enfant à la borne professionnelle avec monnayeur, cinq modèles couvrent tous les usages. Toutes sont personnalisables à votre image.",
     answer:
-      "RESTART propose 5 modèles de bornes d'arcade multijeux, de 899 € (R-KIDS, format enfant) à 2 478 € (R-PRO, 5 000 jeux avec monnayeur en option). Toutes sont aux normes CE, personnalisables par covering PVC, et livrées montées partout en France depuis Villette-d'Anthon (Isère).",
+      "RESTART propose 5 modèles de bornes d'arcade multijeux, de 899 € (R-KIDS, format enfant) à 2 478 € (R-PRO, 5 000 jeux avec monnayeur en option). Toutes sont aux normes CE, personnalisables par covering PVC, et expédiées depuis l'atelier de Villette-d'Anthon (Isère).",
     benefits: {
       entreprise: [
         'Un point de rassemblement qui fait sortir les équipes de leur bureau à la pause',
-        'Aucune maintenance : pas de cartouche, pas de mise à jour, écran et électronique garantis',
+        'Ni cartouche ni mise à jour à gérer',
         "Covering aux couleurs et au logo de votre entreprise",
         'Achat ou location selon le traitement comptable que vous préférez',
       ],
@@ -78,7 +78,7 @@ export const univers: Univers[] = [
       ],
       particulier: [
         "Jusqu'à 5 000 jeux, des classiques des années 80 aux titres 32 bits",
-        'Livrée montée : vous branchez et vous jouez, aucun assemblage',
+        'Se branche sur une prise standard',
         'Formats compacts (61 cm de large) qui passent dans un salon',
         'Paiement en 2x, 3x ou 4x',
       ],
@@ -97,12 +97,12 @@ export const univers: Univers[] = [
         a: "Oui, sur les modèles R-TWIN, R-EVOLUTION, R-PRO et R-DART PRO : le covering PVC, la couleur des boutons et le T-Molding sont au choix. Un logo d'entreprise ou d'enseigne peut être intégré au visuel.",
       },
       {
-        q: 'La borne est-elle livrée montée ?',
-        a: "Oui. Les bornes sont livrées assemblées et testées, avec installation sur place. Il suffit de les brancher sur une prise standard : la R-EVOLUTION consomme 60 watts.",
+        q: 'La borne est-elle livrée montée et installée ?',
+        a: "Non : sauf mention contraire sur la fiche, le devis ou la commande, la livraison ne comprend ni le montage ni l'installation. Nos produits sont testés avant expédition, conçus pour être simples et rapides à mettre en place, et se branchent sur une prise standard (la R-EVOLUTION consomme 60 watts).",
       },
       {
         q: "Peut-on louer une borne au lieu de l'acheter ?",
-        a: "Oui, la location est proposée aux entreprises, bars et commerces, avec ou sans monnayeur. Elle inclut la livraison, l'installation et la maintenance. Le tarif dépend de la durée et du modèle : demandez un devis.",
+        a: "Oui, la location est proposée aux entreprises, bars et commerces, avec ou sans monnayeur. Le tarif dépend de la durée et du modèle : demandez un devis.",
       },
     ],
     models: [
@@ -190,7 +190,7 @@ export const univers: Univers[] = [
         name: 'R-PRO',
         price: 2478,
         headline: 'La borne pensée pour un usage intensif et rentable',
-        audiences: ['entreprise', 'bar-commerce'],
+        audiences: ['particulier', 'entreprise', 'bar-commerce'],
         specs: [
           '5 000 jeux',
           '61 × 174 × 68 cm',
@@ -214,7 +214,7 @@ export const univers: Univers[] = [
     navLabel: 'Fléchettes',
     metaTitle: 'Fléchettes électroniques : cible murale ou borne pro personnalisée',
     metaDescription:
-      "Cibles de fléchettes électroniques avec plus de 30 modes de jeu. Modèle mural à 1 790 € ou borne professionnelle personnalisable à 2 638,80 €, livrées installées.",
+      "Cibles de fléchettes électroniques avec plus de 30 modes de jeu. Modèle mural à 1 790 € ou borne professionnelle personnalisable à 2 638,80 €.",
     h1: 'Fléchettes électroniques',
     intro:
       "Comptage automatique, plus de trente modes de jeu et de challenge : la fléchette électronique se joue à deux comme à huit, sans arbitre et sans craie.",
@@ -276,7 +276,7 @@ export const univers: Univers[] = [
         name: 'R-DART PRO',
         price: 2638.8,
         headline: 'La borne fléchettes complète, à votre image',
-        audiences: ['bar-commerce', 'entreprise'],
+        audiences: ['particulier', 'bar-commerce', 'entreprise'],
         specs: [
           '68 × 220 × 54 cm',
           'Norme CE',
@@ -410,7 +410,7 @@ export const univers: Univers[] = [
         name: 'BF 4 SAISONS 6 joueurs',
         price: 2199,
         headline: 'Le format XXL : six joueurs autour de la table',
-        audiences: ['entreprise', 'bar-commerce'],
+        audiences: ['particulier', 'entreprise', 'bar-commerce'],
         specs: [
           '223 × 107 × 93 cm, 107 kg',
           'Tapis linoléum hydrofuge anti-moisissures',
@@ -459,7 +459,7 @@ export const univers: Univers[] = [
     faq: [
       {
         q: 'Combien coûte un fauteuil massant professionnel ?',
-        a: "Le M-SERENITY est proposé à 1 558,80 €, livraison et installation comprises. Il est également disponible en location pour les entreprises et les établissements recevant du public.",
+        a: "Le M-SERENITY est proposé à 1 558,80 €, livraison en supplément. Il est également disponible en location pour les entreprises et les établissements recevant du public.",
       },
       {
         q: "Qu'est-ce que le mode zéro gravité ?",
@@ -498,16 +498,16 @@ export const univers: Univers[] = [
     navLabel: 'Billard',
     metaTitle: 'Billard professionnel : location ou achat, avec ou sans monnayeur',
     metaDescription:
-      "Billards professionnels robustes, personnalisables, avec ou sans monnayeur, en location ou à l'achat. Livraison et installation partout en France. Devis sous 48 h.",
+      "Billards professionnels robustes, personnalisables, avec ou sans monnayeur, en location ou à l'achat. Livraison partout en France. Devis gratuit.",
     h1: 'Billards professionnels',
     intro:
       "Le billard reste l'équipement qui retient le plus longtemps autour de lui. Disponible à l'achat comme en location, avec ou sans monnayeur.",
     answer:
-      "RESTART fournit des billards professionnels en location ou à l'achat, avec ou sans monnayeur, personnalisables (tapis, finitions, habillage). Ils sont destinés aux bars, commerces et espaces d'entreprise. Le tarif dépend du modèle et de la formule : le devis est établi sous 48 heures.",
+      "RESTART fournit des billards professionnels en location ou à l'achat, avec ou sans monnayeur, personnalisables (tapis, finitions, habillage). Ils sont destinés aux bars, commerces et espaces d'entreprise. Le tarif dépend du modèle et de la formule : le devis est gratuit.",
     benefits: {
       entreprise: [
         "Un usage plus long que les autres jeux : idéal pour un espace de convivialité dédié",
-        'Formule location tout compris : livraison, installation et maintenance',
+        'Achat ou location longue durée',
         'Personnalisation du tapis et des finitions',
         'Sans monnayeur pour un usage libre par les collaborateurs',
       ],
@@ -515,19 +515,19 @@ export const univers: Univers[] = [
         'Avec monnayeur : un revenu direct et régulier',
         'Construction renforcée pour un usage quotidien intensif',
         "Formule location : aucune immobilisation de trésorerie",
-        'Maintenance assurée, y compris le retapissage',
+        'Tapis et finitions personnalisables',
       ],
       particulier: [
         "Modèles disponibles à l'achat pour un usage domestique",
         'Personnalisation du tapis et des finitions',
-        'Livraison et installation par nos équipes',
+        'Livraison partout en France métropolitaine',
         'Conseil sur les dimensions de la pièce avant commande',
       ],
     },
     faq: [
       {
         q: "Peut-on louer un billard plutôt que l'acheter ?",
-        a: "Oui. La location est la formule la plus courante pour les bars et les entreprises : elle comprend la livraison, l'installation et la maintenance, sans immobiliser de trésorerie. L'achat reste possible pour tous les modèles.",
+        a: "Oui. La location est la formule la plus courante pour les bars et les entreprises : elle évite d'immobiliser de la trésorerie. L'achat reste possible pour tous les modèles.",
       },
       {
         q: "Le billard peut-il être équipé d'un monnayeur ?",
@@ -556,12 +556,12 @@ export const univers: Univers[] = [
     benefits: {
       entreprise: [
         "Plus de 500 tables : la nouveauté ne s'épuise jamais",
-        "Aucune maintenance mécanique, contrairement à un flipper d'époque",
+        "Ni bobine ni cible mécanique, contrairement à un flipper d'époque",
         "Habillage personnalisable aux couleurs de l'entreprise",
         'Garantie 2 ans',
       ],
       'bar-commerce': [
-        'Un flipper qui ne tombe jamais en panne mécanique un vendredi soir',
+        'Ni bobine ni cible mécanique à remplacer',
         "Plus de 500 tables : de quoi renouveler l'intérêt en permanence",
         "Retour de force et accéléromètre : la sensation d'un vrai flipper",
         'Habillage à votre enseigne',
@@ -584,7 +584,7 @@ export const univers: Univers[] = [
       },
       {
         q: 'Quelle est la garantie sur un flipper numérique ?',
-        a: "La garantie est de 2 ans. L'installation est réalisée par nos équipes.",
+        a: "La garantie est de 2 ans.",
       },
     ],
     quoteOnly: true,
@@ -596,18 +596,18 @@ export const univers: Univers[] = [
     navLabel: 'Cocon de repos',
     metaTitle: 'Cocon de repos Nap&Up : la micro-sieste au bureau, QVT et RSE',
     metaDescription:
-      "Cocon de repos Nap&Up : un fauteuil ergonomique conçu pour la micro-sieste en entreprise. Un dispositif QVT et RSE concret, installé clé en main dans vos locaux.",
+      "Cocon de repos Nap&Up : un fauteuil ergonomique conçu pour la micro-sieste en entreprise. Un dispositif QVT et RSE concret.",
     h1: 'Cocon de repos',
     intro:
       "Vingt minutes de récupération réelle, dans un espace isolé du bruit et de la lumière. Le cocon Nap&Up est conçu pour la micro-sieste en entreprise.",
     answer:
-      "Le cocon de repos Nap&Up proposé par RESTART est un fauteuil ergonomique conçu pour la micro-sieste en entreprise. Il s'inscrit dans une démarche QVT/RSE et s'installe clé en main dans les locaux professionnels. Tarif sur devis selon la configuration et le nombre de postes.",
+      "Le cocon de repos Nap&Up proposé par RESTART est un fauteuil ergonomique conçu pour la micro-sieste en entreprise. Il s'inscrit dans une démarche QVT/RSE et prend place dans les locaux professionnels. Tarif sur devis selon la configuration et le nombre de postes.",
     benefits: {
       entreprise: [
         'La micro-sieste de 20 minutes est le dispositif de récupération le mieux documenté',
         'Un équipement QVT/RSE visible, qui compte dans un bilan social',
         'Isolation phonique et lumineuse : la récupération est réelle',
-        'Installation clé en main, sans travaux',
+        'Aucun travaux à prévoir',
       ],
       'bar-commerce': [
         "Pertinent pour les hôtels, espaces de coworking et lieux d'attente",
@@ -619,7 +619,7 @@ export const univers: Univers[] = [
         'Conçu pour un usage professionnel, nous consulter pour un projet à domicile',
         'Ergonomie pensée pour une position de repos courte',
         'Isolation du bruit et de la lumière ambiante',
-        "Installation et conseil d'implantation inclus",
+        "Conseil d'implantation",
       ],
     },
     faq: [
@@ -633,7 +633,7 @@ export const univers: Univers[] = [
       },
       {
         q: 'Le cocon de repos est-il disponible en location ?',
-        a: "Oui, comme l'ensemble de nos équipements professionnels. La formule location inclut la livraison, l'installation et la maintenance.",
+        a: "Oui, comme l'ensemble de nos équipements professionnels.",
       },
     ],
     quoteOnly: true,

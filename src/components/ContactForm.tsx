@@ -239,7 +239,7 @@ export function ContactForm({ presetProduct }: { presetProduct?: string }) {
       )}
 
       <p className="text-xs text-ink-soft">
-        Réponse sous 48 heures ouvrées. Vos données ne sont ni revendues ni utilisées à des fins
+        Vos données ne sont ni revendues ni utilisées à des fins
         publicitaires.
       </p>
     </form>

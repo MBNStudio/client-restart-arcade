@@ -251,7 +251,7 @@ export function SiteHeader() {
               {e ? `Les produits ${e.label === 'Particulier' ? 'pour la maison' : `pour ${e.label === 'Entreprise' ? 'les entreprises' : 'les bars et commerces'}`}` : 'Pas sûr du modèle ? On vous conseille.'}
             </p>
             <p className="mt-0.5 text-xs text-v-soft">
-              {e?.kind === 'boutique' ? 'Prix affichés, livrés montés, paiement en 2x, 3x ou 4x.' : 'Audit de votre espace et devis gratuits, réponse sous 48 heures.'}
+              {e?.kind === 'boutique' ? 'Prix affichés, paiement en 2x, 3x ou 4x.' : 'Audit de votre espace et devis gratuits.'}
             </p>
           </div>
           {e ? (

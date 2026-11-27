@@ -1,0 +1,961 @@
+{
+  "entreprise": [
+    {
+      "titre": "Le concept",
+      "textes": [
+        "RESTART est une solution novatrice qui révolutionne vos espaces !",
+        "Nous repensons les salles de pause, les espaces professionnels, pour y insuffler bien-être, convivialité et plaisir au service de la performance durable, mais pas que !",
+        "Notre mission également, c’est d’améliorer votre expérience visiteur/client : nous proposons une approche immersive et agréable, transformant les moments d’attente souvent perçu comme une frustration, en une expérience positive et engageante."
+      ]
+    },
+    {
+      "titre": "Personnalisation",
+      "textes": [
+        "Parce qu’on veut que chaque produit raconte un peu de vous !",
+        "Ajoutez votre logo, votre charte graphique et renforcez l’identité de votre enseigne ! C’est un outil de communication virale : différenciez vous avec votre propre univers."
+      ]
+    },
+    {
+      "titre": "Qui sommes-nous ?",
+      "textes": [
+        "Chez RESTART, nous améliorons vos espaces : que ce soit pour améliorer votre expérience client ou pour transformer votre salle de pause. En interne comme en externe, nous avons la solution RESTART qu’il vous faut!",
+        "Composée de professionnels en développement commercial, technique et marketing, notre équipe met à votre service son savoir-faire pour renforcer la fidélité à votre marque.",
+        "Grâce à notre atelier de fabrication en Isère (38) et une livraison partout en France, nous vous aidons à offrir une expérience client / collaborateur incomparable!"
+      ]
+    }
+  ],
+  "bar-commerce": [
+    {
+      "titre": "Animez votre établissement avec nos fléchettes professionnelles",
+      "textes": [
+        "Chez RESTART, nous accompagnons les professionnels qui souhaitent dynamiser leur établissement grâce au divertissement pour transformer l’expérience client.",
+        "Bars, restaurants, campings, gîtes, hôtels, complexes sportifs, centres de loisirs, espaces événementiels ou commerces : nos équipements sont conçus pour créer des moments de convivialité, améliorer l’expérience client et renforcer l’attractivité de votre établissement.",
+        "Fléchettes interactives, bornes d’arcade, baby-foot, billards ou encore flipper : chaque installation est pensée pour s’intégrer naturellement à votre univers et offrir à vos visiteurs une expérience ludique, originale et mémorable.",
+        "Que votre objectif soit d’animer un espace d’attente, valoriser un club-house, fidéliser votre clientèle, prolonger le temps passé sur place ou créer une source de revenus complémentaire grâce au monnayeur, RESTART vous accompagne avec des solutions personnalisées disponibles à l’achat ou en location longue durée."
+      ]
+    },
+    {
+      "titre": "Valorisez votre établissement par l'expérience",
+      "textes": [
+        "Qu’il s’agisse d’un client qui attend son plat au restaurant, d’une famille en séjour dans un camping, d’un groupe d’amis dans un bar, d’un participant à un événement ou d’un sportif après son activité, nos équipements transforment les temps d’attente et les espaces communs en véritables lieux d’animation.",
+        "C’est cette approche qui a déjà convaincu de nombreux professionnels partout en France : bars, restaurants, campings, complexes sportifs, centres de loisirs, espaces événementiels ou encore hébergements touristiques. Autant d’établissements qui ont choisi RESTART pour enrichir l’expérience proposée à leurs visiteurs et renforcer l’attractivité de leur lieu."
+      ]
+    },
+    {
+      "titre": "Démarquez-vous !",
+      "textes": [
+        "Proposez une expérience conviviale et originale qui donne envie à vos clients de rester plus longtemps et de revenir."
+      ]
+    },
+    {
+      "titre": "PLUS QU'UN SIMPLE HÉBERGEMENT",
+      "textes": [
+        "Offrez une activité ludique et accessible à tous, idéale pour animer votre établissement même lorsque la météo est moins favorable."
+      ]
+    },
+    {
+      "titre": "CRÉEZ DU LIEN",
+      "textes": [
+        "Offrez à vos adhérents et visiteurs un espace convivial pour se retrouver, échanger et prolonger l’expérience sportive."
+      ]
+    },
+    {
+      "titre": "UNE ACTIVITÉ EN PLUS",
+      "textes": [
+        "Ajoutez une animation appréciée de tous qui s’intègre naturellement à votre établissement."
+      ]
+    }
+  ],
+  "particulier": [
+    {
+      "titre": "La sélection RESTART",
+      "textes": [
+        "L’ambiance des salles d’arcade directement à la maison !",
+        "Replongez dans l’univers des jeux qui ont marqué des générations. Une borne d’arcade ne se résume pas à un simple équipement de jeu : elle devient un véritable élément de décoration, de partage et de convivialité dans votre intérieur.",
+        "Que ce soit pour une salle de jeux, un salon, un coin détente ou un espace dédié au divertissement, une borne d’arcade permet de réunir petits et grands autour des plus grands classiques du jeu vidéo. Pac Man, Super Mario, jeux de combat, jeux de course, jeux rétro… retrouvez des centaines de jeux cultes et partagez des moments uniques en famille ou entre amis. Nous avons également une large sélection de fléchettes et babyfoot !"
+      ]
+    },
+    {
+      "titre": "Qui sommes-nous ?",
+      "textes": [
+        "Conçus et fabriqués dans notre atelier en Isère (38), nos produits allient qualité, style et sensations, avec une livraison partout en France.",
+        "RESTART, c’est l’art de créer chez vous des instants uniques, seul(e), en famille ou entre amis.",
+        "Transformez votre salon, salle de jeux ou coin détente en véritable espace d’évasion !",
+        "Bornes d’arcade, baby-foot, jeux de fléchettes ou fauteuils massants : nous sélectionnons pour vous le meilleur du divertissement à domicile.",
+        "Ajoutez une touche unique à votre borne d’arcade ou votre jeu de fléchettes : covering, bouton lumineux LED, bouton doré “Gold”, sticker enfant et porte gobelet !",
+        "Créez un objet qui vous ressemble et qui s’intègre parfaitement à votre intérieur.",
+        "Chez RESTART, la personnalisation est bien plus qu’une option : C’est l’occasion de faire entrer votre univers dans chaque détail."
+      ]
+    }
+  ],
+  "entreprise/borne-arcade": [
+    {
+      "titre": "Votre borne d'arcade personnalisée",
+      "textes": [
+        "Transformez vos espaces professionnels avec une borne d’arcade ! Chez Restart, nous aidons les entreprises à créer des espaces de bien-être uniques grâce à nos bornes d’arcade. Parce qu’un salarié épanoui est un salarié plus motivé, offrez à vos équipes une parenthèse ludique qui favorise la cohésion, la créativité et la productivité.",
+        "Dynamisez vos espaces et boostez la cohésion d’équipe !"
+      ]
+    },
+    {
+      "titre": "Travail d'équipe",
+      "textes": [
+        "Installer une borne d’arcade dans une salle de pause, c’est offrir un moment d’évasion qui favorise la détente, les échanges spontanés et la bonne humeur entre collègues."
+      ]
+    },
+    {
+      "titre": "Prévention",
+      "textes": [
+        "Des pauses régulières et ludiques permettent aux employés de relâcher la pression et d’améliorer leur concentration."
+      ]
+    },
+    {
+      "titre": "Convivialité",
+      "textes": [
+        "Les nouvelles générations recherchent un cadre de travail convivial. Un espace détente bien équipé contribue à valoriser l’image de l’entreprise."
+      ]
+    },
+    {
+      "titre": "Engagement",
+      "textes": [
+        "Créer un environnement de travail épanouissant et inclusif est un axe clé de la politique RSE des entreprises modernes. Offrir un espace détente équipé, c’est répondre aux attentes sociétales tout en améliorant la productivité."
+      ]
+    },
+    {
+      "titre": "QUELQUES CHIFFRES CLÉS",
+      "textes": [
+        "En France, 71 % des Français jouent aux jeux vidéo occasionnellement, et 52 % y jouent régulièrement, ce qui montre que le jeu vidéo est un loisir largement partagé et apprécié, pouvant être intégré dans la culture d’entreprise pour renforcer l’image de marque. (source : SELL)."
+      ]
+    },
+    {
+      "titre": "Boost la créativité de 20%",
+      "textes": [
+        "Une étude de l’Université Brigham Young a révélé que des équipes de collaborateurs nouvellement formées ayant joué à des jeux vidéo collaboratifs (mode multijoueur sur la borne d’arcade) pendant 45 minutes, ont vu leur productivité augmenter de 20 % lors des tâches suivantes.",
+        "Installation au sein de votre accueil, salle de pause, espaces communs, salle d'attente...",
+        "Transformez l'expérience et le temps passer dans votre entreprise !"
+      ]
+    },
+    {
+      "titre": "100% personnalisable : votre logo vos couleurs votre univers votre ADN",
+      "textes": [
+        "Des designs « classiques » ou des univers emblématiques comme Super Mario, Marvel, Marshall, Space Invaders ou Sonic sont également disponibles. Vous avez une envie particulière ou un univers spécifique en tête ? Notre équipe vous accompagne dans la création d’un design sur-mesure : chez RESTART, la seule limite est votre imagination."
+      ]
+    },
+    {
+      "titre": "Un produit vous plaît ? Parlons-en !",
+      "textes": [
+        "Favorisez les moments de convivialité, boostez la dynamique de vos équipes et valorisez votre marque employeur ! Nos bornes d’arcade sont disponibles à l’achat ou en location longue durée, et elles s’intègrent facilement à votre démarche RSE tout en améliorant la vie au bureau. Design 100% personnalisable selon vos envies !"
+      ]
+    }
+  ],
+  "entreprise/flechettes": [
+    {
+      "titre": "Nos jeux de fléchettes",
+      "textes": [
+        "Offrez à votre entreprise ou à votre établissement un véritable atout de convivialité avec notre borne de fléchettes connectée. Conçue pour allier robustesse, modernité et praticité, elle garantit une expérience de jeu immersive et engageante pour tous les amateurs de fléchettes. Découvrez les bornes de fléchettes connectée avec écran tactile, son et lumières !",
+        "Dynamisez votre salle de pause et boostez la cohésion d’équipe !"
+      ]
+    },
+    {
+      "titre": "LE DIVERTISSEMENT AU SERVICE DU BIEN-être !",
+      "textes": [
+        "Installer un jeu de fléchettes dans un lieu d’attente ou de passage, c’est proposer une expérience ludique et inattendue, qui transforme un moment d’attente en instant de détente. Les clients ou visiteurs peuvent se divertir, se challenger, patienter sans stress… et pourquoi pas, tisser des liens dans la bonne humeur !"
+      ]
+    },
+    {
+      "titre": "Implication",
+      "textes": [
+        "Créer un espace de détente attractif pour vos collaborateurs est très important car un environnement convivial favorise la bonne humeur, limite les tensions et développe l’engagement des collaborateurs."
+      ]
+    },
+    {
+      "titre": "Clé en main",
+      "textes": [
+        "Grâce à sa conception pliable et ses roulettes, déplacez là sans effort. Comparé à d’autres animations, une borne de fléchettes connectées nécessite peu de maintenance, consomme peu d’espace et génère un fort retour sur engagement collaborateur."
+      ]
+    },
+    {
+      "titre": "Esprit d'équipe",
+      "textes": [
+        "L’aspect ludique et connecté stimule les échanges entre collègues, crée des liens et casse les barrières hiérarchiques. Avec le mode multijoueur, ce jeu demande la précision, concentration et stratégie, des qualités transférables au monde professionnel."
+      ]
+    },
+    {
+      "titre": "Dynamisme",
+      "textes": [
+        "Améliore la dynamique d’équipe grâce à la connectivité."
+      ]
+    },
+    {
+      "titre": "Implication",
+      "textes": [
+        "Grâce à ses fonctionnalités connectées, l’entreprise peut organiser des tournois, suivre les scores en temps réel, et dynamiser sa communication interne de manière originale."
+      ]
+    },
+    {
+      "titre": "QUELQUES CHIFFRES CLÉS",
+      "textes": [
+        "Selon une étude de Stanford, les équipes qui collaborent efficacement via des activités ludiques (comme les fléchettes), sont 50 % plus productives, mettant en évidence le lien direct entre le travail d’équipe et la performance."
+      ]
+    },
+    {
+      "titre": "Notre borne de fléchettes vous plaît ? Parlons-en !",
+      "textes": [
+        "En intégrant du divertissement dans votre quotidien professionnel tel que les fléchettes, vous boostez la dynamique des équipes et renforcer l’esprit d’équipe. Osez le rétrogaming en entreprise et démarquez vous! Vous pourrez alors attirer de nouveaux talents et aussi fidéliser vos pépites actuelles !"
+      ]
+    }
+  ],
+  "entreprise/baby-foot": [
+    {
+      "titre": "Nos Baby-Foot",
+      "textes": [
+        "Favorisez la cohésion, le bien-être et la motivation en installant un baby-foot dans vos espaces de travail. Véritable levier, cet équipement convivial encourage les échanges informels, réduit le stress et améliore l’attractivité de votre entreprise auprès des talents.",
+        "Dynamisez votre salle de pause et boostez la cohésion d’équipe !"
+      ]
+    },
+    {
+      "titre": "UN DIVERTISSEMENT MULTIGÉNÉRATIONNEL",
+      "textes": [
+        "Installer un babyfoot dans un lieu d’attente ou de passage, c’est proposer une expérience détendue et originale, qui transforme un temps passif en moment de plaisir. Les clients ou visiteurs peuvent décompresser, échanger, patienter sans frustration… voire même créer du lien !"
+      ]
+    },
+    {
+      "titre": "Travail d'équipe",
+      "textes": [
+        "Un babyfoot en salle de pause permet de renforcer les liens entre collègues, de favoriser les échanges informels et d’encourager le travail d’équipe."
+      ]
+    },
+    {
+      "titre": "Prévention",
+      "textes": [
+        "Des pauses régulières et ludiques permettent aux employés de relâcher la pression et d’améliorer leur concentration."
+      ]
+    },
+    {
+      "titre": "Convivialité",
+      "textes": [
+        "Les nouvelles générations recherchent un cadre de travail convivial. Un espace détente bien équipé contribue à valoriser l’image de l’entreprise."
+      ]
+    },
+    {
+      "titre": "Engagement",
+      "textes": [
+        "Créer un environnement de travail épanouissant et inclusif est un axe clé de la politique RSE des entreprises modernes. Offrir un espace détente équipé, c’est répondre aux attentes sociétales tout en améliorant la productivité."
+      ]
+    },
+    {
+      "titre": "Améliore la créativité de 10 à 15%",
+      "textes": [
+        "Des jeux comme le babyfoot permettent une stimulation mentale légère mais efficace : coordination œil main, prise de décision rapide, logique spatiale… utiles pour “déconnecter” puis revenir plus concentré. Grâce au divertissement au travail, la créativité des salariés est amélioré de 10 à 15 % selon une étude d’Inc.com sur les environnements de travail ludiques."
+      ]
+    },
+    {
+      "titre": "Un produit vous plaît ? Parlons-en !",
+      "textes": [
+        "Design premium, robustesse et confort de jeu incomparable : nos baby-foot sont conçus pour des environnements exigeants. Disponibles à l’achat ou en location longue durée, ils s’intègrent facilement à votre démarche RSE tout en dynamisant la vie au bureau."
+      ]
+    }
+  ],
+  "entreprise/billard": [
+    {
+      "titre": "Nos billards",
+      "textes": [
+        "Dans un monde professionnel en constante mutation, favoriser le bien-être des collaborateurs et l’image de l’entreprise est devenu un levier stratégique. L’installation d’un billard dans les espaces de pause ou les zones d’accueil répond à cette double ambition : motiver les équipes et marquer les esprits des visiteurs.",
+        "Dynamisez vos espaces et boostez la cohésion d’équipe !"
+      ]
+    },
+    {
+      "titre": "Améliorez la qualité de vie au travail",
+      "textes": [
+        "Installer un billard en entreprise, c’est investir dans le capital humain et relationnel. C’est offrir un cadre de travail plus inspirant, et affirmer son identité d’entreprise moderne, bienveillante et innovante."
+      ]
+    },
+    {
+      "titre": "MOTIVATION",
+      "textes": [
+        "Installer un billard en entreprise stimule la motivation des collaborateurs en offrant un moment de détente valorisant, tout en renforçant leur engagement grâce à un environnement de travail plus convivial et humain"
+      ]
+    },
+    {
+      "titre": "Harmonie",
+      "textes": [
+        "Un billard en entreprise favorise l’esprit d’équipe en créant des interactions informelles entre collègues, tout en cultivant une harmonie relationnelle propice à une ambiance de travail sereine et collaborative"
+      ]
+    },
+    {
+      "titre": "Avantage compétitif",
+      "textes": [
+        "Constitue un avantage compétitif en valorisant la marque employeur et l’expérience visiteur, tout en apportant une valeur ajoutée au quotidien des collaborateurs par un espace de détente différenciant"
+      ]
+    },
+    {
+      "titre": "Proactivité",
+      "textes": [
+        "Un billard en entreprise insuffle du dynamisme au cadre de travail et encourage la proactivité en stimulant les échanges spontanés, la créativité et l’initiative entre collaborateurs."
+      ]
+    },
+    {
+      "titre": "QUELQUES CHIFFRES CLÉS",
+      "textes": [
+        "Des pauses régulières incluant une partie de billard permettent aux employés de se ressourcer mentalement, ce qui favorise la concentration et la productivité au retour au poste. Globalement, des salariés heureux et motivés sont jusqu’à 12 % plus productifs que des collègues démotivés. (source : Amusement Leisure)"
+      ]
+    },
+    {
+      "titre": "L'un des meilleurs avantages en entreprise : 92/100",
+      "textes": [
+        "Selon une étude interne du site Perkbox, les employés plébiscitent les billards comme l’un des meilleurs avantages en entreprise (score 92/100), juste après les clubs extra-professionnels et devant le baby-foot, la cantine ou les heures flexibles.",
+        "Améliorez la satisfaction et la fidélité des collaborateurs"
+      ]
+    }
+  ],
+  "entreprise/flipper-numerique": [
+    {
+      "titre": "Flipper Numérique",
+      "textes": [
+        "Transformez vos espaces professionnels avec un flipper numérique ! Chez RESTART, nous aidons les entreprises à créer des espaces de bien-être uniques grâce à nos pincab. Véritable point d’attraction, le flipper invite à la détente, à l’échange et au lâcher-prise. Parce qu’un salarié épanoui est un salarié plus motivé, offrez à vos équipes une parenthèse ludique et immersive qui favorise la cohésion, la créativité et la productivité.",
+        "Dynamisez vos espaces et créez un véritable moment de convivialité autour du jeu !"
+      ]
+    },
+    {
+      "titre": "Plus qu’un jeu, un point d’attraction pour vos espaces.",
+      "textes": [
+        "Que ce soit dans une salle de pause, un espace d’accueil, un coworking, un hôtel ou un lieu de loisirs, le flipper numérique attire naturellement l’attention et incite à l’interaction. Une installation à la fois esthétique, ludique et stratégique, pensée pour faire rester, faire revenir et transformer vos espaces en véritables expériences de divertissement!"
+      ]
+    },
+    {
+      "titre": "IMPACT",
+      "textes": [
+        "Le flipper numérique capte immédiatement l’attention et devient un véritable point d’animation dans un espace professionnel, idéal pour marquer les esprits dès l’accueil."
+      ]
+    },
+    {
+      "titre": "BOOST RELATIONNEL",
+      "textes": [
+        "Accessible à tous, il favorise les échanges informels, les moments de partage et la cohésion entre collaborateurs, clients ou visiteurs."
+      ]
+    },
+    {
+      "titre": "DIFFERENCIATION",
+      "textes": [
+        "Grâce à ses écrans, animations et modes de jeu variés, le flipper numérique offre une expérience moderne, engageante et renouvelée à chaque partie."
+      ]
+    },
+    {
+      "titre": "Engagement",
+      "textes": [
+        "Il permet d’intégrer facilement une pause détente dans le quotidien des équipes, contribuant au bien-être, à la motivation et à la réduction du stress."
+      ]
+    },
+    {
+      "titre": "QUELQUES CHIFFRES CLÉS",
+      "textes": [
+        "Les environnements de travail intégrant des équipements de divertissement gamifiés peuvent augmenter l’engagement des employés jusqu’à 60 %. (source : mindletic)"
+      ]
+    },
+    {
+      "titre": "Boost du bien-être de + de 89%",
+      "textes": [
+        "Les espaces de travail gamifiés augmentent le bonheur des employés jusqu’à 89 % et 72 % déclarent être plus motivés à travailler. (étude psico-smart)",
+        "Transformez l'expérience et le temps passer dans votre entreprise !"
+      ]
+    },
+    {
+      "titre": "+ de 30 modèles : Avatar Goldorak Star Wars The Simpson Batman Deadpool Indiana Jones Pink Floyd",
+      "textes": [
+        "Opter pour un flipper numérique avec fabrication française, c’est aussi valoriser un savoir-faire local tout en bénéficiant d’un produit fiable, robuste et pensé pour un usage intensif en entreprise, en hôtellerie ou dans les lieux recevant du public.",
+        "La garantie 2 ans vient renforcer cette tranquillité d’esprit : elle assure un accompagnement dans le temps, une maintenance simplifiée et une réactivité optimale en cas de besoin. Un véritable gage de confiance pour les professionnels qui souhaitent investir dans une solution durable, sécurisée et clé en main, sans compromis sur la qualité ni sur l’expérience utilisateur."
+      ]
+    }
+  ],
+  "entreprise/fauteuil-massant": [
+    {
+      "titre": "Notre fauteuil massant",
+      "textes": [
+        "Offrez à vos collaborateurs un moment de bien-être avec le fauteuil massant M-SERENITY ! Dans un monde professionnel où le stress et la charge mentale sont omniprésents, le bien-être des salariés devient un enjeu majeur pour les entreprises. Intégrez le fauteuil massant M-SERENITY dans vos espaces de pause et proposez une véritable expérience de relaxation immersive à vos équipes !",
+        "Un investissement RSE pour une meilleure QVCT et un espace de pause optimisé pour une meilleure performance.",
+        "Dynamisez votre salle de pause et boostez la cohésion d’équipe !"
+      ]
+    },
+    {
+      "titre": "Le bien-être s’invite dans vos espaces pro",
+      "textes": [
+        "Installer un fauteuil massant dans un lieu d’attente ou de passage, c’est offrir une expérience apaisante et valorisante, qui transforme l’attente en véritable moment de bien-être. Les clients ou visiteurs peuvent se relaxer, relâcher les tensions, patienter sereinement… et repartir avec une impression positive et mémorable !"
+      ]
+    },
+    {
+      "titre": "Productivité",
+      "textes": [
+        "Offrir des moments de relaxation améliore la concentration et la productivité. Réduisez le stress et favorisez la détente, améliorant ainsi la concentration et la productivité."
+      ]
+    },
+    {
+      "titre": "Tranquillité d'esprit",
+      "textes": [
+        "Un fauteuil ergonomique, réglable via télécommande et doté de roulettes pour une mobilité optimale."
+      ]
+    },
+    {
+      "titre": "Marque employeur",
+      "textes": [
+        "Améliorez votre attractivité employeur car c’est un élément différenciant dans le recrutement. Boostez votre ambiance de travail : faîte en sorte qu’elle soit plus détendue."
+      ]
+    },
+    {
+      "titre": "Bien-être",
+      "textes": [
+        "Contribuez à une politique RH centrée sur le bien-être des équipes, un levier d’attractivité pour recruter et fidéliser les talents. Montrez votre engagement envers la santé mentale et physique de vos salariés. Offrez un espace de récupération, un atout majeur dans une démarche RSE."
+      ]
+    },
+    {
+      "titre": "QUELQUES CHIFFRES CLÉS",
+      "textes": [
+        "Des recherches menées par le Touch Research Institute de l’université de Miami et l’université de Californie ont mis en évidence les effets positifs des massages en entreprise dont + de 39% d’augmentation de la productivité."
+      ]
+    },
+    {
+      "titre": "Réduction de l'absentéisme avec 2,5 jours de congé maladie en moins",
+      "textes": [
+        "Réduction de l’absentéisme avec 2,5 jours de congé maladie en moins par employé ! Les séances massage au travail s’intègrent facilement à la vie d’une entreprise : c’est flexible ! (source : massage-concept.fr)."
+      ]
+    },
+    {
+      "titre": "Notre fauteuil vous plaît ? Parlons-en !",
+      "textes": [
+        "Confortable et reposant, notre fauteuil est l’allié de vos équipes au quotidien pour réduire le stress, recharger leurs batteries et booster leur productivité! Disponible à l’achat ou en location longue durée, il s’intègre facilement à votre démarche RSE / QCVT, tout en dynamisant la vie au bureau."
+      ]
+    }
+  ],
+  "entreprise/cocon-de-repos": [
+    {
+      "titre": "Nos cocons de repos by Nap&Up !",
+      "textes": [
+        "Transformez vos espaces de pause avec les cocons de repos Nap&Up ! Dans un environnement professionnel en constante évolution, le bien-être des collaborateurs est devenu un enjeu central. Grâce à notre partenariat avec Nap&Up, nous vous proposons des solutions innovantes pour aménager vos salles de pause et promouvoir une Qualité de Vie et des Conditions de Travail (QVCT) optimale, tout en renforçant votre engagement en matière de Responsabilité Sociétale des Entreprises (RSE).",
+        "Dynamisez votre salle de pause et boostez la cohésion d’équipe !"
+      ]
+    },
+    {
+      "titre": "Une bulle de décompression et de bien-être",
+      "textes": [
+        "Offrez à vos collaborateurs une vraie parenthèse de repos avec les cocons Nap&Up ! Grâce à cette solution innovante, transformez vos espaces de pause en lieux de détente propices au bien-être !"
+      ]
+    },
+    {
+      "titre": "Réel boost",
+      "textes": [
+        "Une micro sieste de 20 minutes peut augmenter la performance et la créativité de 35 %, tout en réduisant le stress et en régulant l’humeur."
+      ]
+    },
+    {
+      "titre": "Engagement salarial",
+      "textes": [
+        "En agissant directement sur la récupération physique et psychologique, la sieste contribue à réduire les arrêts maladie et les erreurs dues à la fatigue. Elle permet aussi de lutter contre l’hyperconnexion et la surcharge cognitive."
+      ]
+    },
+    {
+      "titre": "Attractivité",
+      "textes": [
+        "Offrir des espaces de repos innovants contribue à attirer et retenir les talents, en créant un environnement de travail soucieux du bien-être de chacun."
+      ]
+    },
+    {
+      "titre": "Marque employeur",
+      "textes": [
+        "En proposant des solutions de bien-être, vous démontrez votre engagement envers la santé et le bien-être de vos employés, renforçant ainsi votre image d’entreprise responsable."
+      ]
+    },
+    {
+      "titre": "QUELQUES CHIFFRES CLÉS",
+      "textes": [
+        "Une sieste de 10 à 20 minutes améliore la concentration, la mémoire et la vigilance de plus de 30% selon la NASA. Les collaborateurs reviennent de pause plus efficaces, avec un regain d’énergie et une meilleure capacité de décision."
+      ]
+    },
+    {
+      "titre": "Politique QVT performante = +37% de satisfaction client",
+      "textes": [
+        "Les entreprises avec une politique QVT performante dénoncent une baisse de 25 % d’absentéisme, une hausse de 12% de productivité et une hausse de 37% de satisfaction client. L’investissement dans le bien-être au travail est largement compensé par les gains de productivité et de fidélisation (source : étude Harvard Business Review).",
+        "Flexible et léger, il se déplace facilement pour des espaces modulables",
+        "La canopée permet une réelle intimité et un lâcher prise en toute sérénité. Plusieurs coloris sont disponibles, demandez-nous !",
+        "Cocon à micro-sieste = bulle de décompression pour regagner de l’énergie !"
+      ]
+    },
+    {
+      "titre": "Un cocon de repos vous plaît ? Parlons-en !",
+      "textes": [
+        "En intégrant cette solution innovante, vous améliorez la performance, réduisez le stress et renforcez votre engagement en matière de QVCT et de RSE. Avec plus de 600 clients, Nap&Up a déjà transformé de nombreux espaces de travail en véritables havres de paix, contribuant ainsi au bien-être et à la performance des collaborateurs."
+      ]
+    }
+  ],
+  "bar-commerce/borne-arcade": [
+    {
+      "titre": "Votre borne d'arcade personnalisée",
+      "textes": [
+        "Faites de votre établissement un véritable lieu d’expérience avec une borne d’arcade ! Chez RESTART, nous accompagnons les professionnels dans la création d’espaces plus attractifs et conviviaux. Bars, commerces, complexes sportifs ou centres de loisirs : nos bornes d’arcade apportent une animation différenciante qui prolonge le temps passé sur place, fidélise vos clients et valorise votre établissement.",
+        "Attirez, animez et fidélisez votre clientèle grâce au divertissement !"
+      ]
+    },
+    {
+      "titre": "Transformez vos espaces !",
+      "textes": [
+        "Installer une borne d’arcade dans un bar, un commerce ou un lieu de loisirs, c’est transformer chaque visite en véritable expérience. Attirez l’attention, animez vos espaces et offrez à vos clients un moment de divertissement original. Une solution idéale pour prolonger le temps passé sur place, créer du lien et renforcer l’attractivité de votre établissement."
+      ]
+    },
+    {
+      "titre": "EXPERIENCE CLIENT",
+      "textes": [
+        "Transformez chaque visite en un moment unique et mémorable"
+      ]
+    },
+    {
+      "titre": "ANIMATION",
+      "textes": [
+        "Faites vivre votre établissement avec des moments de partage et de convivialité"
+      ]
+    },
+    {
+      "titre": "attractivite",
+      "textes": [
+        "Un atout pour vous démarquer et attirer de nouveaux clients"
+      ]
+    },
+    {
+      "titre": "DIFFÉRENCIATION",
+      "textes": [
+        "Démarquez-vous avec une expérience originale qui marque les esprits"
+      ]
+    },
+    {
+      "titre": "FIDÉLISATION",
+      "textes": [
+        "Créez du lien, donnez envie de rester… et surtout de revenir"
+      ]
+    },
+    {
+      "titre": "TEMPS PASSÉ",
+      "textes": [
+        "Encouragez vos clients à profiter davantage de votre établissement"
+      ]
+    },
+    {
+      "titre": "REVENUS COMPLÉMENTAIRES",
+      "textes": [
+        "Transformez vos espaces en nouvelles opportunités de rentabilité"
+      ]
+    },
+    {
+      "titre": "CHIFFRE D'AFFAIRES",
+      "textes": [
+        "Prolongez le temps passé sur place et développez de nouvelles opportunités"
+      ]
+    },
+    {
+      "titre": "QUELQUES CHIFFRES CLÉS",
+      "textes": [
+        "Dans un bar, un commerce ou un lieu de loisirs, chaque détail compte : proposer une expérience originale et interactive permet de créer un souvenir positif, de renforcer l’attachement à votre établissement et de donner envie aux clients de revenir.",
+        "Créer un espace de divertissement avec une borne d’arcade, un baby-foot ou une borne de fléchettes permet d’apporter une vraie valeur ajoutée à votre établissement, tout en vous différenciant de la concurrence."
+      ]
+    },
+    {
+      "titre": "100% personnalisable : votre logo vos couleurs votre univers votre ADN",
+      "textes": [
+        "Des designs « classiques » ou des univers emblématiques comme Super Mario, Marvel, Marshall, Space Invaders ou Sonic sont également disponibles. Vous avez une envie particulière ou un univers spécifique en tête ? Notre équipe vous accompagne dans la création d’un design sur-mesure : chez RESTART, la seule limite est votre imagination."
+      ]
+    },
+    {
+      "titre": "Un produit vous plaît ? Parlons-en !",
+      "textes": [
+        "Attirez, animez et fidélisez vos clients grâce à une expérience de divertissement unique ! Nos bornes d’arcade sont disponibles à l’achat ou en location longue durée, et deviennent un véritable atout pour créer du lien, prolonger le temps passé sur place et valoriser votre établissement. Design 100% personnalisable pour une intégration parfaite à votre identité !"
+      ]
+    }
+  ],
+  "bar-commerce/flechettes": [
+    {
+      "titre": "Nos jeux de fléchettes",
+      "textes": [
+        "Transformez votre établissement en véritable lieu de rencontre avec notre borne de fléchettes connectée. Idéale pour les bars, commerces et espaces de loisirs, elle apporte une animation conviviale et engageante qui favorise les échanges, prolonge le temps passé sur place et renforce l’expérience client. Découvrez une nouvelle génération de fléchettes avec écran tactile, son et lumières !",
+        "Dynamisez votre établissement et créez des expériences qui fidélisent votre clientèle !"
+      ]
+    },
+    {
+      "titre": "DYNAMISEZ L'AMBIANCE DE VOTRE ENSEIGNE !",
+      "textes": [
+        "Installer une borne de fléchettes interactive, c’est transformer chaque visite en moment de partage et de compétition. Tournois, challenges entre amis ou simples parties pour le plaisir : offrez une animation originale qui encourage les échanges, prolonge le temps passé sur place et donne envie à vos clients de revenir."
+      ]
+    },
+    {
+      "titre": "animation",
+      "textes": [
+        "Créez une ambiance conviviale et faites vivre votre établissement au quotidien"
+      ]
+    },
+    {
+      "titre": "CHALLENGE",
+      "textes": [
+        "Proposez des défis, tournois et compétitions qui rassemblent vos clients"
+      ]
+    },
+    {
+      "titre": "TEMPS PASSÉ",
+      "textes": [
+        "Encouragez vos visiteurs à rester plus longtemps et profiter pleinement de votre lieu"
+      ]
+    },
+    {
+      "titre": "RENTABILITÉ",
+      "textes": [
+        "Valorisez vos espaces avec une animation attractive et génératrice d’opportunités"
+      ]
+    },
+    {
+      "titre": "DIFFÉRENCIATION",
+      "textes": [
+        "Offrez une expérience originale qui vous distingue de la concurrence"
+      ]
+    },
+    {
+      "titre": "EXPÉRIENCE CLIENT",
+      "textes": [
+        "Transformez une simple visite en un moment interactif et mémorable"
+      ]
+    },
+    {
+      "titre": "FIDÉLISATION",
+      "textes": [
+        "Créez des rendez-vous réguliers qui donnent envie à vos clients de revenir"
+      ]
+    },
+    {
+      "titre": "COMMUNAUTÉ",
+      "textes": [
+        "Rassemblez vos clients autour d’une activité conviviale et accessible à tous"
+      ]
+    },
+    {
+      "titre": "QUELQUES CHIFFRES CLÉS",
+      "textes": [
+        "Une borne de fléchettes interactive transforme votre établissement en véritable lieu de vie : elle crée de l’animation, encourage les échanges et offre à vos clients une expérience qu’ils auront envie de renouveler.",
+        "Tournois, défis entre amis, challenges entre clients… La fléchette crée naturellement du lien et favorise les moments de convivialité qui donnent envie de revenir."
+      ]
+    },
+    {
+      "titre": "+ 30% de temps passé",
+      "textes": [
+        "Plus vos clients restent, plus les opportunités augmentent : consommation supplémentaire, échanges, nouvelles parties… Une borne de fléchettes devient un véritable levier d’attractivité et de fidélisation."
+      ]
+    },
+    {
+      "titre": "Notre borne de fléchettes vous plaît ? Parlons-en !",
+      "textes": [
+        "Faites de votre établissement un lieu où l’on joue, où l’on partage et où l’on revient ! Avec une borne de fléchettes connectée, proposez une expérience ludique et fédératrice qui anime votre espace, prolonge le temps passé sur place et renforce l’attachement de vos clients à votre établissement. Un véritable atout pour vous différencier et fidéliser votre clientèle !"
+      ]
+    }
+  ],
+  "bar-commerce/baby-foot": [
+    {
+      "titre": "Nos Baby-Foot",
+      "textes": [
+        "Faites de votre établissement un véritable lieu de vie avec un baby-foot. Plus qu’un simple jeu, il devient un point de rencontre qui favorise les échanges, prolonge les moments passés sur place et apporte une valeur ajoutée à l’expérience de vos clients. Une animation intemporelle qui attire, rassemble et fidélise votre clientèle.",
+        "Animez vos espaces et offrez une expérience qui marque les esprits !"
+      ]
+    },
+    {
+      "titre": "UN DIVERTISSEMENT MULTIGÉNÉRATIONNEL",
+      "textes": [
+        "Installer un baby-foot dans un bar, un commerce ou un lieu de loisirs, c’est créer une animation simple, authentique et fédératrice. Entre parties improvisées, défis entre amis ou moments en famille, il apporte de la vie à votre établissement, prolonge les instants passés sur place et crée des souvenirs qui donnent envie de revenir."
+      ]
+    },
+    {
+      "titre": "CONVIVIALITÉ",
+      "textes": [
+        "Créez un espace d’échange et de partage qui rassemble toutes les générations"
+      ]
+    },
+    {
+      "titre": "LIEN SOCIAL",
+      "textes": [
+        "Favorisez les rencontres et créez naturellement des moments d’échange entre vos clients"
+      ]
+    },
+    {
+      "titre": "ANIMATION",
+      "textes": [
+        "Encouragez les défis et les parties improvisées qui dynamisent votre établissement"
+      ]
+    },
+    {
+      "titre": "VALEUR AJOUTEE",
+      "textes": [
+        "Donnez vie à votre établissement avec une activité simple et fédératrice"
+      ]
+    },
+    {
+      "titre": "EXPÉRIENCE CLIENT",
+      "textes": [
+        "Offrez un moment de divertissement mémorable qui donne envie de revenir"
+      ]
+    },
+    {
+      "titre": "ACCESSIBILITÉ",
+      "textes": [
+        "Une activité universelle, intuitive et appréciée par toutes les générations"
+      ]
+    },
+    {
+      "titre": "ATTRACTIVITE",
+      "textes": [
+        "Ajoutez une valeur supplémentaire à votre lieu et donnez envie de le découvrir"
+      ]
+    },
+    {
+      "titre": "TEMPS PARTAGÉ",
+      "textes": [
+        "Prolongez les moments passés sur place grâce à une activité accessible à tous"
+      ]
+    },
+    {
+      "titre": "QUELQUES CHIFFRES CLÉS",
+      "textes": [
+        "Le baby-foot transforme votre établissement en véritable lieu de rencontre. Entre amis, en famille ou entre clients, il crée des moments spontanés, favorise les échanges et apporte une expérience conviviale qui reste en mémoire.",
+        "Ajouter un baby-foot, c’est offrir plus qu’un équipement : c’est créer une raison supplémentaire de rester, de revenir et de partager un moment unique dans votre établissement."
+      ]
+    },
+    {
+      "titre": "+ 40% d'interactions sociales",
+      "textes": [
+        "Simple, rapide et intergénérationnel, le baby-foot rassemble naturellement les joueurs autour d’un moment de compétition et de bonne humeur. Une solution idéale pour créer de la vie dans vos espaces."
+      ]
+    },
+    {
+      "titre": "Un produit vous plaît ? Parlons-en !",
+      "textes": [
+        "Design premium, fabrication robuste et expérience de jeu authentique : nos baby-foot sont pensés pour les établissements qui veulent faire la différence. Disponibles à l’achat ou en location longue durée, ils deviennent un véritable atout pour animer vos espaces, fidéliser votre clientèle et créer des moments de convivialité inoubliables."
+      ]
+    }
+  ],
+  "bar-commerce/billard": [
+    {
+      "titre": "Nos billards",
+      "textes": [
+        "Apportez une nouvelle dimension à votre établissement avec un billard. Véritable point de rassemblement, il transforme vos espaces en lieux de vie où vos clients jouent, échangent et prolongent leur expérience. Que ce soit dans un bar, un camping, un domaine ou un complexe de loisirs, le billard devient un atout différenciant qui renforce l’attractivité de votre établissement.",
+        "Créez une expérience premium qui rassemble, fidélise et donne envie de revenir !"
+      ]
+    },
+    {
+      "titre": "Créez un lieu où l’on aime se retrouver !",
+      "textes": [
+        "Installer un billard dans votre établissement, c’est créer bien plus qu’un espace de jeu : c’est donner une véritable âme à votre lieu. Il invite vos clients à ralentir, échanger et profiter d’un moment privilégié dans une ambiance conviviale. Un atout élégant et différenciant qui enrichit l’expérience client et marque les esprits."
+      ]
+    },
+    {
+      "titre": "CONVIVIALITÉ",
+      "textes": [
+        "Créez un espace de rencontre où vos clients aiment se retrouver"
+      ]
+    },
+    {
+      "titre": "AMBIANCE",
+      "textes": [
+        "Transformez votre espace en un lieu chaleureux où l’on aime passer du temps"
+      ]
+    },
+    {
+      "titre": "EXPÉRIENCE boostée",
+      "textes": [
+        "Valorisez votre établissement avec une activité élégante et intemporelle"
+      ]
+    },
+    {
+      "titre": "PARTAGE",
+      "textes": [
+        "Rassemblez vos clients autour d’une activité accessible et intergénérationnelle"
+      ]
+    },
+    {
+      "titre": "FIDÉLISATION",
+      "textes": [
+        "Offrez une expérience qui marque les esprits et donne envie de revenir"
+      ]
+    },
+    {
+      "titre": "TEMPS PASSÉ",
+      "textes": [
+        "Invitez vos clients à prolonger leur expérience dans votre établissement"
+      ]
+    },
+    {
+      "titre": "DIFFÉRENCIATION",
+      "textes": [
+        "Affirmez votre identité avec un équipement qui distingue votre établissement"
+      ]
+    },
+    {
+      "titre": "ATTRACTIVITÉ",
+      "textes": [
+        "Ajoutez une valeur unique qui attire et fidélise votre clientèle"
+      ]
+    },
+    {
+      "titre": "QUELQUES CHIFFRES CLÉS",
+      "textes": [
+        "Le billard apporte une véritable identité à votre établissement : il crée une ambiance chaleureuse, encourage les moments partagés et transforme une simple visite en une expérience conviviale que vos clients auront envie de renouveler.",
+        "Grâce à son côté intemporel et intergénérationnel, le billard crée des souvenirs et des moments de partage qui renforcent l’attachement de vos clients à votre lieu."
+      ]
+    },
+    {
+      "titre": "+ 30% de temps passé",
+      "textes": [
+        "Une partie de billard invite naturellement vos clients à rester, échanger et profiter davantage de votre établissement. Plus qu’un jeu, il devient un véritable levier pour prolonger les moments sur place et favoriser la consommation."
+      ]
+    },
+    {
+      "titre": "Un produit vous plaît ? Parlons-en !",
+      "textes": [
+        "Attirez vos clients, prolongez les moments passés sur place et créez un espace où l’on aime se retrouver ! Nos billards sont disponibles à l’achat ou en location longue durée, et deviennent un véritable élément différenciant pour animer votre établissement, renforcer son attractivité et offrir une expérience mémorable. Design personnalisable pour une intégration parfaite à votre univers !"
+      ]
+    }
+  ],
+  "bar-commerce/flipper-numerique": [
+    {
+      "titre": "Flipper Numérique",
+      "textes": [
+        "Faites de votre établissement un véritable lieu d’expérience avec un flipper numérique ! Plus qu’un simple jeu, le pincab devient une animation originale qui attire les regards, encourage les interactions et enrichit l’expérience de vos visiteurs. Entre sensations rétro, design moderne et centaines de tables de jeu disponibles, offrez à vos clients une activité immersive qui valorise votre établissement et vous démarque.",
+        "Animez vos espaces et transformez chaque partie en un souvenir mémorable !"
+      ]
+    },
+    {
+      "titre": "Plus qu’un jeu, un point d’attraction pour vos espaces.",
+      "textes": [
+        "Que ce soit dans un bar, un commerce ou un lieu de loisirs, le flipper numérique transforme votre espace en véritable terrain d’expérience. Entre nostalgie du flipper traditionnel et innovation digitale, il captive toutes les générations et crée instantanément un point de rassemblement. Plus qu’un jeu, c’est une animation unique qui valorise votre établissement, marque les esprits et enrichit l’expérience de vos visiteurs."
+      ]
+    },
+    {
+      "titre": "Attraction",
+      "textes": [
+        "Captez l’attention de vos clients avec une expérience unique et immersive"
+      ]
+    },
+    {
+      "titre": "EFFET WAOUH",
+      "textes": [
+        "Surprenez vos clients avec une animation qui marque les esprits dès le premier regard"
+      ]
+    },
+    {
+      "titre": "FIDÉLISATION",
+      "textes": [
+        "Créez une expérience qui donne envie de rejouer… et surtout de revenir"
+      ]
+    },
+    {
+      "titre": "IMMERSION",
+      "textes": [
+        "Plongez vos visiteurs dans un univers de jeu nouvelle génération"
+      ]
+    },
+    {
+      "titre": "DIFFÉRENCIATION",
+      "textes": [
+        "Apportez une touche originale qui valorise votre établissement"
+      ]
+    },
+    {
+      "titre": "INNOVATION",
+      "textes": [
+        "Alliez le charme du flipper traditionnel aux possibilités du digital"
+      ]
+    },
+    {
+      "titre": "CONVIVIALITÉ",
+      "textes": [
+        "Créez des moments de partage autour d’une activité accessible à tous"
+      ]
+    },
+    {
+      "titre": "UN VRAI +",
+      "textes": [
+        "Proposez des heures de jeu et de découverte adaptées à toutes les générations"
+      ]
+    },
+    {
+      "titre": "QUELQUES CHIFFRES CLÉS",
+      "textes": [
+        "Entre nostalgie du flipper traditionnel et innovation numérique, le pincab transforme une simple visite en un moment immersif et mémorable. Une animation qui valorise votre établissement et renforce l’expérience vécue par vos clients.",
+        "Avec son design lumineux, son gameplay interactif et ses nombreux univers de jeu, le flipper numérique devient un véritable point d’attraction qui capte l’attention, crée des échanges et différencie votre établissement."
+      ]
+    },
+    {
+      "titre": "+ 37% de CA supplémentaire",
+      "textes": [
+        "En encourageant vos clients à rester plus longtemps, jouer et partager un moment convivial, le flipper numérique devient un levier d’attractivité, de fidélisation et de développement pour votre activité."
+      ]
+    },
+    {
+      "titre": "+ de 30 modèles : Avatar Goldorak Star Wars The Simpson Batman Deadpool Indiana Jones Pink Floyd",
+      "textes": [
+        "Opter pour un flipper numérique avec fabrication française, c’est aussi valoriser un savoir-faire local tout en bénéficiant d’un produit fiable, robuste et pensé pour un usage intensif en entreprise, en hôtellerie ou dans les lieux recevant du public.",
+        "La garantie 2 ans vient renforcer cette tranquillité d’esprit : elle assure un accompagnement dans le temps, une maintenance simplifiée et une réactivité optimale en cas de besoin. Un véritable gage de confiance pour les professionnels qui souhaitent investir dans une solution durable, sécurisée et clé en main, sans compromis sur la qualité ni sur l’expérience utilisateur."
+      ]
+    },
+    {
+      "titre": "Un produit vous plaît ? Parlons-en !",
+      "textes": [
+        "Attirez les regards, animez vos espaces et offrez à vos clients une expérience qui marque les esprits ! Nos flippers numériques sont disponibles à l’achat ou en location longue durée, et deviennent un véritable atout pour enrichir l’expérience client, prolonger le temps passé sur place et renforcer l’attractivité de votre établissement. Design 100% personnalisable pour une intégration parfaite à votre identité !"
+      ]
+    }
+  ],
+  "particulier/borne-arcade": [
+    {
+      "titre": "40 % des foyers français cherchent à aménager un coin \"loisir/détente\" depuis 2020",
+      "textes": [
+        "Et si vous faisiez entrer un concentré de fun et de nostalgie chez vous? La borne d’arcade, c’est bien plus qu’un jeu : c’est un retour à l’essentiel, aux souvenirs d’enfance et aux sensations d’antan. Seul, en duo ou en famille, elle crée des moments uniques, entre rires, défis et complicité.",
+        "Iconique, rétro et stylée, elle apporte une vraie touche de caractère à votre intérieur."
+      ]
+    },
+    {
+      "titre": "Intéressé ? À vous de jouer !",
+      "textes": [
+        "La borne d’arcade s’invite chez vous pour faire revivre la magie du jeu rétro, loin des consoles modernes et des écrans ultra-connectés. Seul, en duo ou en famille, elle rassemble toutes les générations autour d’un moment simple, fun et chargé de nostalgie."
+      ]
+    }
+  ],
+  "particulier/flechettes": [
+    {
+      "titre": "Jouer aux fléchettes stimule la concentration et la gestion du stress.",
+      "textes": [
+        "Et si vous faisiez entrer du fun et du challenge chez vous ? Le jeu de fléchettes, c’est bien plus qu’un simple passe-temps : c’est un moment de précision, de rires et de défis partagés. En solo, en famille ou entre amis, il transforme n’importe quel mur en terrain de jeu et crée des instants complices, sans écran, mais avec beaucoup d’ambiance. Iconique, rétro et stylée, elle apporte une vraie touche de caractère à votre intérieur."
+      ]
+    },
+    {
+      "titre": "Intéressé ? À vous de jouer !",
+      "textes": [
+        "Le jeu de fléchettes s’invite chez vous pour réveiller l’esprit de compétition et la joie du défi, loin des écrans et des distractions numériques. Seul, en famille ou entre amis, il réunit toutes les générations autour d’un jeu simple, précis et terriblement addictif."
+      ]
+    }
+  ],
+  "particulier/baby-foot": [
+    {
+      "titre": "Pour 83 % des Français, le vrai bonheur, c’est les moments partagés.",
+      "textes": [
+        "Et si vous faisiez entrer ce bonheur chez vous ? Le baby-foot, c’est bien plus qu’un jeu : c’est un prétexte à rire, à se défier, à créer des souvenirs en famille ou entre amis. Intemporel, design et convivial, il transforme n’importe quelle pièce en espace de vie et de lien."
+      ]
+    },
+    {
+      "titre": "Intéressé ? À vous de marquer !",
+      "textes": [
+        "Le baby-foot s’installe chez vous pour réunir toutes les générations, loin des écrans, autour d’un moment simple et authentique. Que ce soit pour des soirées entre amis ou des après-midis en famille, il devient vite l’élément central de votre maison."
+      ]
+    }
+  ],
+  "particulier/fauteuil-massant": [
+    {
+      "titre": "15 minutes de massage par jour suffisent à soulager le stress, les tensions et à améliorer le sommeil.",
+      "textes": [
+        "Et si vous faisiez entrer le bien-être chez vous ? Le fauteuil massant, c’est bien plus qu’un moment de détente : c’est une pause rien qu’à vous, un instant de lâcher-prise après une journée intense. Il soulage, apaise et recentre — seul(e) ou en famille, il devient vite un rituel indispensable du quotidien. Iconique, rétro et stylée, elle apporte une vraie touche de caractère à votre intérieur."
+      ]
+    },
+    {
+      "titre": "Envie de lâcher prise ? Installez-vous.",
+      "textes": [
+        "Le fauteuil massant s’installe chez vous pour vous offrir un véritable moment de bien-être, loin du stress, du bruit et du quotidien survolté. Seul(e) ou à partager, il apaise le corps, détend l’esprit et transforme votre intérieur en havre de détente."
+      ]
+    }
+  ]
+}

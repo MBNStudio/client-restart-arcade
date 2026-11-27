@@ -10,7 +10,7 @@ import { asset, site } from '@/lib/site'
 export const metadata: Metadata = {
   title: "Qui sommes-nous : l'aménagement d'espaces conviviaux depuis l'Isère",
   description:
-    "RESTART conçoit, personnalise et installe des équipements de jeu et de détente pour les entreprises, les bars et les particuliers. Atelier à Villette-d'Anthon (38280), près de Lyon.",
+    "RESTART conçoit et personnalise des équipements de jeu et de détente pour les entreprises, les bars et les particuliers. Atelier à Villette-d'Anthon (38280), près de Lyon.",
   alternates: { canonical: '/qui-sommes-nous/' },
 }
 
@@ -21,15 +21,15 @@ const values = [
   },
   {
     title: 'Personnalisé veut dire personnalisé',
-    text: "Covering, couleurs de boutons, T-Molding, logo : vous validez un visuel avant que quoi que ce soit ne parte en fabrication. Aucune surprise à la livraison.",
+    text: "Covering, couleurs de boutons, T-Molding, logo : vous validez un visuel avant que quoi que ce soit ne parte en fabrication. Aucune surprise à la réception.",
   },
   {
-    title: 'Livré monté, point',
-    text: "Nos équipements arrivent assemblés et testés. Vous n'ouvrez pas de carton, vous ne lisez pas de notice : vous jouez.",
+    title: 'Testé avant expédition',
+    text: "Nos équipements sont testés et soigneusement emballés dans notre atelier avant chaque expédition.",
   },
   {
     title: 'Joignables après la vente',
-    text: 'Garantie de 2 à 3 ans selon les modèles, et une ligne directe. En location, la maintenance est comprise, y compris le retapissage des billards.',
+    text: 'Garantie de 2 à 3 ans selon les modèles, et un service après-vente joignable par téléphone et par e-mail.',
   },
 ]
 
@@ -71,7 +71,7 @@ export default function QuiSommesNousPage() {
               "Spécialiste français de l'aménagement d'espaces de convivialité",
               `Atelier et showroom à ${site.address.city} (${site.address.postalCode}), près de Lyon`,
               'Vente et location, personnalisation à votre image',
-              'Livraison et installation partout en France, garantie jusqu’à 3 ans',
+              'Livraison partout en France, garantie jusqu’à 3 ans',
             ]}
           />
         }
@@ -84,7 +84,7 @@ export default function QuiSommesNousPage() {
             ['7', "familles d'équipements"],
             ['12', 'modèles au catalogue'],
             ['3 ans', 'de garantie maximum'],
-            ['48 h', 'pour un devis'],
+            ['5/5', 'sur les avis Google'],
           ].map(([v, l]) => (
             <div key={l} className="card-paper rounded-2xl p-6">
               <p className="font-serif text-4xl font-medium tracking-tight text-heading">{v}</p>
@@ -169,7 +169,7 @@ export default function QuiSommesNousPage() {
 
       <FinalCta
         title="Un projet d'aménagement ? Parlons-en."
-        subtitle="Décrivez-nous votre espace : nous revenons vers vous sous 48 heures avec une proposition chiffrée."
+        subtitle="Décrivez-nous votre espace : nous revenons vers vous avec une proposition chiffrée."
       />
     </>
   )

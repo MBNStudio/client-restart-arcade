@@ -12,6 +12,7 @@ import { site } from '@/lib/site'
 import { DesignCarousel, type DesignSlide } from './DesignCarousel'
 import { FaqJsonLd, GammeMosaic, SectionHead, delai, priceFrom, situation, situationAlt } from './sections'
 import { FaqShowroom } from './FaqShowroom'
+import { Presentation } from './Contenus'
 import { asset } from '@/lib/site'
 
 /*
@@ -64,8 +65,8 @@ export function catalogueMetadata(id: Audience): Metadata {
       : `Équipements de jeu pour ${forWho[id]} : bornes, fléchettes, baby-foot, billards`
   const description =
     id === 'particulier'
-      ? "Tous les jeux RESTART pour la maison, avec leur prix : bornes d'arcade dès 899 €, baby-foot, fléchettes électroniques et fauteuils massants. Livrés montés, paiement en 2x, 3x ou 4x."
-      : `Le catalogue RESTART pour les ${forWho[id]} : ${e.univers.map((s) => findUnivers(s)!.navLabel.toLowerCase()).join(', ')}. Achat ou location longue durée, personnalisation, livraison et installation partout en France.`
+      ? "Tous les jeux RESTART pour la maison, avec leur prix : bornes d'arcade dès 899 €, baby-foot, fléchettes électroniques et fauteuils massants. Paiement en 2x, 3x ou 4x."
+      : `Le catalogue RESTART pour les ${forWho[id]} : ${e.univers.map((s) => findUnivers(s)!.navLabel.toLowerCase()).join(', ')}. Achat ou location longue durée, personnalisation et livraison partout en France.`
   return { title, description, alternates: { canonical: produitsHref(id) } }
 }
 
@@ -86,8 +87,8 @@ export function modeleMetadata(id: Audience, univers: string, modele: string): M
   const title = `${m.name} pour ${forWho[id]} : ${m.headline.toLowerCase()}`
   const description =
     id === 'particulier'
-      ? `${m.name}, ${m.headline.toLowerCase()} : ${price}, livré monté chez vous, paiement en 2x, 3x ou 4x. ${m.specs.slice(0, 2).join(', ')}.`
-      : `${m.name} pour ${forWho[id]} : ${m.headline.toLowerCase()}. Achat (${price}) ou location longue durée, personnalisation, installation partout en France.`
+      ? `${m.name}, ${m.headline.toLowerCase()} : ${price}, paiement en 2x, 3x ou 4x. ${m.specs.slice(0, 2).join(', ')}.`
+      : `${m.name} pour ${forWho[id]} : ${m.headline.toLowerCase()}. Achat (${price}) ou location longue durée, personnalisation, livraison partout en France.`
   return { title, description, alternates: { canonical: produitsHref(id, univers, modele) } }
 }
 
@@ -192,14 +193,14 @@ function Reassurance({ id }: { id: Audience }) {
   const items =
     id === 'particulier'
       ? [
-          { icon: Truck, title: 'Livré monté', text: 'Partout en France, Corse comprise' },
+          { icon: Truck, title: 'Livré chez vous', text: 'En supplément, partout en France' },
           { icon: CreditCard, title: 'En 2x, 3x ou 4x', text: 'Paiement en plusieurs fois' },
-          { icon: Check, title: "Jusqu'à 3 ans", text: 'De garantie, une ligne directe' },
+          { icon: Check, title: "Jusqu'à 3 ans", text: 'De garantie selon le modèle' },
         ]
       : [
-          { icon: Truck, title: 'Installé chez vous', text: 'Partout en France, en 2 à 3 semaines' },
-          { icon: CreditCard, title: 'Achat ou location', text: 'Maintenance incluse en location' },
-          { icon: Check, title: 'Devis sous 48 h', text: 'Audit de votre espace offert' },
+          { icon: Truck, title: 'Livraison', text: 'Partout en France' },
+          { icon: CreditCard, title: 'Achat ou location', text: 'Location longue durée' },
+          { icon: Check, title: 'Devis gratuit', text: 'Audit de votre espace offert' },
         ]
   return (
     <ul className="mt-8 grid gap-4 border-t border-v-line pt-6 sm:grid-cols-3">
@@ -318,8 +319,8 @@ export function CatalogueView({ id }: { id: Audience }) {
         }
         text={
           shop
-            ? 'Chaque modèle affiche son prix, livraison et installation comprises. Commandez en ligne et réglez en 2, 3 ou 4 fois.'
-            : "Achat ou location longue durée, personnalisés à votre image, livrés et installés partout en France. Choisissez une gamme, on s'occupe du reste."
+            ? 'Chaque modèle affiche son prix. Commandez en ligne et réglez en 2, 3 ou 4 fois.'
+            : "Achat ou location longue durée, personnalisés à votre image et livrés partout en France. Choisissez une gamme, on s'occupe du reste."
         }
         image={e.video.poster}
         alt={e.video.alt}
@@ -410,7 +411,7 @@ export function UniversView({ id, slug }: { id: Audience; slug: string }) {
                   Choisissez votre <em>{u.name.toLowerCase()}</em>
                 </>
               }
-              text={shop ? 'Prix TTC, livraison et installation comprises.' : 'Prix d’achat indicatifs. La location longue durée se chiffre sur devis.'}
+              text={shop ? 'Prix TTC, livraison en supplément.' : 'Prix d’achat indicatifs. La location longue durée se chiffre sur devis.'}
             />
             <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {models.map((m, i) => (
@@ -438,10 +439,12 @@ export function UniversView({ id, slug }: { id: Audience; slug: string }) {
         </div>
       </section>
 
+      <Presentation id={id} univers={slug} />
+
       <ProductFaq
         id={id}
         u={u}
-        text="Une autre question ? Décrivez votre projet en deux minutes : réponse sous 48 heures."
+        text="Une autre question ? Décrivez votre projet en deux minutes."
         cta={shop && models.length ? { href: '#modeles', label: 'Choisir mon modèle' } : { href: `/contact/?produit=${encodeURIComponent(u.name)}`, label: 'Demander un devis gratuit' }}
       />
 
@@ -511,7 +514,7 @@ export function ModeleView({ id, univers, modele }: { id: Audience; univers: str
                     <p className="v-display text-[2.6rem] leading-none">{m.price != null ? formatPrice(m.price) : 'Sur devis'}</p>
                     {m.price != null && (
                       <p className="mt-2 text-[14px] text-v-soft">
-                        TTC, livraison et installation comprises · ou 4 × {pay4(m.price)}
+                        TTC, livraison en supplément · ou 4 × {pay4(m.price)}
                       </p>
                     )}
                   </>
@@ -521,7 +524,7 @@ export function ModeleView({ id, univers, modele }: { id: Audience; univers: str
                     <p className="v-display mt-2 text-[2rem] leading-tight">
                       {m.price != null ? <>À l&apos;achat dès {formatPrice(m.price)}</> : 'Sur devis'}
                     </p>
-                    <p className="mt-2 text-[14px] text-v-soft">Location longue durée sur devis, maintenance incluse.</p>
+                    <p className="mt-2 text-[14px] text-v-soft">Location longue durée sur devis.</p>
                   </>
                 )}
               </div>
@@ -581,7 +584,7 @@ export function ModeleView({ id, univers, modele }: { id: Audience; univers: str
       <ProductFaq
         id={id}
         u={u}
-        text={shop ? 'Une question sur ce modèle, une personnalisation ? On vous répond sous 48 heures.' : 'Décrivez votre projet en deux minutes : proposition chiffrée sous 48 heures.'}
+        text={shop ? 'Une question sur ce modèle, une personnalisation ? Écrivez-nous.' : 'Décrivez votre projet en deux minutes : proposition chiffrée gratuite.'}
         cta={{ href: `/contact/?produit=${encodeURIComponent(m.sku)}`, label: shop ? 'Poser une question' : 'Demander un devis gratuit' }}
       />
 

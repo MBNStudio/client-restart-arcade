@@ -5,6 +5,7 @@ import { espacesV2, espaceV2, produitsHref, type Offer, type ValueBlock } from '
 import type { Audience } from '@/data/catalogue'
 import { asset } from '@/lib/site'
 import { Chapters } from './Chapters'
+import { Presentation } from './Contenus'
 import { FaqShowroom } from './FaqShowroom'
 import { HeroVideo } from './HeroVideo'
 import { ChooseEspaceButton } from './ChooseEspaceButton'
@@ -28,7 +29,7 @@ const generalValues: ValueBlock[] = [
     label: 'Location ou achat',
     short: 'La formule qui vous va',
     title: "À l'achat ou en location longue durée",
-    text: "Les particuliers achètent, en payant en 2, 3 ou 4 fois. Les professionnels choisissent : la location inclut livraison, installation et maintenance, sans immobiliser de trésorerie.",
+    text: "Les particuliers achètent, en payant en 2, 3 ou 4 fois. Les professionnels choisissent : la location longue durée évite d'immobiliser de la trésorerie.",
     points: ['Location longue durée pour les professionnels', 'Paiement en 2x, 3x ou 4x pour les particuliers', 'Monnayeur en option pour les lieux publics'],
     image: scene('bar-commerce-2'),
     alt: 'Quatre amis penchés sur un baby-foot en bois pendant une partie animée, dans un bar-restaurant le soir',
@@ -37,9 +38,9 @@ const generalValues: ValueBlock[] = [
   {
     label: 'Livraison',
     short: 'Partout en France',
-    title: 'Livré monté, installé, prêt à jouer',
-    text: "Assemblés et testés dans notre atelier de Villette-d'Anthon, en Isère, nos équipements sont livrés partout en France, Corse comprise, puis installés et pris en main sur place.",
-    points: ['Livraison et installation partout en France', 'Devis sous 48 heures', "Jusqu'à 3 ans de garantie"],
+    title: 'Livré chez vous, partout en France',
+    text: "Avant chaque expédition, nos équipements sont testés et soigneusement emballés dans notre atelier de Villette-d'Anthon, en Isère.",
+    points: ['Livraison en France métropolitaine, Corse sur devis', 'Devis gratuit', "Jusqu'à 3 ans de garantie selon le modèle"],
     image: asset('/img/ambiance/2.webp'),
     alt: "Le showroom RESTART : borne d'arcade, cible de fléchettes, baby-foot, fauteuil massant et cocon de repos",
     caption: "Notre atelier et showroom, à Villette-d'Anthon (38)",
@@ -56,7 +57,7 @@ const targetSummary: Record<Audience, { text: string; points: string[] }> = {
       'Achat ou location longue durée',
       'Monnayeur en option',
       'À votre enseigne : covering et logo',
-      'Livraison et installation partout en France',
+      'Livraison partout en France',
     ],
   },
   entreprise: {
@@ -65,9 +66,9 @@ const targetSummary: Record<Audience, { text: string; points: string[] }> = {
       "Salles de pause, CSE, espaces d'accueil",
       'Bornes, baby-foot, billards, fléchettes',
       'Fauteuils massants et cocons de repos',
-      'Achat ou location, maintenance incluse',
+      'Achat ou location longue durée',
       'À vos couleurs : logo et charte graphique',
-      'Devis gratuit sous 48 heures',
+      'Devis gratuit',
     ],
   },
   particulier: {
@@ -77,7 +78,7 @@ const targetSummary: Record<Audience, { text: string; points: string[] }> = {
       "Bornes d'arcade dès 899 €",
       'Baby-foot, fléchettes, fauteuils massants',
       'Prix affichés, paiement en 2x, 3x ou 4x',
-      'Livré monté et installé',
+      'Livraison partout en France',
       'Personnalisé à votre goût',
     ],
   },
@@ -96,19 +97,19 @@ const targetCards: Offer[] = espacesV2.map((e) => ({
 const generalFaq = [
   {
     q: 'RESTART vend ou loue ses équipements ?',
-    a: "Les deux. La vente concerne surtout les particuliers et les entreprises qui préfèrent investir. La location, réservée aux professionnels, inclut la livraison, l'installation et la maintenance, sans immobiliser de trésorerie. C'est la formule la plus fréquente en bar et en commerce.",
+    a: "Les deux. La vente concerne surtout les particuliers et les entreprises qui préfèrent investir. La location longue durée, réservée aux professionnels, évite d'immobiliser de la trésorerie.",
   },
   {
     q: 'Où RESTART livre-t-il ?',
-    a: "Partout en France métropolitaine, Corse comprise. Notre atelier est situé à Villette-d'Anthon (38280), dans l'est lyonnais, ce qui nous permet d'intervenir rapidement sur Lyon, Villeurbanne, Bourgoin-Jallieu, Grenoble et Saint-Étienne.",
+    a: "Partout en France métropolitaine ; la Corse sur devis. Les frais de livraison s'ajoutent au prix. Notre atelier est situé à Villette-d'Anthon (38280), dans l'est lyonnais.",
   },
   {
     q: 'Peut-on personnaliser un équipement ?',
     a: 'Oui. Le covering PVC, la couleur des boutons et le T-Molding sont personnalisables sur les bornes R-TWIN, R-EVOLUTION, R-PRO et R-DART PRO. Les baby-foot sont disponibles en 6 à 8 couleurs. Un visuel vous est soumis pour validation avant fabrication.',
   },
   {
-    q: "Quel est le délai entre la commande et l'installation ?",
-    a: 'Le devis est établi sous 48 heures. Pour un modèle standard, comptez ensuite deux à trois semaines. Pour un équipement entièrement personnalisé, le délai dépend de la validation du visuel et de la fabrication du covering.',
+    q: 'Quel est le délai de livraison ?',
+    a: 'Le délai de fabrication et de livraison vous est communiqué avant la validation de la commande. Pour un équipement personnalisé, il dépend aussi de la validation du visuel.',
   },
   {
     q: 'Le paiement en plusieurs fois est-il possible ?',
@@ -150,7 +151,7 @@ export function GeneralHome() {
         text="Bornes d'arcade, fléchettes électroniques, baby-foot, billards et flippers numériques, personnalisés à votre image pour les bars, les entreprises et les particuliers."
         marks={[
           ['Bars, entreprises & particuliers', 'Vente et location'],
-          ['Conseil, personnalisation, installation', 'Un seul interlocuteur'],
+          ['Conseil et personnalisation', 'Un seul interlocuteur'],
           ['Partout en France', 'Atelier et showroom près de Lyon'],
         ]}
         actions={
@@ -197,7 +198,7 @@ export function GeneralHome() {
                 Tout ce qui fait <em>jouer</em>
               </>
             }
-            text="Sept familles d'équipements, livrés montés et installés. Choisissez une gamme : on vous montre les modèles de votre espace."
+            text="Sept familles d'équipements. Choisissez une gamme : on vous montre les modèles de votre espace."
           />
           <div className="mt-14">
             <GammeMosaic univers={univers.map((u) => u.slug)} />
@@ -263,10 +264,8 @@ const espaceScenes: Record<Audience, { src: string; alt: string }[]> = {
 export function EspaceHome({ id }: { id: Audience }) {
   const e = espaceV2(id)
   const scenes = espaceScenes[id]
-  // La valeur ajoutée prend les photos générées de l'espace quand elles collent au propos.
   const values = e.values.map((v, i) => ({
     ...v,
-    ...(i === 1 && { image: scenes[1].src, alt: scenes[1].alt }),
     cta: i === 0 ? { href: e.nav[0].href, label: e.nav[0].label } : i === 1 ? { href: produitsHref(id), label: 'Voir les produits' } : null,
   }))
 
@@ -307,6 +306,8 @@ export function EspaceHome({ id }: { id: Audience }) {
       </section>
 
       <Chapters blocks={values} />
+
+      <Presentation id={id} />
 
       <section className="py-24 lg:py-32">
         <div className="v-wrap">
@@ -356,7 +357,7 @@ export function EspaceHome({ id }: { id: Audience }) {
                 <Link href="/contact/" className="v-link font-semibold text-v-ink">
                   Écrivez-nous
                 </Link>{' '}
-                : réponse sous 48 heures.
+                .
               </p>
             }
           />

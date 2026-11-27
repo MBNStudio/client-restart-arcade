@@ -9,16 +9,16 @@ import { Frame, PageHero, BriefPoints } from '@/components/kit'
 import { asset, site } from '@/lib/site'
 
 export const metadata: Metadata = {
-  title: 'Contact et devis gratuit sous 48 h',
+  title: 'Contact et devis gratuit',
   description:
-    "Décrivez votre projet d'aménagement : borne d'arcade, fléchettes, baby-foot, billard ou flipper. Devis gratuit sous 48 h. RESTART, Villette-d'Anthon (38280), près de Lyon.",
+    "Décrivez votre projet d'aménagement : borne d'arcade, fléchettes, baby-foot, billard ou flipper. Devis gratuit. RESTART, Villette-d'Anthon (38280), près de Lyon.",
   alternates: { canonical: '/contact/' },
 }
 
 const faq = [
   {
     q: 'Sous quel délai recevrai-je une réponse ?',
-    a: 'Sous 48 heures ouvrées. Si votre projet est urgent, appelez directement le 06 67 44 36 02 : nous cadrons le besoin en quelques minutes au téléphone.',
+    a: 'Nous vous recontactons au plus vite. Si votre projet est urgent, appelez directement le 06 67 44 36 02 : nous cadrons le besoin en quelques minutes au téléphone.',
   },
   {
     q: 'Le devis est-il payant ou engageant ?',
@@ -26,7 +26,7 @@ const faq = [
   },
   {
     q: 'Intervenez-vous en dehors de la région lyonnaise ?',
-    a: "Oui, nous livrons et installons partout en France métropolitaine. Notre atelier est à Villette-d'Anthon (38280), ce qui nous permet simplement d'être plus réactifs sur Lyon, Grenoble et Saint-Étienne.",
+    a: "Oui, nous livrons partout en France métropolitaine ; la Corse sur devis. Notre atelier est à Villette-d'Anthon (38280), ce qui nous permet simplement d'être plus réactifs sur Lyon, Grenoble et Saint-Étienne.",
   },
 ]
 
@@ -35,7 +35,7 @@ export default function ContactPage() {
     <>
       <PageHero
         crumbs={[{ href: '/contact/', label: 'Contact' }]}
-        title="Un devis gratuit, sous 48 heures"
+        title="Un devis gratuit"
         visual={
           <Frame>
             <div className="p-6 sm:p-8">
@@ -64,7 +64,7 @@ export default function ContactPage() {
                 <a key="wa" href={site.whatsapp} target="_blank" rel="noopener noreferrer">
                   WhatsApp
                 </a>,
-                'Réponse sous 48 heures ouvrées',
+                'Devis gratuit et sans engagement',
               ]}
             />
           </address>
@@ -93,7 +93,7 @@ export default function ContactPage() {
                 {[
                   'Une proposition chiffrée, options comprises',
                   'Un visuel de personnalisation si vous en voulez une',
-                  'Le délai réel de livraison et d’installation',
+                  'Le délai réel de livraison',
                   'Les deux formules : achat et location',
                 ].map((x) => (
                   <li key={x} className="flex gap-2.5">

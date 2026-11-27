@@ -5,7 +5,7 @@ import { asset } from '@/lib/site'
  * Une page par public, comme les trois accueils de l'ancien restart-arcade.fr
  * (/accueil/, /accueil-bars-commerces/, /accueil-particulier/). Les textes
  * reprennent ces pages (knowledge/content/pages/accueil*.md) ; les faits
- * (prix, délais, garanties) viennent du catalogue et de la FAQ du site.
+ * (prix, garanties) viennent du catalogue et du site actuel.
  */
 export type AudiencePage = {
   id: Audience
@@ -33,15 +33,15 @@ export const audiencePages: AudiencePage[] = [
     crumb: 'Entreprises',
     metaTitle: "Bornes d'arcade, baby-foot et détente pour vos salles de pause d'entreprise",
     metaDescription:
-      "RESTART équipe les salles de pause et les espaces d'accueil des entreprises : bornes d'arcade, fléchettes, baby-foot, billards, fauteuils massants et cocons de repos, à l'achat ou en location avec maintenance incluse.",
+      "RESTART équipe les salles de pause et les espaces d'accueil des entreprises : bornes d'arcade, fléchettes, baby-foot, billards, fauteuils massants et cocons de repos, à l'achat ou en location longue durée.",
     h1: 'Des salles de pause où vos équipes ont envie de revenir',
     photo: asset('/img/situations/entreprise.webp'),
     photoAlt: "Collègues autour d'un billard dans l'espace détente de leur entreprise",
     brief: [
-      'Achat ou location longue durée, maintenance incluse en location',
+      'Achat ou location longue durée',
       'Usage libre, sans monnayeur, pour vos salariés et vos visiteurs',
       'À vos couleurs : logo, charte graphique, covering sur mesure',
-      "Jusqu'à 3 ans de garantie, devis gratuit sous 48 heures",
+      "Jusqu'à 3 ans de garantie, devis gratuit",
     ],
     intro: {
       title: 'Créateur de bien-être en entreprise',
@@ -71,20 +71,20 @@ export const audiencePages: AudiencePage[] = [
     faq: [
       {
         q: 'Vaut-il mieux acheter ou louer pour une entreprise ?',
-        a: "Les deux sont possibles. La location longue durée, réservée aux professionnels, inclut la livraison, l'installation et la maintenance, sans immobiliser de trésorerie. L'achat convient aux entreprises qui préfèrent investir.",
+        a: "Les deux sont possibles. La location longue durée, réservée aux professionnels, évite d'immobiliser de la trésorerie. L'achat convient aux entreprises qui préfèrent investir.",
       },
       {
         q: 'Peut-on mettre notre logo sur les équipements ?',
         a: 'Oui. Le covering PVC, la couleur des boutons et le T-Molding sont personnalisables sur les bornes R-TWIN, R-EVOLUTION, R-PRO et R-DART PRO. Un visuel vous est soumis pour validation avant fabrication.',
       },
       {
-        q: "Quel est le délai entre la commande et l'installation ?",
-        a: 'Le devis est établi sous 48 heures. Pour un modèle standard, comptez ensuite deux à trois semaines. Pour un équipement entièrement personnalisé, le délai dépend de la validation du visuel.',
+        q: 'Quel est le délai de livraison ?',
+        a: 'Le délai de fabrication et de livraison vous est communiqué avant la validation de la commande. Pour un équipement personnalisé, il dépend aussi de la validation du visuel.',
       },
     ],
     cta: {
       title: 'Une salle de pause à repenser ?',
-      subtitle: 'Décrivez votre espace en deux minutes : proposition chiffrée sous 48 heures.',
+      subtitle: 'Décrivez votre espace en deux minutes : proposition chiffrée gratuite.',
     },
   },
   {
@@ -101,7 +101,7 @@ export const audiencePages: AudiencePage[] = [
     brief: [
       'Location sans immobiliser de trésorerie, ou achat',
       'Monnayeur en option : une source de revenus complémentaire',
-      'Habillage à votre enseigne, maintenance assurée',
+      'Habillage à votre enseigne',
       'Bars, restaurants, campings, hôtels, complexes sportifs, centres de loisirs',
     ],
     intro: {
@@ -132,7 +132,7 @@ export const audiencePages: AudiencePage[] = [
     faq: [
       {
         q: 'Peut-on louer plutôt qu’acheter ?',
-        a: "Oui, c'est la formule la plus fréquente en bar et en commerce. La location inclut la livraison, l'installation et la maintenance, sans immobiliser de trésorerie.",
+        a: "Oui, c'est la formule la plus fréquente en bar et en commerce. La location évite d'immobiliser de la trésorerie.",
       },
       {
         q: 'Les bornes et les fléchettes peuvent-elles être payantes ?',
@@ -145,7 +145,7 @@ export const audiencePages: AudiencePage[] = [
     ],
     cta: {
       title: 'Un établissement à animer ?',
-      subtitle: 'Dites-nous votre lieu et votre clientèle : proposition chiffrée sous 48 heures.',
+      subtitle: 'Dites-nous votre lieu et votre clientèle : proposition chiffrée gratuite.',
     },
   },
   {
@@ -155,13 +155,13 @@ export const audiencePages: AudiencePage[] = [
     crumb: 'Particuliers',
     metaTitle: "Borne d'arcade, baby-foot et fléchettes pour la maison",
     metaDescription:
-      "L'ambiance des salles d'arcade à la maison : bornes d'arcade, baby-foot intérieur et extérieur, fléchettes électroniques et fauteuils massants, fabriqués en Isère, livrés montés partout en France, paiement en 2x, 3x ou 4x.",
+      "L'ambiance des salles d'arcade à la maison : bornes d'arcade, baby-foot intérieur et extérieur, fléchettes électroniques et fauteuils massants, fabriqués en Isère, livrés partout en France, paiement en 2x, 3x ou 4x.",
     h1: "L'ambiance des salles d'arcade, directement à la maison",
     photo: asset('/img/situations/maison.webp'),
     photoAlt: "Amis réunis dans un salon autour d'une borne d'arcade",
     brief: [
       'Paiement en 2x, 3x ou 4x',
-      'Livré monté et installé, prise en main sur place',
+      'Livraison partout en France métropolitaine, en supplément',
       'Conçu et fabriqué dans notre atelier en Isère (38)',
       "Jusqu'à 3 ans de garantie",
     ],
@@ -184,8 +184,8 @@ export const audiencePages: AudiencePage[] = [
         a: 'Oui, le paiement en 2, 3 ou 4 fois est disponible sur les achats en ligne.',
       },
       {
-        q: 'La borne arrive-t-elle montée ?',
-        a: "Oui. Nos équipements arrivent assemblés et testés, partout en France métropolitaine. Vous n'avez ni carton à ouvrir ni notice à lire.",
+        q: 'La livraison comprend-elle le montage ?',
+        a: "Non, sauf mention contraire sur la fiche, le devis ou la commande. Nos produits sont testés et emballés dans notre atelier, puis conçus pour être simples et rapides à mettre en place, sans compétences techniques particulières.",
       },
       {
         q: 'Peut-on personnaliser une borne pour la maison ?',
@@ -194,7 +194,7 @@ export const audiencePages: AudiencePage[] = [
     ],
     cta: {
       title: 'Votre salle de jeux commence ici',
-      subtitle: 'Parlez-nous de votre pièce et de vos envies : proposition chiffrée sous 48 heures.',
+      subtitle: 'Parlez-nous de votre pièce et de vos envies : proposition chiffrée gratuite.',
     },
   },
 ]

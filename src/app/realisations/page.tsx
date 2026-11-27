@@ -49,7 +49,7 @@ export default function RealisationsPage() {
               </h1>
               <p className="v-lead v-appear mt-6 max-w-md" style={delai(450)}>
                 Bars, campings, entreprises, salons : {realisationPhotos.length} installations, de la borne personnalisée au
-                baby-foot d&apos;extérieur, livrées et installées partout en France.
+                baby-foot d&apos;extérieur, partout en France.
               </p>
               <div className="v-appear mt-9 flex flex-wrap gap-3" style={delai(600)}>
                 <Link href="/contact/" className="v-btn v-btn--solid">

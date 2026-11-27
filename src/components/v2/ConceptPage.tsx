@@ -22,9 +22,9 @@ const titles: Record<Audience, { title: string; description: string; crumb: stri
   },
   // « Je crée » et « Livraison & installation » menaient à la même page : une seule entrée, comme sur les deux autres sites.
   particulier: {
-    title: 'Notre concept : un jeu à votre image, livré et installé chez vous',
+    title: 'Notre concept : un jeu à votre image, livré chez vous',
     description:
-      "Personnalisez votre jeu RESTART : covering, boutons LED ou dorés, stickers, porte-gobelet. Assemblé dans notre atelier en Isère, livré et installé partout en France, Corse comprise.",
+      "Personnalisez votre jeu RESTART : covering, boutons LED ou dorés, stickers, porte-gobelet. Assemblé dans notre atelier en Isère et livré partout en France.",
     crumb: 'Notre concept',
   },
 }
@@ -91,7 +91,7 @@ export function ConceptView({ id }: { id: Audience }) {
         </div>
       </section>
 
-      <Marquee words={id === 'particulier' ? ['Vos couleurs', 'Boutons LED', 'Bouton « Gold »', 'Sticker enfant', 'Porte-gobelet', 'Livré monté'] : ['Vos couleurs', 'Votre logo', 'Votre identité', 'Achat ou location', 'Partout en France']} />
+      <Marquee words={id === 'particulier' ? ['Vos couleurs', 'Boutons LED', 'Bouton « Gold »', 'Sticker enfant', 'Porte-gobelet', 'Livraison chez vous'] : ['Vos couleurs', 'Votre logo', 'Votre identité', 'Achat ou location', 'Partout en France']} />
 
       <Chapters blocks={blocks} />
 

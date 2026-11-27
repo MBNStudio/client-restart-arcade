@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import './globals.css'
 import { SiteHeader } from '@/components/v2/SiteHeader'
 import { SiteFooter } from '@/components/v2/SiteFooter'
-import { ThemePicker } from '@/components/v2/ThemePicker'
 import { ThemeByEspace } from '@/components/v2/ThemeByEspace'
 import { Reveal } from '@/components/v2/Reveal'
 import { v2FontVariables } from '@/lib/v2/fonts'
@@ -17,8 +16,8 @@ import { EspaceChooser } from '@/components/EspaceChooser'
 import { espaceBootScript, espacePaths } from '@/lib/espace'
 
 /**
- * V3 (retours de RESTART du 19 novembre 2026 sur la V2 du 5 novembre) : un site général en une page et trois
- * sites par public, six thèmes au choix. Les scripts du <head> posent le thème choisi
+ * V4 (retours de RESTART du 27 novembre 2026 sur la V3) : un site général en une page et trois sites par
+ * public, chacun avec son thème. Les scripts du <head> posent le thème de l'univers
  * et renvoient la visite qui revient sur l'accueil général vers l'accueil de l'espace
  * choisi (voir lib/espace.ts), avant le premier rendu.
  */
@@ -141,7 +140,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ConsentBanner />
         <EspaceChooser />
         <ThemeByEspace />
-        <ThemePicker />
         <Reveal />
       </body>
     </html>

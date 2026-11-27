@@ -32,7 +32,7 @@ const titles: Record<Audience, { title: string; description: string; h1: string;
       "Les articles RESTART pour les particuliers : choisir sa borne d'arcade, son baby-foot ou ses fléchettes, aménager sa salle de jeux et personnaliser son jeu.",
     h1: "L'arcade à la maison,",
     accent: 'nos conseils',
-    intro: 'Choisir, installer et personnaliser son jeu : nos premiers articles pour les particuliers arrivent.',
+    intro: 'Choisir et personnaliser son jeu : nos premiers articles pour les particuliers arrivent.',
   },
 }
 

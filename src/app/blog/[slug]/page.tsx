@@ -135,7 +135,7 @@ export default async function ArticlePage({ params }: Props) {
                 Un projet d&apos;aménagement en tête ?
               </h2>
               <p className="mt-2 text-sm text-amber-200/80">
-                Devis gratuit sous 48 heures, sans engagement, y compris si votre idée est encore
+                Devis gratuit, sans engagement, y compris si votre idée est encore
                 floue.
               </p>
               <Link
@@ -179,7 +179,7 @@ export default async function ArticlePage({ params }: Props) {
 
       <FinalCta
         title="Un projet d'aménagement en tête ?"
-        subtitle="Devis gratuit sous 48 heures, sans engagement, y compris si votre idée est encore floue."
+        subtitle="Devis gratuit, sans engagement, y compris si votre idée est encore floue."
       />
 
       <JsonLd

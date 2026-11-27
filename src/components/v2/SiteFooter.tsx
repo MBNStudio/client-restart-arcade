@@ -51,7 +51,7 @@ export function SiteFooter() {
               <p className="mt-6 max-w-md text-lg leading-relaxed text-v-on-dark-soft">
                 {e?.id === 'particulier'
                   ? 'Une salle de jeux à aménager, une borne à personnaliser ? Écrivez-nous ou appelez-nous : on vous conseille sur le modèle, les finitions et la livraison.'
-                  : 'Un espace de pause à animer, un bar à équiper, une salle de jeux à la maison ? Décrivez-nous votre espace : nous revenons vers vous sous 48 heures avec une proposition chiffrée.'}
+                  : 'Un espace de pause à animer, un bar à équiper, une salle de jeux à la maison ? Décrivez-nous votre espace : nous revenons vers vous avec une proposition chiffrée.'}
               </p>
               <div className="mt-9 flex flex-wrap gap-3">
                 <Link href="/contact/" className="v-btn v-btn--light" onClick={() => ctaClick('Demander un devis', 'footer')}>

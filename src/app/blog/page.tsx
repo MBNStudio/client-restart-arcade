@@ -93,7 +93,7 @@ export default function BlogPage() {
 
       <FinalCta
         title="Un projet d'aménagement en tête ?"
-        subtitle="Devis gratuit sous 48 heures, sans engagement, y compris si votre idée est encore floue."
+        subtitle="Devis gratuit, sans engagement, y compris si votre idée est encore floue."
       />
 
       <JsonLd

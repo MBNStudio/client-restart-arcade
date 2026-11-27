@@ -4,7 +4,7 @@ import { GeneralHome } from '@/components/v2/Homes'
 export const metadata: Metadata = {
   title: "Bornes d'arcade, fléchettes et baby-foot personnalisés, en vente et en location",
   description:
-    "RESTART équipe bars, entreprises et particuliers en bornes d'arcade, fléchettes électroniques, baby-foot, billards et flippers numériques. Personnalisation à votre image, livraison et installation partout en France.",
+    "RESTART équipe bars, entreprises et particuliers en bornes d'arcade, fléchettes électroniques, baby-foot, billards et flippers numériques. Personnalisation à votre image et livraison partout en France.",
   alternates: { canonical: '/' },
 }
 

@@ -3,7 +3,7 @@ export const site = {
   legalName: 'RESTART',
   tagline: 'Créateur de bien-être en entreprise',
   description:
-    "Vente et location de bornes d'arcade, fléchettes électroniques, baby-foot, billards et flippers numériques personnalisés. Livraison et installation clé en main partout en France.",
+    "Vente et location de bornes d'arcade, fléchettes électroniques, baby-foot, billards et flippers numériques personnalisés. Livraison partout en France.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://restart-arcade.fr',
   locale: 'fr_FR',
   phone: '06 67 44 36 02',

@@ -116,9 +116,9 @@ export function OfferCards({ offers, dark = false }: { offers: Offer[]; dark?: b
     <ul className={`grid gap-5 lg:grid-cols-3 ${dark ? '' : ''}`}>
       {offers.map((o, i) => (
         <li key={o.title} className="v-card group" data-reveal style={delai(i * 90)}>
-          <div className="relative aspect-[4/3] overflow-hidden">
+          <div className={`relative overflow-hidden ${o.square ? 'aspect-square' : 'aspect-[4/3]'}`}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={o.image} alt={o.alt} loading="lazy" className="size-full object-cover transition duration-700 ease-out group-hover:scale-[1.06]" />
+            <img src={o.image} alt={o.alt} loading="lazy" style={{ objectPosition: o.focus }} className="size-full object-cover transition duration-700 ease-out group-hover:scale-[1.06]" />
             <span className="absolute left-4 top-4 rounded-full bg-black/55 px-3 py-1 text-[12px] font-semibold text-white backdrop-blur">
               {o.tag}
             </span>
@@ -304,12 +304,12 @@ export function FaqCta({
   faq,
   title = (
     <>
-      Le jeu, livré monté.
+      Le jeu, chez vous.
       <br />
       Partout en France.
     </>
   ),
-  text = 'Décrivez votre projet en deux minutes : proposition chiffrée sous 48 heures.',
+  text = 'Décrivez votre projet en deux minutes : proposition chiffrée gratuite.',
   cta = { href: '/contact/', label: 'Demander un devis gratuit' },
 }: {
   faq: { q: string; a: string }[]

@@ -32,7 +32,7 @@ export function GET() {
 
   const body = `# RESTART
 
-> ${site.tagline}. Vente et location d'équipements de jeu et de détente : bornes d'arcade, fléchettes électroniques, baby-foot, billards, flippers numériques, fauteuils massants et cocons de repos, personnalisés, livrés montés et installés partout en France.
+> ${site.tagline}. Vente et location d'équipements de jeu et de détente : bornes d'arcade, fléchettes électroniques, baby-foot, billards, flippers numériques, fauteuils massants et cocons de repos, personnalisés et livrés partout en France.
 
 ## Identité
 
@@ -42,14 +42,14 @@ export function GET() {
 - Téléphone : ${site.phone}
 - E-mail : ${site.email}
 - Clientèle : entreprises (QVCT), bars et commerces, particuliers
-- Modèle : vente directe, location pour les professionnels (livraison, installation et maintenance incluses)
-- Devis gratuit sous 48 heures ouvrées
+- Modèle : vente directe, location longue durée pour les professionnels
+- Devis gratuit
 
 ## Univers de produits
 
 ${lignesUnivers}
 
-## Catalogue et prix (TTC, livraison et installation comprises)
+## Catalogue et prix (TTC, livraison en supplément)
 
 ${lignesProduits}
 
@@ -81,7 +81,7 @@ ${lignesArticles}
 
 ## Notes
 
-Les prix affichés sont ceux en vigueur sur le site et incluent la livraison et l'installation en France métropolitaine. Seul le devis signé fait foi. Dernière génération : ${new Date().toISOString().slice(0, 10)}.
+Les prix affichés sont ceux en vigueur sur le site ; sauf mention contraire, ils ne comprennent ni la livraison, ni le montage, ni l'installation. Seul le devis signé fait foi. Dernière génération : ${new Date().toISOString().slice(0, 10)}.
 `
 
   return new Response(body, {

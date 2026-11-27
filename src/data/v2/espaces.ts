@@ -5,13 +5,30 @@ import { asset } from '@/lib/site'
 /**
  * Les trois sites de la V2 (mail de RESTART du 5 novembre 2026) : un site par
  * public, chacun avec son menu, son contenu, ses photos et ses pages produits,
- * plus un site général en une page. Les textes viennent des pages du site actuel
- * (knowledge/content/pages/) et du catalogue : rien n'est inventé.
+ * plus un site général en une page.
+ *
+ * Contenu : ne rien affirmer qui ne figure pas sur le site actuel, dans ses CGV ou dans un mail de RESTART.
+ * En particulier (mail du 27 novembre 2026) : les jeux ne sont livrés ni montés ni installés, la livraison est
+ * en supplément et aucune maintenance n'est annoncée comme incluse.
  */
 
 export type NavItem = { label: string; href: string }
 export type ValueBlock = { label: string; short: string; title: string; text: string; points: string[]; image: string; alt: string; caption: string }
-export type Offer = { tag: string; title: string; text: string; points: string[]; image: string; alt: string; href: string; cta: string }
+export type Offer = {
+  tag: string
+  title: string
+  text: string
+  points: string[]
+  image: string
+  alt: string
+  href: string
+  cta: string
+  /** Photo au format carré (photos verticales fournies par RESTART), avec son point de cadrage (`object-position`). */
+  square?: boolean
+  focus?: string
+}
+/** Une photo du défilé d'ouverture, avec son point de cadrage. */
+export type Slide = { src: string; focus?: string }
 
 export type Espace = {
   id: Audience
@@ -24,7 +41,8 @@ export type Espace = {
   line: string
   /** Type de site : vitrine ou e-commerce. */
   kind: 'vitrine' | 'boutique'
-  video: { src: string; poster: string; fallback: string; alt: string }
+  /** Ouverture : défilé de photos (`slides`) ou film (`src`). `poster` sert aussi aux pages produits. */
+  video: { src?: string; slides?: Slide[]; poster: string; fallback: string; alt: string }
   hero: { eyebrow: string; lines: [string, string, string]; accent: string; text: string; marks: [string, string][] }
   marquee: string[]
   /** Univers vendus à ce public, dans l'ordre du menu du site actuel. */
@@ -41,10 +59,12 @@ export type Espace = {
 }
 
 const img = (p: string) => asset(`/img/${p}.webp`)
-const video = (id: string) => ({
-  src: asset(`/video/v2/hero-${id}.mp4`),
-  poster: asset(`/video/v2/hero-${id}.jpg`),
-})
+/** Défilé d'ouverture : les photos fournies par RESTART (scripts/build-photos-v4.mjs). */
+const defile = (id: Audience, focus: string[]) => {
+  const slides = focus.map((f, i) => ({ src: img(`v4/hero/${id}-${i + 1}`), focus: f }))
+  return { slides, poster: slides[0].src }
+}
+const bloc = (id: Audience, n: 1 | 2 | 3) => img(`v4/blocs/${id}-${n}`)
 
 /** Adresse d'une page d'un espace : `espaceHref('particulier', 'produits/baby-foot/')`. */
 export const espaceHref = (id: Audience, rest = '') => `${audiencePath(id)}${rest}`
@@ -52,27 +72,25 @@ export const produitsHref = (id: Audience, univers?: string, modele?: string) =>
   espaceHref(id, `produits/${univers ? `${univers}/` : ''}${modele ? `${modele}/` : ''}`)
 
 /** Blocs « valeur ajoutée » communs : personnalisation, location ou achat, livraison partout en France. */
-const personnalisation = (text: string, points: string[]): ValueBlock => ({
+const personnalisation = (text: string, points: string[], photo: { image: string; alt: string }): ValueBlock => ({
   label: 'Personnalisation',
   short: 'À votre image',
   title: 'Chaque jeu raconte un peu de vous',
   text,
   points,
-  image: img('hero/baby-foot'),
-  alt: 'Baby-foot de toutes les couleurs, en pleine partie',
+  ...photo,
   caption: 'Covering, couleurs, logo : un visuel validé avant fabrication',
 })
 
-const livraison: ValueBlock = {
+const livraison = (photo: { image: string; alt: string }): ValueBlock => ({
   label: 'Livraison',
   short: 'Partout en France',
-  title: 'Livré monté, installé, prêt à jouer',
-  text: "Nos équipements sont assemblés et testés dans notre atelier de Villette-d'Anthon, en Isère. Nous les livrons partout en France, Corse comprise, et les installons sur place.",
-  points: ['Livraison et installation partout en France', 'Mise en service et prise en main sur place', "Jusqu'à 3 ans de garantie, une ligne directe"],
-  image: img('ambiance/2'),
-  alt: "Le showroom RESTART : borne d'arcade, cible de fléchettes, baby-foot, fauteuil massant et cocon de repos",
-  caption: "Notre atelier et showroom, à Villette-d'Anthon (38)",
-}
+  title: 'Livré chez vous, partout en France',
+  text: "Testés et emballés dans notre atelier en Isère, nos produits sont conçus pour être simples et rapides à mettre en place.",
+  points: ['Livraison en France métropolitaine, Corse sur devis', 'Frais de livraison en supplément', "Jusqu'à 3 ans de garantie selon le modèle"],
+  ...photo,
+  caption: 'Chez nos clients',
+})
 
 const espacesData: Espace[] = [
   {
@@ -82,7 +100,7 @@ const espacesData: Espace[] = [
     short: 'Commerce',
     line: 'Animer votre établissement et fidéliser vos clients',
     kind: 'vitrine',
-    video: { ...video('bar-commerce'), fallback: img('situations/bar'), alt: "Bar équipé d'un flipper, de fléchettes, d'une borne d'arcade, d'un baby-foot et d'un billard" },
+    video: { ...defile('bar-commerce', ['60% 50%', '60% 50%', '50% 60%', '50% 60%']), fallback: img('situations/bar'), alt: "Bars et restaurants équipés de jeux : flippers, fléchettes, bornes d'arcade, baby-foot et billards" },
     hero: {
       eyebrow: 'Bars, restaurants, campings, complexes sportifs',
       lines: ['Animez', 'votre établissement,', 'fidélisez vos clients.'],
@@ -91,7 +109,7 @@ const espacesData: Espace[] = [
       marks: [
         ['Achat ou location longue durée', 'Monnayeur en option'],
         ['À votre enseigne', 'Covering, couleurs, logo'],
-        ['Partout en France', 'Livraison et installation'],
+        ['Partout en France', 'Livraison de vos équipements'],
       ],
     },
     marquee: ['Bars & restaurants', 'Campings & gîtes', 'Complexes sportifs', 'Centres de loisirs', 'Monnayeur en option', 'À votre enseigne', 'Vente & location'],
@@ -106,18 +124,19 @@ const espacesData: Espace[] = [
       personnalisation(
         "Ajoutez votre logo et votre charte graphique : chaque borne devient un outil de communication, et votre établissement se différencie avec son propre univers.",
         ['Vos couleurs, votre logo, votre identité', 'Covering PVC, boutons et T-Molding au choix', 'Un visuel soumis avant toute fabrication'],
+        { image: bloc('bar-commerce', 1), alt: "Borne d'arcade à l'enseigne d'une brasserie, à côté d'un baby-foot" },
       ),
       {
         label: 'Location ou achat',
         short: 'Sans immobiliser de trésorerie',
         title: 'Une source de revenus, pas une charge',
-        text: "La location longue durée inclut la livraison, l'installation et la maintenance. Avec le monnayeur en option, bornes et fléchettes deviennent un revenu complémentaire.",
-        points: ['Location longue durée, maintenance assurée', 'Monnayeur en option sur bornes et fléchettes', 'Achat possible, devis sous 48 heures'],
-        image: img('situations/flechettes'),
-        alt: 'Partie de fléchettes électroniques dans un bar',
-        caption: 'Des fléchettes électroniques qui remplissent un créneau creux',
+        text: "La location longue durée évite d'immobiliser de la trésorerie. Avec le monnayeur en option, bornes et fléchettes deviennent un revenu complémentaire.",
+        points: ['Location longue durée ou achat', 'Monnayeur en option sur bornes et fléchettes', 'Devis gratuit'],
+        image: bloc('bar-commerce', 2),
+        alt: 'Baby-foot et deux bornes de fléchettes électroniques dans un établissement',
+        caption: 'Chez nos clients',
       },
-      livraison,
+      livraison({ image: bloc('bar-commerce', 3), alt: "Borne d'arcade personnalisée dans la salle d'un bar" }),
     ],
     offersTitle: 'Trois façons de vous équiper',
     offersText: 'Achat, location longue durée ou projet complet : la formule suit votre établissement.',
@@ -125,10 +144,12 @@ const espacesData: Espace[] = [
       {
         tag: 'Location',
         title: 'Location longue durée',
-        text: "La formule la plus fréquente en bar : l'équipement s'installe sans immobiliser de trésorerie.",
-        points: ['Livraison et installation incluses', 'Maintenance assurée', 'Monnayeur en option'],
-        image: img('situations/borne-arcade'),
-        alt: "Amis autour d'une borne d'arcade",
+        text: 'Vous équipez votre établissement sans immobiliser de trésorerie.',
+        points: ['Sans immobiliser de trésorerie', 'Monnayeur en option', 'Devis gratuit'],
+        image: img('v4/encarts/bar-location'),
+        alt: 'Billard et borne de fléchettes dans la salle d’une brasserie aux murs de briques',
+        square: true,
+        focus: '50% 60%',
         href: '/contact/',
         cta: 'Demander un devis',
       },
@@ -137,8 +158,10 @@ const espacesData: Espace[] = [
         title: "À l'achat, à votre enseigne",
         text: "Vous investissez une fois : l'équipement est à vous, habillé à vos couleurs.",
         points: ['Covering et logo personnalisés', "Jusqu'à 3 ans de garantie", 'Paiement en plusieurs fois'],
-        image: img('carrousel/reel-lyon'),
-        alt: 'Borne noir et or dans un café à Lyon',
+        image: img('v4/encarts/bar-achat'),
+        alt: "Borne d'arcade à l'enseigne d'un restaurant",
+        square: true,
+        focus: '50% 85%',
         href: produitsHref('bar-commerce'),
         cta: 'Voir les produits',
       },
@@ -146,9 +169,11 @@ const espacesData: Espace[] = [
         tag: 'Sur mesure',
         title: 'Un espace entier à animer',
         text: 'Club-house, salle commune de camping, espace d’attente : on compose l’ensemble avec vous.',
-        points: ['Audit de votre lieu, gratuit', 'Plusieurs jeux, un seul interlocuteur', 'Proposition chiffrée sous 48 heures'],
-        image: img('situations/sur-mesure'),
-        alt: "Salle de jeux complète : baby-foot, borne d'arcade, fléchettes et néons",
+        points: ['Audit de votre lieu, gratuit', 'Plusieurs jeux, un seul interlocuteur', 'Proposition chiffrée gratuite'],
+        image: img('v4/encarts/bar-sur-mesure'),
+        alt: "Borne d'arcade et borne de fléchettes personnalisées dans le club-house d'un centre de padel",
+        square: true,
+        focus: '75% 50%',
         href: '/contact/',
         cta: 'Décrire mon projet',
       },
@@ -190,18 +215,19 @@ const espacesData: Espace[] = [
         personnalisation(
           "Ajoutez votre logo, votre charte graphique et renforcez l'identité de votre enseigne. C'est un outil de communication virale : différenciez-vous avec votre propre univers.",
           ['Vos couleurs', 'Votre logo', 'Votre identité'],
+          { image: bloc('bar-commerce', 1), alt: "Borne d'arcade à l'enseigne d'une brasserie, à côté d'un baby-foot" },
         ),
         {
           label: 'Engagement',
           short: 'Pour votre enseigne',
           title: "Engagés pour l'expérience client de votre enseigne",
           text: 'Proposez une expérience conviviale et originale qui donne envie à vos clients de rester plus longtemps et de revenir.',
-          points: ['Achat ou location longue durée', 'Monnayeur en option', 'Un seul interlocuteur, du devis à la maintenance'],
+          points: ['Achat ou location longue durée', 'Monnayeur en option', 'Un seul interlocuteur'],
           image: img('situations/borne-arcade'),
           alt: "Amis autour d'une borne d'arcade",
           caption: 'Une borne au cœur de la salle',
         },
-        livraison,
+        livraison({ image: bloc('bar-commerce', 3), alt: "Borne d'arcade personnalisée dans la salle d'un bar" }),
       ],
     },
   },
@@ -212,15 +238,15 @@ const espacesData: Espace[] = [
     short: 'Entreprise',
     line: 'Des salles de pause où vos équipes aiment se retrouver',
     kind: 'vitrine',
-    video: { ...video('entreprise'), fallback: img('situations/entreprise'), alt: "Collègues autour d'un billard dans l'espace détente de leur entreprise" },
+    video: { ...defile('entreprise', ['50% 50%', '55% 60%', '50% 55%', '50% 65%']), fallback: img('situations/entreprise'), alt: 'Salles de pause en entreprise : collègues autour d’un billard, d’un baby-foot et de fléchettes' },
     hero: {
       eyebrow: 'Salles de pause, CSE, espaces d’accueil',
       lines: ['Des salles de pause', 'où vos équipes', 'aiment se retrouver.'],
       accent: 'équipes',
-      text: "Bornes d'arcade, baby-foot, billards, fauteuils massants et cocons de repos pour le bien-être de vos collaborateurs, à l'achat ou en location avec maintenance incluse.",
+      text: "Bornes d'arcade, baby-foot, billards, fauteuils massants et cocons de repos pour le bien-être de vos collaborateurs, à l'achat ou en location longue durée.",
       marks: [
         ['Bien-être et cohésion', 'Une démarche QVCT concrète'],
-        ['Achat ou location', 'Maintenance incluse en location'],
+        ['Achat ou location', 'Location longue durée pour les professionnels'],
         ['À vos couleurs', 'Logo et charte graphique'],
       ],
     },
@@ -236,18 +262,19 @@ const espacesData: Espace[] = [
       personnalisation(
         "Ajoutez votre logo et votre charte graphique : chaque équipement raconte un peu votre marque, pour vos salariés comme pour vos visiteurs.",
         ['Logo et charte graphique de l’entreprise', 'Covering PVC, boutons et T-Molding au choix', 'Un visuel soumis avant toute fabrication'],
+        { image: bloc('entreprise', 1), alt: "Borne de fléchettes aux couleurs d'une entreprise, dans son hall d'accueil" },
       ),
       {
         label: 'Location ou achat',
         short: 'Selon votre traitement comptable',
         title: "Location longue durée ou achat, l'offre qu'il vous faut",
-        text: "La location longue durée, réservée aux professionnels, inclut la livraison, l'installation et la maintenance, sans immobiliser de trésorerie. L'achat convient aux entreprises qui préfèrent investir.",
-        points: ['Maintenance incluse en location', 'Usage libre, sans monnayeur', "Jusqu'à 3 ans de garantie à l'achat"],
-        image: img('ambiance/5'),
-        alt: "Collègues autour d'une borne d'arcade dans un espace de pause",
-        caption: 'Une pause qui fait sortir les équipes de leur bureau',
+        text: "La location longue durée, réservée aux professionnels, évite d'immobiliser de la trésorerie. L'achat convient aux entreprises qui préfèrent investir.",
+        points: ['Location longue durée ou achat', 'Usage libre, sans monnayeur', "Jusqu'à 3 ans de garantie à l'achat"],
+        image: bloc('entreprise', 2),
+        alt: 'Borne de fléchettes personnalisée dans l’espace détente d’un centre sportif',
+        caption: 'Chez nos clients',
       },
-      livraison,
+      livraison({ image: bloc('entreprise', 3), alt: 'Borne de fléchettes, borne d’arcade et billard dans un espace de jeux' }),
     ],
     offersTitle: 'Pour vos équipes, vos visiteurs, votre récupération',
     offersText: 'Trois usages, une même idée : faire de vos espaces des lieux de vie.',
@@ -256,7 +283,7 @@ const espacesData: Espace[] = [
         tag: 'Salle de pause',
         title: 'Pour vos équipes',
         text: 'Un point de rassemblement qui fait sortir les équipes de leur bureau, et qui compte dans votre démarche QVCT.',
-        points: ['Baby-foot, borne, billard, fléchettes', 'Usage libre, sans monnayeur', 'Maintenance incluse en location'],
+        points: ['Baby-foot, borne, billard, fléchettes', 'Usage libre, sans monnayeur', 'Achat ou location longue durée'],
         image: img('situations/entreprise'),
         alt: "Collègues autour d'un billard au bureau",
         href: produitsHref('entreprise', 'baby-foot'),
@@ -276,7 +303,7 @@ const espacesData: Espace[] = [
         tag: 'Récupération',
         title: 'Pour souffler vraiment',
         text: 'Fauteuils massants et cocons de repos pour une vraie pause, isolée du bruit et de la lumière.',
-        points: ['Fauteuil massant M-SERENITY', 'Cocon de repos', 'Installation et prise en main'],
+        points: ['Fauteuil massant M-SERENITY', 'Cocon de repos', 'Achat ou location longue durée'],
         image: img('situations/cocon-de-repos'),
         alt: 'Cocon de repos dans une salle de récupération',
         href: produitsHref('entreprise', 'fauteuil-massant'),
@@ -330,13 +357,14 @@ const espacesData: Espace[] = [
         personnalisation(
           "Ajoutez votre logo, votre charte graphique et renforcez l'identité de votre entreprise : chaque équipement raconte un peu de vous.",
           ['Vos couleurs', 'Votre logo', 'Votre identité'],
+          { image: bloc('entreprise', 1), alt: "Borne de fléchettes aux couleurs d'une entreprise, dans son hall d'accueil" },
         ),
         {
           label: 'Engagement',
           short: 'Pour votre bien-être',
           title: 'Créer du lien, chaque jour',
           text: "Plus qu'une vision, une action : des solutions originales, ludiques et utiles, qui évoluent avec les besoins des entreprises. En location longue durée ou à l'achat, nous avons l'offre qu'il vous faut.",
-          points: ['Location longue durée ou achat', 'Maintenance incluse en location', 'Devis gratuit sous 48 heures'],
+          points: ['Location longue durée ou achat', 'Équipements personnalisables', 'Devis gratuit'],
           image: img('situations/cocon-de-repos'),
           alt: 'Cocon de repos dans une salle de récupération',
           caption: 'Un cocon de repos, pour souffler vraiment',
@@ -351,19 +379,20 @@ const espacesData: Espace[] = [
     short: 'Particulier',
     line: "L'ambiance des salles d'arcade, à la maison",
     kind: 'boutique',
-    video: { ...video('particulier'), fallback: img('situations/maison'), alt: "Amis réunis dans un salon autour d'une borne d'arcade" },
+    video: { ...defile('particulier', ['50% 60%', '50% 60%', '50% 60%', '40% 55%', '50% 55%']), fallback: img('situations/maison'), alt: 'Salles de jeux à la maison : baby-foot, bornes d’arcade, fléchettes et billard' },
     hero: {
       eyebrow: 'Salon, salle de jeux, garage, jardin',
       lines: ["L'ambiance", "des salles d'arcade,", 'à la maison.'],
       accent: "salles d'arcade",
-      text: "Bornes d'arcade, fléchettes électroniques, baby-foot et fauteuils massants, livrés montés chez vous et personnalisés à votre goût. Paiement en 2x, 3x ou 4x.",
+      text: "Bornes d'arcade, fléchettes électroniques, baby-foot et fauteuils massants, personnalisés à votre goût et livrés chez vous. Paiement en 2x, 3x ou 4x.",
       marks: [
-        ['Paiement en 2x, 3x ou 4x', 'Prix affichés, livraison comprise'],
-        ['Livré monté et installé', 'Vous branchez, vous jouez'],
-        ['À votre goût', 'Covering, boutons LED, stickers'],
+        // Textes exacts du mail du 27 novembre (« brise » corrigé en « prise »).
+        ['Paiement en 2x, 3x ou 4x', 'Sans frais, livraison chez vous'],
+        ["Simple d'utilisation", 'Se branche sur une prise standard'],
+        ['Sur-mesure', "Personnalisable à l'infini"],
       ],
     },
-    marquee: ["Bornes d'arcade", 'Fléchettes électroniques', 'Baby-foot', 'Fauteuils massants', 'Covering à vos couleurs', 'Paiement en 4x', 'Livré monté'],
+    marquee: ["Bornes d'arcade", 'Fléchettes électroniques', 'Baby-foot', 'Fauteuils massants', 'Covering à vos couleurs', 'Paiement en 4x', 'Livraison chez vous'],
     univers: ['borne-arcade', 'flechettes', 'baby-foot', 'fauteuil-massant'],
     nav: [
       { label: 'Notre concept', href: espaceHref('particulier', 'concept/') },
@@ -374,49 +403,56 @@ const espacesData: Espace[] = [
       personnalisation(
         "Covering, bouton lumineux LED, bouton doré « Gold », sticker enfant, porte-gobelet : créez un jeu qui vous ressemble et qui s'intègre à votre intérieur.",
         ['Couleurs, finitions et motifs au choix', 'Boutons LED ou dorés « Gold »', 'Un visuel validé avant fabrication'],
+        { image: bloc('particulier', 1), alt: "Borne d'arcade au covering coloré dans la pièce à vivre d'un gîte" },
       ),
       {
         label: 'Paiement',
         short: 'En plusieurs fois',
         title: 'Les prix affichés, le paiement en 2x, 3x ou 4x',
-        text: "Chaque modèle affiche son prix, livraison et installation comprises. Vous commandez en ligne et réglez en plusieurs fois, sans frais cachés.",
-        points: ['Prix TTC affiché sur chaque modèle', 'Paiement en 2x, 3x ou 4x', "Jusqu'à 3 ans de garantie"],
-        image: img('situations/maison'),
-        alt: "Adolescents autour d'une borne d'arcade dans un salon",
-        caption: 'Une borne qui se remarque, aussi belle éteinte qu’allumée',
+        text: "Chaque modèle affiche son prix TTC. Vous commandez en ligne et réglez en plusieurs fois ; les frais de livraison s'ajoutent à la commande.",
+        points: ['Prix TTC affiché sur chaque modèle', 'Paiement en 2x, 3x ou 4x', "Jusqu'à 3 ans de garantie selon le modèle"],
+        image: bloc('particulier', 2),
+        alt: 'Baby-foot d’extérieur dans un jardin',
+        caption: 'Chez nos clients',
       },
-      livraison,
+      livraison({ image: bloc('particulier', 3), alt: 'Borne de fléchettes électroniques dans une pièce lumineuse' }),
     ],
     offersTitle: 'Nos offres pour la maison',
-    offersText: 'Un jeu pour commencer, ou la salle de jeux complète : chaque offre est livrée montée et installée.',
+    offersText: 'Une borne d’arcade, une cible de fléchettes, ou la salle de jeux complète.',
     offers: [
       {
-        tag: 'Pour commencer',
-        title: "La borne d'arcade du salon",
-        text: '1 000 jeux dans 61 cm de large : le format qui passe partout, des classiques des années 80 aux titres 32 bits.',
-        points: ['R-LEVEL, 1 000 jeux', 'Livrée montée, vous branchez', 'Paiement en 4x'],
-        image: img('situations/maison'),
-        alt: "Amis réunis dans un salon autour d'une borne d'arcade",
-        href: produitsHref('particulier', 'borne-arcade', 'r-level'),
-        cta: 'Voir la R-LEVEL',
+        tag: 'Borne d’arcade',
+        title: 'La borne R-EVOLUTION',
+        text: '5 000 jeux et un écran 22 pouces, dans une borne entièrement à votre image : 61 cm de large pour 1,72 m de haut.',
+        points: ['5 000 jeux, son stéréo', 'Covering PVC et couleur des boutons au choix', '1 590 € TTC, en 2x, 3x ou 4x'],
+        image: img('v4/encarts/particulier-r-evolution'),
+        alt: "Borne d'arcade R-EVOLUTION au décor coucher de soleil",
+        square: true,
+        focus: '50% 75%',
+        href: produitsHref('particulier', 'borne-arcade', 'r-evolution'),
+        cta: 'Voir la R-EVOLUTION',
       },
       {
-        tag: 'En famille',
-        title: 'Le baby-foot de la maison',
-        text: 'Du BF START au BF PREMIUM en bois, jusqu’au BF 4 SAISONS qui reste dehors toute l’année.',
-        points: ['6 à 8 couleurs au choix', 'Intérieur ou extérieur', 'Livré monté et réglé'],
-        image: img('hero/baby-foot'),
-        alt: 'Baby-foot de toutes les couleurs dans une salle lumineuse',
-        href: produitsHref('particulier', 'baby-foot'),
-        cta: 'Voir les baby-foot',
+        tag: 'Fléchettes',
+        title: 'La borne R-DART PRO',
+        text: 'La borne de fléchettes complète, sur pied, à votre image : écran 21/10e, son stéréo et rétroéclairage LED.',
+        points: ['68 cm de large, 2,20 m de haut', 'Covering PVC, boutons et T-Molding au choix', '2 638,80 € TTC, en 2x, 3x ou 4x'],
+        image: img('v4/encarts/particulier-r-dart-pro'),
+        alt: 'Borne de fléchettes R-DART PRO personnalisée, dans un chalet face à un paysage enneigé',
+        square: true,
+        focus: '100% 50%',
+        href: produitsHref('particulier', 'flechettes', 'r-dart-pro'),
+        cta: 'Voir la R-DART PRO',
       },
       {
         tag: 'Salle de jeux',
         title: 'La salle de jeux complète',
         text: "Borne, fléchettes et baby-foot : la salle d'arcade complète chez vous, composée avec vous et personnalisée.",
         points: ['Conseil sur votre pièce', 'Covering coordonné', 'Une seule livraison'],
-        image: img('situations/sur-mesure'),
-        alt: "Salle de jeux complète : baby-foot, borne d'arcade, fléchettes et néons",
+        image: img('v4/encarts/particulier-salle-de-jeux'),
+        alt: "Salle de jeux à la maison : baby-foot, borne d'arcade, fléchettes et table cocktail",
+        square: true,
+        focus: '45% 50%',
         href: '/contact/',
         cta: 'Composer ma salle',
       },
@@ -470,12 +506,12 @@ const espacesData: Espace[] = [
           short: 'Sur mesure',
           title: 'Des fléchettes qui s’intègrent à votre intérieur',
           text: 'Une cible électronique habillée à votre goût, pour des parties en famille ou entre amis.',
-          points: ['Comptage automatique des points', 'Habillage personnalisé', 'Livrée et installée'],
+          points: ['Comptage automatique des points', 'Habillage personnalisé', 'Livrée chez vous'],
           image: img('situations/flechettes'),
           alt: 'Partie de fléchettes électroniques',
           caption: 'Des parties sans calcul mental',
         },
-        { ...livraison, label: 'Livraison & installation', text: 'Nous vous livrons partout en France, et même en Corse. Nos produits sont assemblés dans notre atelier en Isère (38), puis installés chez vous.' },
+        { ...livraison({ image: bloc('particulier', 3), alt: 'Borne de fléchettes électroniques dans une pièce lumineuse' }), label: 'Livraison' },
       ],
     },
   },

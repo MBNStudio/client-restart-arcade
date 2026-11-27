@@ -137,8 +137,8 @@
   color-scheme: light;
 }
 
-/* ===== V3 : trois thèmes, un par univers. Principale #4444FE (logo). Sur fond sombre, #4444FE n'atteint que
-   3,2:1 : les textes et liens utilisent la teinte claire #7c7cff (5,6:1), #4444FE reste pour aplats et focus. ===== */
+/* ===== Un thème par univers. Principale #4444FE (logo), demandée telle quelle par RESTART (27/11). Sur le fond
+   nuit elle n'atteint que 3,2:1 : réservée aux grands titres, aplats et icônes, le petit texte reste clair. ===== */
 /* Particulier : Arcade V2, appel à l'action rose */
 :root[data-theme='arcade-particulier'] {
   --v-bg: #0b0d17;
@@ -148,7 +148,7 @@
   --v-soft: #9aa1b8;
   --v-line: rgba(255, 255, 255, 0.09);
   --v-primary: #4444fe;
-  --v-accent: #7c7cff;
+  --v-accent: #4444fe;
   --v-btn: #ff2e93;
   --v-btn-ink: #ffffff;
   --v-btn-hover: #d61f7c;
@@ -195,36 +195,7 @@
   color-scheme: light;
 }
 
-/* Bars & commerces : Arcade V2, appel à l'action bleu cyan */
-:root[data-theme='arcade-bar'] {
-  --v-bg: #0b0d17;
-  --v-bg-alt: #10131f;
-  --v-surface: #151a2a;
-  --v-ink: #e8ebf5;
-  --v-soft: #9aa1b8;
-  --v-line: rgba(255, 255, 255, 0.09);
-  --v-primary: #4444fe;
-  --v-accent: #7c7cff;
-  --v-btn: #00ccd5;
-  --v-btn-ink: #06070d;
-  --v-btn-hover: #00aab2;
-  --v-dark-accent: #00ccd5;
-  --v-dark: #06070d;
-  --v-on-dark: #e8ebf5;
-  --v-on-dark-soft: rgba(232, 235, 245, 0.68);
-  --v-dark-line: rgba(255, 255, 255, 0.1);
-  --v-font-display: var(--ff-orbitron), var(--ff-poppins), system-ui, sans-serif;
-  --v-font-body: var(--ff-poppins), system-ui, sans-serif;
-  --v-display-weight: 800;
-  --v-display-tracking: 0;
-  --v-display-case: none;
-  --v-radius: 0.9rem;
-  --v-pill: 999px;
-  color-scheme: dark;
-}
-
-/* ===== Cinq autres propositions à comparer (sélecteur de thème) ===== */
-/* Thème 1 : Indigo profond, tout en bleu RESTART */
+/* Bars & commerces : « Thème 1 », indigo profond, tout en bleu RESTART (choix de RESTART du 27/11) */
 :root[data-theme='theme-1'] {
   --v-bg: #0b0e2e;
   --v-bg-alt: #101440;
@@ -252,117 +223,6 @@
   color-scheme: dark;
 }
 
-/* Thème 2 : Perle bleutée, clair et net */
-:root[data-theme='theme-2'] {
-  --v-bg: #e9eaf4;
-  --v-bg-alt: #dcdeed;
-  --v-surface: #f1f2f9;
-  --v-ink: #10123a;
-  --v-soft: #4f5470;
-  --v-line: #c8cbe0;
-  --v-primary: #4444fe;
-  --v-accent: #4444fe;
-  --v-btn: #4444fe;
-  --v-btn-ink: #ffffff;
-  --v-btn-hover: #3333d6;
-  --v-dark: #10123a;
-  --v-on-dark: #e8ebf5;
-  --v-on-dark-soft: rgba(232, 235, 245, 0.68);
-  --v-dark-accent: #9aa0ff;
-  --v-dark-line: rgba(255, 255, 255, 0.1);
-  --v-font-display: var(--ff-orbitron), var(--ff-poppins), system-ui, sans-serif;
-  --v-font-body: var(--ff-poppins), system-ui, sans-serif;
-  --v-display-weight: 800;
-  --v-display-tracking: 0;
-  --v-display-case: none;
-  --v-radius: 1.1rem;
-  --v-pill: 999px;
-  color-scheme: light;
-}
-
-/* Thème 3 : Noir et jaune arcade, angles vifs */
-:root[data-theme='theme-3'] {
-  --v-bg: #0a0a0a;
-  --v-bg-alt: #131313;
-  --v-surface: #1b1b1b;
-  --v-ink: #f6f4ea;
-  --v-soft: #a8a698;
-  --v-line: rgba(255, 255, 255, 0.12);
-  --v-primary: #4444fe;
-  --v-accent: #ffd400;
-  --v-btn: #ffd400;
-  --v-btn-ink: #0a0a0a;
-  --v-btn-hover: #e6bf00;
-  --v-dark: #000000;
-  --v-on-dark: #e8ebf5;
-  --v-on-dark-soft: rgba(232, 235, 245, 0.68);
-  --v-dark-accent: #ffd400;
-  --v-dark-line: rgba(255, 255, 255, 0.1);
-  --v-font-display: var(--ff-orbitron), var(--ff-poppins), system-ui, sans-serif;
-  --v-font-body: var(--ff-poppins), system-ui, sans-serif;
-  --v-display-weight: 800;
-  --v-display-tracking: 0;
-  --v-display-case: none;
-  --v-radius: 0.35rem;
-  --v-pill: 0.5rem;
-  color-scheme: dark;
-}
-
-/* Thème 4 : Sable chaud, bleu RESTART en accent */
-:root[data-theme='theme-4'] {
-  --v-bg: #ebe5da;
-  --v-bg-alt: #e0d9cb;
-  --v-surface: #f2ede4;
-  --v-ink: #1a1a2e;
-  --v-soft: #5c5a66;
-  --v-line: #cdc5b4;
-  --v-primary: #4444fe;
-  --v-accent: #4444fe;
-  --v-btn: #4444fe;
-  --v-btn-ink: #ffffff;
-  --v-btn-hover: #3333d6;
-  --v-dark: #1a1a2e;
-  --v-on-dark: #e8ebf5;
-  --v-on-dark-soft: rgba(232, 235, 245, 0.68);
-  --v-dark-accent: #aab0ff;
-  --v-dark-line: rgba(255, 255, 255, 0.1);
-  --v-font-display: var(--ff-orbitron), var(--ff-poppins), system-ui, sans-serif;
-  --v-font-body: var(--ff-poppins), system-ui, sans-serif;
-  --v-display-weight: 800;
-  --v-display-tracking: 0;
-  --v-display-case: none;
-  --v-radius: 1.3rem;
-  --v-pill: 999px;
-  color-scheme: light;
-}
-
-/* Thème 5 : Graphite et vert néon */
-:root[data-theme='theme-5'] {
-  --v-bg: #0e1311;
-  --v-bg-alt: #141b18;
-  --v-surface: #1b2420;
-  --v-ink: #e9f2ed;
-  --v-soft: #97a79f;
-  --v-line: rgba(255, 255, 255, 0.1);
-  --v-primary: #4444fe;
-  --v-accent: #39ff88;
-  --v-btn: #39ff88;
-  --v-btn-ink: #08140d;
-  --v-btn-hover: #22e070;
-  --v-dark: #070b09;
-  --v-on-dark: #e8ebf5;
-  --v-on-dark-soft: rgba(232, 235, 245, 0.68);
-  --v-dark-accent: #39ff88;
-  --v-dark-line: rgba(255, 255, 255, 0.1);
-  --v-font-display: var(--ff-orbitron), var(--ff-poppins), system-ui, sans-serif;
-  --v-font-body: var(--ff-poppins), system-ui, sans-serif;
-  --v-display-weight: 800;
-  --v-display-tracking: 0;
-  --v-display-case: none;
-  --v-radius: 0.9rem;
-  --v-pill: 999px;
-  color-scheme: dark;
-}
 
 /* Les pages historiques suivent le thème (primitives --t-* de globals.css). */
 :root[data-version='v2'],
@@ -1165,12 +1025,11 @@
     transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 .v-ch__num {
-  font-family: var(--ff-fraunces), Georgia, serif;
+  font-family: var(--ff-spartan), var(--ff-poppins), system-ui, sans-serif;
   font-size: clamp(56px, 6vw, 96px);
-  font-style: italic;
-  font-weight: 300;
+  font-weight: 800;
   line-height: 0.8;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.02em;
   color: var(--ch-accent);
 }
 .v-ch__tag {
@@ -1680,6 +1539,70 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .v-kenburns {
+    animation: none;
+  }
+}
+
+/* Particulier : le bleu #4444FE garde les grands titres, aplats et icônes ; les petits textes passent en clair
+   (contraste AA sur fond nuit). Les pastilles et le bouton bleus portent un texte blanc. */
+:root[data-theme='arcade-particulier'] :is(p, span, a):is(.text-v-accent, .text-amber-700),
+:root[data-theme='arcade-particulier'] .v-eyebrow:not(.v-on-photo *, .v-dark *) {
+  color: var(--v-ink);
+}
+:root[data-theme='arcade-particulier'] .v-eyebrow:not(.v-on-photo *, .v-dark *)::before {
+  background: var(--v-accent);
+}
+:root[data-theme='arcade-particulier'] .v-ch:not([data-tone='dark']) {
+  --ch-accent-ink: #ffffff;
+}
+
+:root[data-theme='arcade-particulier'] :not(.v-dark) .v-tick {
+  background: var(--v-accent);
+  color: #ffffff;
+}
+/* ---------- Défilé d'ouverture : fondu enchaîné et zoom lent ---------- */
+.v-slides {
+  position: absolute;
+  inset: 0;
+  isolation: isolate;
+  overflow: hidden;
+}
+.v-hero__media .v-slide {
+  opacity: 0;
+}
+.v-hero__media .v-slide[data-state] {
+  opacity: 1;
+  animation: v-slide-zoom 8s linear both;
+}
+.v-hero__media .v-slide[data-state='prev'] {
+  z-index: 1;
+}
+.v-hero__media .v-slide[data-state='on'] {
+  z-index: 2;
+}
+.v-hero__media .v-slides[data-started] .v-slide[data-state='on'] {
+  animation:
+    v-slide-zoom 8s linear both,
+    v-slide-in 1.2s ease both;
+}
+.v-hero__media .v-slides[data-paused] .v-slide[data-state] {
+  animation-play-state: paused;
+}
+@keyframes v-slide-zoom {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.09);
+  }
+}
+@keyframes v-slide-in {
+  from {
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .v-hero__media .v-slides .v-slide[data-state] {
     animation: none;
   }
 }
