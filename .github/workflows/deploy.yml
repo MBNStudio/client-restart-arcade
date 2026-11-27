@@ -33,6 +33,7 @@ jobs:
           - { branch: theme-plateau-v2, dir: plateau-v2 }
           - { branch: theme-v2, dir: v2 }
           - { branch: theme-v3, dir: v3 }
+          - { branch: theme-v4, dir: v4 }
     steps:
       - uses: actions/checkout@v4
         with:
@@ -112,6 +113,11 @@ jobs:
         with:
           name: site-v3
           path: out/v3
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: site-v4
+          path: out/v4
 
       - name: Désactiver le traitement Jekyll
         run: touch out/.nojekyll
